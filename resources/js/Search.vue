@@ -82,7 +82,10 @@ export default {
             regions: [],
             areas: [],
             branches: [],
-            pos: []
+            pos: [],
+            totallCount:[],
+            dateFrom: null,
+            dateTo: null,
         };
     },
      mounted() {
@@ -90,6 +93,8 @@ export default {
         this.getDivisions()
         //this.getRegions()
         //this.getApproveLoan()
+         const currentDate = new Date().toISOString().slice(0, 10);
+        this.dateTo = currentDate;
 
     },
     methods: {
@@ -101,14 +106,7 @@ export default {
 
             );
         },
-        // getRegions() {
-        //     axios.get(`http://127.0.0.1:8000/allreg?division_id={{division.division_id}}`).then(res => {
-        //         this.regions = res.data
-        //         //console.log(this.regions)
-        //     }
 
-        //     );
-        // },
          getRegions() {
             axios.get('http://127.0.0.1:8000/allreg', {
                     params: {
@@ -168,15 +166,19 @@ export default {
                  console.log(this.selectedBranch)
 
         },
+        // getTottalCount() {
+        //     axios.get('http://127.0.0.1:8000/allcount').then(res => {
 
-        //     try {
-        //         // Assuming you have an API endpoint to fetch POs based on branch
-        //         const response = await axios.get(`/api/pos?branch=${this.selectedBranch}`);
-        //         this.pos = response.data;
-        //     } catch (error) {
-        //         console.error('Error fetching POs:', error);
+        //         this.totallCount = res.data
+
+
         //     }
+
+        //     );
+
         // },
+
+
         searchAdmission() {
             // Perform search based on selected filters
             const searchParams = {
@@ -194,27 +196,5 @@ export default {
         }
     }
 };
-$('#region').on('change', function () {
-    if ($(this).val() != '') {
-        var region = $(this).val();
-        $.ajax({
-            url: "{{url('operation/admission-region')}}",
-            type: 'POST',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                region: region,
-            },
-            success: function (data) {
-                console.log(data);
-                $("#area").empty();
-                $(`<option value="">Select</option>`).appendTo("#area");
-                $.each(data, function (key, value) {
-                    $("#area").append(`<option value="` + value.area_id +
-                        `">` + value.area_id + `-` + value.area_name +
-                        `</option>`)
-                });
-            }
-        });
-    }
-});
+
 </script>
