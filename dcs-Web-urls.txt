@@ -1,0 +1,29 @@
+Area Manager(Dabi):
+http://scmtest.brac.net/dcs/weblogin?user_pin=a123&roll_id=2&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=93&program_id=1
+
+Regional manager(Dabi):
+http://scmtest.brac.net/dcs/weblogin?user_pin=50515&roll_id=3&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=18&program_id=1
+
+Division manager(Dabi):
+http://scmtest.brac.net/dcs/weblogin?user_pin=112233&roll_id=4&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=1&program_id=1
+http://127.0.0.1:8000/weblogin?user_pin=112233&roll_id=4&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=1&program_id=1
+
+Admin:
+http://scmtest.brac.net/dcs/weblogin?user_pin=qstest&roll_id=7&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=0
+http://127.0.0.1:8000/weblogin?user_pin=qstest&roll_id=7&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=0
+
+Area Manager(Progoti):
+http://scmtest.brac.net/dcs/weblogin?user_pin=b123&roll_id=2&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=840&program_id=5
+
+Regional Manager(Progoti):
+http://scmtest.brac.net/dcs/weblogin?user_pin=40414&roll_id=3&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=183&program_id=5
+
+Division Manager(Progoti):
+http://scmtest.brac.net/dcs/weblogin?user_pin=445566&roll_id=4&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=24&program_id=5
+
+liv
+
+http://dcs.brac.net/dcs/weblogin?user_pin=a123&roll_id=2&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=93&program_id=1
+
+http://34.126.65.194/dcsprogoti/weblogin?user_pin=qstest&roll_id=7&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=0&program_id=5
+34.143.214.161/dcsprogoti/weblogin?user_pin=qstest&roll_id=2&name=Q-Soft%20Precise%20Assistance&user_id=6976&as_id=2262&program_id=1

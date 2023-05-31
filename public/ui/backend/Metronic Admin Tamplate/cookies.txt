@@ -1,0 +1,15 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+preview.keenthemes.com	TRUE	/	FALSE	1999999999	PHPSESSID	v7eefs2vqoei7r5pm0ar08q682
+github.com	TRUE	/	FALSE	1999999999	_octo	GH1.1.2071640248.1600331181
+github.com	TRUE	/	FALSE	1999999999	logged_in	no
+.amcharts.com	TRUE	/	FALSE	1999999999	__cfduid	d7622dce6360c8a97450201d2ee56ba661600332003
+www.amcharts.com	TRUE	/	FALSE	1999999999	SameSite	Lax
+.codeclimate.com	TRUE	/	FALSE	1999999999	b_uuid	d4ca2f80daf90138012f0242ac112a0f
+git.drupalcode.org	TRUE	/	FALSE	1999999999	experimentation_subject_id	eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqSmlNbU00TVRFM0xUWmpNRGN0TkRnek5DMWhNelpoTFdJNU1XVmlNakl3WWpFM05TST0iLCJleHAiOm51bGwsInB1ciI6ImNvb2tpZS5leHBlcmltZW50YXRpb25fc3ViamVjdF9pZCJ9fQ%3D%3D--132963e8369513c92969be17c27dff152537e02e
+git.drupalcode.org	TRUE	/	FALSE	1999999999	SameSite	None
+.npmjs.com	TRUE	/	FALSE	1999999999	__cfduid	dfcf01792ffb6843441cd794703a702e31600345742
+www.npmjs.com	TRUE	/	FALSE	1999999999	SameSite	Lax
+github.com	TRUE	/	FALSE	1999999999	_gh_sess	19624V89qEntR8gTLhFzG%2BXUmfTuVX6rFiJwPfZnpTC4Y7D7gpiBIhIBaJZMO2W9lQJL6Ui5Mu0%2FhY9S6tv8PA8pxJ3RjauKi2Ez6HioKKN0z2N%2ByAMViaQvcGEULTSiMKYDijRKqpgmnNTUe00%2BlWYVWBdcc6UOxnMEjsZaX7vJjuYNb5uAplQTWIp%2BsoSOrUv8Vkp5Bf%2BEks9RcZi7Hl4BEl%2FCLWJRM0VcNmR%2FYZ8CRUR0kOLHib0zpV2b6eb1g7v7ZDqFEezbdu2uofw94A%3D%3D--FJ1k%2BswcDXqTAIG2--b0TOhLTMjCo4I9RDBifV1Q%3D%3D
+github.com	TRUE	/	FALSE	1999999999	SameSite	Lax
+

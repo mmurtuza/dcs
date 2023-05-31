@@ -1,0 +1,32 @@
+<?php
+return [
+    'header' => 'Admission',
+    'division' => 'Division',
+    'region' => 'Region',
+    'report_type' => 'Report Type',
+    'area' => 'Area',
+    'branch' => 'Branch',
+    'po' => 'PO',
+    'branchSearch' => 'Branch Wise Search',
+    'dateRange' => 'Date Range',
+    'status' => 'Status',
+    'table_header1' => 'Location',
+    'table_header2' => 'No of Survey',
+    'table_header3' => 'No of Admission',
+    'table_header4' => 'No of Loans',
+    'table_header5' => 'Disb. Amnt',
+    'table_header6' => 'Average Loan Size',
+    'table_header7' => 'Branch Name/Code',
+    'table_header8' => 'Po Nmae',
+    'table_header9' => 'Application Date',
+    'table_header10' => 'Disb. Amnt',
+    'table_header11' => 'Product Name',
+    'table_header12' => 'Applied By',
+    'approval_header' => 'Admission Approval',
+    'approval_tab1' => 'Client Information',
+    'approval_tab2' => 'More Information',
+    'approval_tab3' => 'Social Acceptiblity',
+    'titile1' => 'Summary Report',
+    'titile2' => 'Detailed Report'
+
+];
