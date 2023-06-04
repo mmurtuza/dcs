@@ -147,7 +147,7 @@ export default {
                     console.error('Error fetching regions:', error);
                 });
         },
-        async getPOs() { //console.error('Im PO');
+        async getPOs() { 
 
              axios.get('http://127.0.0.1:8000/allpo', {
                 params: {
@@ -166,17 +166,6 @@ export default {
                  console.log(this.selectedBranch)
 
         },
-        // getTottalCount() {
-        //     axios.get('http://127.0.0.1:8000/allcount').then(res => {
-
-        //         this.totallCount = res.data
-
-
-        //     }
-
-        //     );
-
-        // },
 
 
         searchAdmission() {
@@ -190,9 +179,6 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             };
-
-            // Perform search logic with the searchParams
-            // ...
         }
     }
 };

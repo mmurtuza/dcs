@@ -2464,19 +2464,65 @@ class DashboardController extends Controller
     // Sagor Start
     public function GetPendingData(Request $request)
     {
-        $all_pending_loan = DB::Table('dcs.loans')->where('status', 1)->get();
+        $today = date('Y-m-d');
+        $from_date = date('Y-01-01');
+
+        $all_pending_loan =
+        DB::table('dcs.loans')
+        ->where('reciverrole', '!=', '0')
+        ->where('status', 1)
+        ->where('projectcode', session('projectcode'))
+        ->whereDate('loans.time', '>=', $from_date)
+        ->whereDate('loans.time', '<=', $today)
+        ->get();
+
         echo json_encode($all_pending_loan);
     }
 
     public function GetApproveLoanData(Request $request)
     {
-        $all_approve_loan = DB::Table('dcs.loans')->where('status', 2)->get();
+        $today = date('Y-m-d');
+        $from_date = date('Y-01-01');
+
+        $all_approve_loan =
+        DB::table('dcs.loans')
+        ->where('reciverrole', '!=', '0')
+            ->where('ErpStatus', 1)
+            ->where('projectcode', session('projectcode'))
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->get();
         echo json_encode($all_approve_loan);
     }
     public function GetReadyForDisburseLoanData(Request $request)
     {
-        $all_approve_loan = DB::Table('dcs.loans')->where('status', 2)->get();
-        echo json_encode($all_approve_loan);
+        $today = date('Y-m-d');
+        $from_date = date('Y-01-01');
+        $all_readyfordisbursement_loan =
+         DB::table('dcs.loans')
+        ->where('reciverrole', '!=', '0')
+        ->where('ErpStatus', 2)
+        ->where('projectcode', session('projectcode'))
+        ->whereDate('loans.time', '>=', $from_date)
+        ->whereDate('loans.time', '<=', $today)
+        ->get();
+
+        echo json_encode($all_readyfordisbursement_loan);
+    }
+    public function GetDisburseLoanData(Request $request)
+    {
+        $today = date('Y-m-d');
+        $from_date = date('Y-01-01');
+        $all_disburse_loan =
+            DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
+            ->where('ErpStatus', 4)
+            ->where('projectcode', session('projectcode'))
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->get();
+
+        echo json_encode($all_disburse_loan);
     }
 
 
@@ -2585,21 +2631,51 @@ class DashboardController extends Controller
             $all_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('status', '1')->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
+
+            $all_pending_loan_data = DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
+            ->where('status', 1)
+            ->where('projectcode', session('projectcode'))
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->get();
+           // dd($all_pending_loan_data);
+
+
+            $all_approve_loan_data = DB::table('dcs.loans')
+                ->where('reciverrole', '!=', '0')
+                ->where('ErpStatus', 1)
+                ->where('projectcode', session('projectcode'))
+                ->whereDate('loans.time', '>=', $from_date)
+                ->whereDate('loans.time', '<=', $today)
+                ->get();
+
+            //  dd($all_approve_loan_data);
+
+
+
+
+
             $all_approve_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 1)->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
             $all_disbursement = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 2)->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
+
             $all_disburse_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 4)->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
+
             $all_reject_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->Where(function ($query) {
                     $query->where('status', 3)
                         ->orWhere('ErpStatus', 3);
                 })->first();
+
+            //kjhgfds
+
 
             // roll wise count**********************
             $am_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('status', '1')->where('projectcode', session('projectcode'))
@@ -2620,7 +2696,11 @@ class DashboardController extends Controller
 
 
 
+
+
             $jsondata = array(
+                "pendingloandata" =>  $all_pending_loan_data,
+                "approveloandata" =>  $all_approve_loan_data,
                 "pendingadminssioncount" => $pending_admission->count,
                 "pendingprofileadmission" => $pending_profileadmission->count,
                 "pendingloan" =>  $pending_loan->count,
@@ -2641,6 +2721,8 @@ class DashboardController extends Controller
             //dd($jsondata);
         } else {
             $jsondata = [
+                'pendingloandata' =>  0,
+                'approveloandata' =>  0,
                 'pendingadminssioncount' => 0,
                 'pendingprofileadmission' => 0,
                 'pendingloan' => 0,

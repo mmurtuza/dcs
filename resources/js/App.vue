@@ -1,5 +1,4 @@
 <template>
-
     <Search />
     <br>
 
@@ -50,19 +49,11 @@
     </div>
 </div>
 
-
-
-
-    <!-- -- card************************* ---->
-
 <h4 class="col-12">Loan Disbursement Status(<span style="color:red;">Showing Data from <span id="startDateShow"
             style="font-style: italic; text-decoration: underline;">{{ this.totallCount.fromdate }}</span>
         to <span id="endDateShow"
             style="font-style: italic; text-decoration: underline;">{{ this.totallCount.today }}</span></span>)
 </h4>
-
-
-
 
     <div class="col-md-3" style="margin-top:42px;">
         <div class=" mb-3">
@@ -75,13 +66,27 @@
                 :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">Approved(<span
                     id="approved_data">{{ this.totallCount.allapproveloan }}</span>)</button>
         </div>
+
+        <div class="mb-3">
+        <button type="button" id="disbursement" @click="getReadyForDisbursement"
+        :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">Ready for Disbursement(<span
+        id="approved_data">{{ this.totallCount.all_disbursement }}</span>)</button>
+    </div>
+
+
+
+
+<!--
         <div class=" mb-3">
             <button type="button" id="disbursement" class="btn btn-block btn-secondary"> Ready for Disbursement(<span
                     id="disbursement_data">{{ this.totallCount.all_disbursement}}</span>)</button>
-        </div>
+        </div> -->
+
         <div class=" mb-3">
-            <button type="button" id="disburse" class="btn btn-block btn-secondary">
-                Disburse (<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)</button>
+            <button type="button" id="disburse" @click="getDisburseLoan"
+             :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">Disburse(<span
+              id="disburse_data">{{ this.totallCount.alldisburseloan  }}</span>)</button>
+
         </div>
         <div class=" mb-3">
             <button type="button" id="rejected" class="btn btn-block btn-secondary">
@@ -133,12 +138,14 @@
             </div>
 
         </div>
+
         <DataTable :columns="columns" :data="this.datas" :options="options" class="display" width="100%" />
     </div>
 
 </template>
 
 <script>
+
 import axios from 'axios';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-bs5';
@@ -159,6 +166,7 @@ export default {
             pendingCount: [],
             approveCount: [],
             approveLoan: [],
+            readyForDisbursement:[],
             totallCount: [],
             options: {
                 processing: true,
@@ -193,14 +201,11 @@ export default {
     },
     mounted() {
 
-        this.getDatas(),
+            this.getDatas(),
             this.addClasses(),
-            // this.fetchData()
-            this.getPendingCount(),
-            this.getApproveCount(),
+          //  this.getPendingCount(),
+           // this.getApproveCount(),
             this.getTottalCount()
-        // this.getCou()
-        //this.getApproveLoan()
 
     },
     methods: {
@@ -231,19 +236,22 @@ export default {
 
             );
         },
-        getPendingCount() {
-            axios.get('http://127.0.0.1:8000/allpendingloancount').then(res => {
-                // console.log(res)
-                this.pendingCount = res.data
+        getReadyForDisbursement() {
+            axios.get('http://127.0.0.1:8000/allreadyfordisbursementloan').then(res => {
+                this.readyForDisbursement = res.data
+                this.datas = res.data
+                this.activeButton = 'disbursement';
             }
 
             );
 
         },
-        getApproveCount() {
-            axios.get('http://127.0.0.1:8000/allapproveloancount').then(res => {
-                // console.log(res)
-                this.approveCount = res.data
+         getDisburseLoan() {
+             axios.get('http://127.0.0.1:8000/alldisburseloan').then(res => {
+                this.disburseLoan = res.data
+                this.datas = res.data
+                this.activeButton = 'disburse';
+
             }
 
             );
@@ -253,7 +261,7 @@ export default {
             axios.get('http://127.0.0.1:8000/allcount').then(res => {
                 // console.log(res)
                 this.totallCount = res.data
-                console.log(this.totallCount)
+                //console.log(this.totallCount.pendingloandata)
 
             }
 

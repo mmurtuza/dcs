@@ -102,6 +102,8 @@ Route::post('/checkloan', 'UpdateAdmissionController@CheckLoan');
 
 Route::get('/allpendingloan', 'DashboardController@GetPendingData');
 Route::get('/allapproveloan', 'DashboardController@GetApproveLoanData');
+Route::get('/allreadyfordisbursementloan', 'DashboardController@GetReadyForDisburseLoanData');
+Route::get('/alldisburseloan', 'DashboardController@GetDisburseLoanData');
 
 
 
