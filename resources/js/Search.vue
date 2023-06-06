@@ -147,7 +147,7 @@ export default {
                     console.error('Error fetching regions:', error);
                 });
         },
-        async getPOs() { 
+        async getPOs() {
 
              axios.get('http://127.0.0.1:8000/allpo', {
                 params: {
@@ -169,7 +169,6 @@ export default {
 
 
         searchAdmission() {
-            // Perform search based on selected filters
             const searchParams = {
                 division: this.selectedDivision,
                 region: this.selectedRegion,
@@ -179,6 +178,18 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             };
+             axios.post('http://127.0.0.1:8000/search', searchParams)
+                .then((response) => {
+                    // Handle the response from the backend
+                   // console.log(response.data);
+                    data= response.data;
+                     console.log(data);
+                    // Process the search results
+                })
+                .catch((error) => {
+                    console.error('Error searching admissions:', error);
+                    // Handle the error
+                });
         }
     }
 };

@@ -73,26 +73,23 @@
         id="approved_data">{{ this.totallCount.all_disbursement }}</span>)</button>
     </div>
 
-
-
-
-<!--
-        <div class=" mb-3">
-            <button type="button" id="disbursement" class="btn btn-block btn-secondary"> Ready for Disbursement(<span
-                    id="disbursement_data">{{ this.totallCount.all_disbursement}}</span>)</button>
-        </div> -->
-
         <div class=" mb-3">
             <button type="button" id="disburse" @click="getDisburseLoan"
              :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">Disburse(<span
               id="disburse_data">{{ this.totallCount.alldisburseloan  }}</span>)</button>
 
         </div>
-        <div class=" mb-3">
+        <!-- <div class=" mb-3">
             <button type="button" id="rejected" class="btn btn-block btn-secondary">
                 Rejected(<span id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)</button>
+        </div> -->
+
+         <div class=" mb-3">
+                <button type="button" id="rejected"  @click="getRejectedLoan"
+                :class="{ 'btn btn-block btn-secondary': activeButton !== 'rejected', 'btn btn-block btn-secondary active': activeButton === 'rejected' }">Rejected(<span
+                id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)</button>
         </div>
-    </div>
+ </div>
 
     <div class="col-md-9">
         <div class="roll_btn">
@@ -251,6 +248,17 @@ export default {
                 this.disburseLoan = res.data
                 this.datas = res.data
                 this.activeButton = 'disburse';
+
+            }
+
+            );
+
+        },
+         getRejectedLoan() {
+            axios.get('http://127.0.0.1:8000/allrejectedloan').then(res => {
+                this.rejectedLoan = res.data
+                this.datas = res.data
+                this.activeButton = 'rejected';
 
             }
 

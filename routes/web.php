@@ -104,7 +104,8 @@ Route::get('/allpendingloan', 'DashboardController@GetPendingData');
 Route::get('/allapproveloan', 'DashboardController@GetApproveLoanData');
 Route::get('/allreadyfordisbursementloan', 'DashboardController@GetReadyForDisburseLoanData');
 Route::get('/alldisburseloan', 'DashboardController@GetDisburseLoanData');
-
+Route::get('/allrejectedloan', 'DashboardController@GetRejectedLoanData');
+Route::post('/search', 'DashboardController@search');
 
 
 Route::get('/allpendingloancount', 'DashboardController@GetPendingCount');

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Branch;
 use Log;
 use App\Http\Controllers\LiveApiController;
+use SebastianBergmann\CodeCoverage\Driver\Selector;
 
 ini_set('memory_limit', '3072M');
 ini_set('max_execution_time', 1800);
@@ -2468,13 +2469,13 @@ class DashboardController extends Controller
         $from_date = date('Y-01-01');
 
         $all_pending_loan =
-        DB::table('dcs.loans')
-        ->where('reciverrole', '!=', '0')
-        ->where('status', 1)
-        ->where('projectcode', session('projectcode'))
-        ->whereDate('loans.time', '>=', $from_date)
-        ->whereDate('loans.time', '<=', $today)
-        ->get();
+            DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
+            ->where('status', 1)
+            ->where('projectcode', session('projectcode'))
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->get();
 
         echo json_encode($all_pending_loan);
     }
@@ -2485,8 +2486,8 @@ class DashboardController extends Controller
         $from_date = date('Y-01-01');
 
         $all_approve_loan =
-        DB::table('dcs.loans')
-        ->where('reciverrole', '!=', '0')
+            DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
             ->where('ErpStatus', 1)
             ->where('projectcode', session('projectcode'))
             ->whereDate('loans.time', '>=', $from_date)
@@ -2499,13 +2500,13 @@ class DashboardController extends Controller
         $today = date('Y-m-d');
         $from_date = date('Y-01-01');
         $all_readyfordisbursement_loan =
-         DB::table('dcs.loans')
-        ->where('reciverrole', '!=', '0')
-        ->where('ErpStatus', 2)
-        ->where('projectcode', session('projectcode'))
-        ->whereDate('loans.time', '>=', $from_date)
-        ->whereDate('loans.time', '<=', $today)
-        ->get();
+            DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
+            ->where('ErpStatus', 2)
+            ->where('projectcode', session('projectcode'))
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->get();
 
         echo json_encode($all_readyfordisbursement_loan);
     }
@@ -2523,6 +2524,69 @@ class DashboardController extends Controller
             ->get();
 
         echo json_encode($all_disburse_loan);
+    }
+    public function GetRejectedLoanData(Request $request)
+    {
+        $today = date('Y-m-d');
+        $from_date = date('Y-01-01');
+        $all_rejected_loan =
+            DB::table('dcs.loans')
+            ->where('reciverrole', '!=', '0')
+            ->where('projectcode', session('projectcode'))
+            ->where('reciverrole', '!=', '0')
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $today)
+            ->where(function ($query) {
+                $query->where('status', 3)
+                    ->orWhere('ErpStatus', 3);
+            })
+            ->get();
+        echo json_encode($all_rejected_loan);
+    }
+    public function search(Request $request)
+    {
+
+        $division = $request->input('division');
+        $region = $request->input('region');
+        $area = $request->input('area');
+        $branch = $request->input('branch');
+        $po = $request->input('po');
+        $dateFrom = $request->input('dateFrom');
+        $dateTo = $request->input('dateTo');
+
+        if ($division != null) {
+            $getbranch = DB::Table('branch')->select('branch_id')->where('division_id', $division)->where('program_id', 1)->distinct('branch_id')->get();
+        }
+        if ($region != null) {
+            $getbranch = DB::Table('branch')->select('branch_id')->where('division_id', $division)->where('region_id', $region)->where('program_id', 1)->distinct('branch_id')->get();
+        }
+
+        if ($area != null) {
+            $getbranch = DB::Table('branch')->select('branch_id')->where('division_id', $division)->where('division_id', $division)->where('region_id', $region)->where('area_id', $area)->where('program_id', 1)->distinct('branch_id')->get();
+        }
+
+        if ($branch != null) {
+            $getbranch = DB::Table('branch')->select('branch_id')->where('branch_id', $branch)->where('program_id', 1)->get();
+        }
+        //   $all_pending_loan_datas = DB::table('dcs.loans')
+        //         ->where('reciverrole', '!=', '0')
+        //         ->where('status', 1)
+        //         ->where('branchcode',$getbranch)
+        //         ->whereDate('loans.time', '>=',$dateFrom)
+        //         ->whereDate('loans.time', '<=', $dateTo)
+        //         ->get();
+
+        $all_pending_loan_datas = DB::table('dcs.loans')
+            ->join('dcs.branch', 'dcs.loans.branchcode', '=', 'dcs.branch.branch_id')
+            ->where('reciverrole', '!=', '0')
+            ->where('status', 1)
+            ->where('branchcode', $getbranch)
+            ->get();
+
+
+        // $results = compact('division', 'region', 'area', 'branch', 'po', 'dateFrom', 'dateTo');
+
+        return response()->json($all_pending_loan_datas);
     }
 
 
@@ -2624,22 +2688,42 @@ class DashboardController extends Controller
 
         if (!empty($branchcode)) {
 
-            $pending_admission = Admission::select(DB::raw("COUNT(*) as count"))->where('projectcode', session('projectcode'))->where('Flag', 1)->whereDate('created_at', '>=', $from_date)->whereDate('created_at', '<=', $today)->where('reciverrole', '!=', '0')->first();
-            $pending_profileadmission = Admission::select(DB::raw("COUNT(*) as count"))->where('projectcode', session('projectcode'))->where('Flag', 2)->whereDate('created_at', '>=', $from_date)->whereDate('created_at', '<=', $today)->where('reciverrole', '!=', '0')->first();;
-            $pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('projectcode', session('projectcode'))->whereDate($db . '.loans.time', '>=', $from_date)->whereDate($db . '.loans.time', '<=', $today)->where('reciverrole', '!=', '0')->first();
+            $pending_admission = Admission::select(DB::raw("COUNT(*) as count"))
+                ->where('projectcode', session('projectcode'))
+                ->where('Flag', 1)->whereDate('created_at', '>=', $from_date)
+                ->whereDate('created_at', '<=', $today)
+                ->where('reciverrole', '!=', '0')->first();
+
+            $pending_profileadmission = Admission::select(DB::raw("COUNT(*) as count"))
+                ->where('projectcode', session('projectcode'))
+                ->where('Flag', 2)
+                ->whereDate('created_at', '>=', $from_date)
+                ->whereDate('created_at', '<=', $today)
+                ->where('reciverrole', '!=', '0')->first();;
+
+            $pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('projectcode', session('projectcode'))
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)
+                ->where('reciverrole', '!=', '0')->first();
+
             // status wise count**********************
-            $all_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('status', '1')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
+            $all_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('reciverrole', '!=', '0')
+                ->where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
 
             $all_pending_loan_data = DB::table('dcs.loans')
-            ->where('reciverrole', '!=', '0')
-            ->where('status', 1)
-            ->where('projectcode', session('projectcode'))
-            ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $today)
-            ->get();
-           // dd($all_pending_loan_data);
+                ->where('reciverrole', '!=', '0')
+                ->where('status', 1)
+                ->where('projectcode', session('projectcode'))
+                ->whereDate('loans.time', '>=', $from_date)
+                ->whereDate('loans.time', '<=', $today)
+                ->get();
+            // dd($all_pending_loan_data);
 
 
             $all_approve_loan_data = DB::table('dcs.loans')
@@ -2656,20 +2740,37 @@ class DashboardController extends Controller
 
 
 
-            $all_approve_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 1)->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
-                ->whereDate($db . '.loans.time', '<=', $today)->first();
-            $all_disbursement = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 2)->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
-                ->whereDate($db . '.loans.time', '<=', $today)->first();
-
-            $all_disburse_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('ErpStatus', 4)->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
+            $all_approve_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('reciverrole', '!=', '0')
+                ->where('ErpStatus', 1)
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
 
-            $all_reject_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('reciverrole', '!=', '0')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)
-                ->whereDate($db . '.loans.time', '<=', $today)->Where(function ($query) {
+            $all_disbursement = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('reciverrole', '!=', '0')
+                ->where('ErpStatus', 2)
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)->first();
+
+            $all_disburse_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('reciverrole', '!=', '0')
+                ->where('ErpStatus', 4)
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)->first();
+
+            $all_reject_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('reciverrole', '!=', '0')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)
+                ->Where(function ($query) {
                     $query->where('status', 3)
                         ->orWhere('ErpStatus', 3);
                 })->first();
@@ -2678,21 +2779,42 @@ class DashboardController extends Controller
 
 
             // roll wise count**********************
-            $am_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('status', '1')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '2')->whereDate($db . '.loans.time', '>=', $from_date)
+            $am_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '2')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
-            $rm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('status', '1')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '3')->whereDate($db . '.loans.time', '>=', $from_date)
-                ->whereDate($db . '.loans.time', '<=', $today)->first();
-            $dm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('status', '1')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '4')->whereDate($db . '.loans.time', '>=', $from_date)
-                ->whereDate($db . '.loans.time', '<=', $today)->first();
-            $bm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))->where('status', '1')->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '1')->whereDate($db . '.loans.time', '>=', $from_date)
+
+            $rm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '3')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
                 ->whereDate($db . '.loans.time', '<=', $today)->first();
 
 
-            $disburse_amt = Loans::select(DB::raw('sum(cast(propos_amt as double precision))'))->where('projectcode', session('projectcode'))->where('reciverrole', '!=', '0')->whereDate($db . '.loans.time', '>=', $from_date)->whereDate($db . '.loans.time', '<=', $today)->where('ErpStatus', 4)->first();
+            $dm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '4')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)->first();
+
+            $bm_pending_loan = Loans::select(DB::raw("COUNT(*) as count"))
+                ->where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '1')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)->first();
+
+
+            $disburse_amt = Loans::select(DB::raw('sum(cast(propos_amt as double precision))'))
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '!=', '0')
+                ->whereDate($db . '.loans.time', '>=', $from_date)
+                ->whereDate($db . '.loans.time', '<=', $today)
+                ->where('ErpStatus', 4)->first();
 
 
 
