@@ -93,8 +93,14 @@ export default {
         this.getDivisions()
         //this.getRegions()
         //this.getApproveLoan()
-         const currentDate = new Date().toISOString().slice(0, 10);
+
+        const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
+
+        const dateString = "2023-01-01";
+        const dateObject = new Date(dateString);
+        this.dateFrom = dateObject.toISOString().slice(0, 10);
+
 
     },
     methods: {
@@ -183,7 +189,7 @@ export default {
                     // Handle the response from the backend
                    // console.log(response.data);
                     data= response.data;
-                     console.log(data);
+                    // console.log(data);
                     // Process the search results
                 })
                 .catch((error) => {

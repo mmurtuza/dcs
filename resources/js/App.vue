@@ -60,7 +60,10 @@
             <button type="button" id="pending" @click="getDatas"
                 :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">Pending(<span
                     class="pending_data">{{ this.totallCount.allpendingloan }}</span>)</button>
+
         </div>
+
+
         <div class=" mb-3">
             <button type="button" id="approved" @click="getApproveLoan"
                 :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">Approved(<span
@@ -79,10 +82,6 @@
               id="disburse_data">{{ this.totallCount.alldisburseloan  }}</span>)</button>
 
         </div>
-        <!-- <div class=" mb-3">
-            <button type="button" id="rejected" class="btn btn-block btn-secondary">
-                Rejected(<span id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)</button>
-        </div> -->
 
          <div class=" mb-3">
                 <button type="button" id="rejected"  @click="getRejectedLoan"
@@ -165,6 +164,11 @@ export default {
             approveLoan: [],
             readyForDisbursement:[],
             totallCount: [],
+            pending: '',
+            approve: '',
+            readyDisburse: '',
+            disburse: '',
+            rejected: '',
             options: {
                 processing: true,
                 ordering: false,
@@ -207,11 +211,16 @@ export default {
     },
     methods: {
 
-        getDatas() {
-            axios.get('http://127.0.0.1:8000/allpendingloan').then(res => {
+          getDatas() {
+             const params = {
+                erpStatus: 1 ,
+                status: 0,
+            };
+            axios.post('http://127.0.0.1:8000/allpendingloan',params).then(res => {
                 this.datas = res.data
                 this.activeButton = 'pending';
                 this.initializeDataTable();
+                console.log(res.data);
             }
 
             );
