@@ -28,8 +28,6 @@ class DashboardController extends Controller
         $day = date('d');
         $year = date('Y');
 
-
-        //dd($dm_pending_loan);
         return view('Dashboard');
     }
 
@@ -37,88 +35,22 @@ class DashboardController extends Controller
     {
         $today = date('Y-m-d');
         $from_date = date('Y-01-01');
-
-        $query = DB::table('dcs.loans')
-        ->where('reciverrole', '!=', '0')
-        ->where('projectcode', session('projectcode'))
-        ->whereDate('loans.time', '>=', $from_date)
-        ->whereDate('loans.time', '<=', $today);
-
-        if ($request->has('ErpStatus')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('status', $request->get('status'))
-                ->orWhere('ErpStatus', $request->get('ErpStatus'));
-            });
-        }
-
-        $data = $query->get();
-       return $data;
-    }
-
-
-    public function GetApproveLoanData(Request $request)
-    {
-        $today = date('Y-m-d');
-        $from_date = date('Y-01-01');
-
-        $all_approve_loan =
-            DB::table('dcs.loans')
+        $status = '';
+        $erpstatus = '';
+        $status = $request->get('status');
+        $erpstatus = $request->get('ErpStatus');
+        $data = DB::table('dcs.loans')
             ->where('reciverrole', '!=', '0')
-            ->where('ErpStatus', 1)
-            ->where('projectcode', session('projectcode'))
-            ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $today)
-            ->get();
-        echo json_encode($all_approve_loan);
-    }
-    public function GetReadyForDisburseLoanData(Request $request)
-    {
-        $today = date('Y-m-d');
-        $from_date = date('Y-01-01');
-        $all_readyfordisbursement_loan =
-            DB::table('dcs.loans')
-            ->where('reciverrole', '!=', '0')
-            ->where('ErpStatus', 2)
+            ->where('status', $status)
+            ->where('ErpStatus', $erpstatus)
             ->where('projectcode', session('projectcode'))
             ->whereDate('loans.time', '>=', $from_date)
             ->whereDate('loans.time', '<=', $today)
             ->get();
 
-        echo json_encode($all_readyfordisbursement_loan);
+        return $data;
     }
-    public function GetDisburseLoanData(Request $request)
-    {
-        $today = date('Y-m-d');
-        $from_date = date('Y-01-01');
-        $all_disburse_loan =
-            DB::table('dcs.loans')
-            ->where('reciverrole', '!=', '0')
-            ->where('ErpStatus', 4)
-            ->where('projectcode', session('projectcode'))
-            ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $today)
-            ->get();
 
-        echo json_encode($all_disburse_loan);
-    }
-    public function GetRejectedLoanData(Request $request)
-    {
-        $today = date('Y-m-d');
-        $from_date = date('Y-01-01');
-        $all_rejected_loan =
-            DB::table('dcs.loans')
-            ->where('reciverrole', '!=', '0')
-            ->where('projectcode', session('projectcode'))
-            ->where('reciverrole', '!=', '0')
-            ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $today)
-            ->where(function ($query) {
-                $query->where('status', 3)
-                    ->orWhere('ErpStatus', 3);
-            })
-            ->get();
-        echo json_encode($all_rejected_loan);
-    }
     public function search(Request $request)
     {
 
@@ -152,9 +84,6 @@ class DashboardController extends Controller
             ->where('branchcode', $getbranch)
             ->get();
 
-
-        // $results = compact('division', 'region', 'area', 'branch', 'po', 'dateFrom', 'dateTo');
-
         return response()->json($all_pending_loan_datas);
     }
 
@@ -180,7 +109,7 @@ class DashboardController extends Controller
         // Get current date
         $today = date('Y-m-d');
         $from_date = date('Y-01-01');
-        // dd($from_date);
+
 
         $showStartDate = date('d-M-Y', strtotime($from_date));
         $showEndDate = date('d-M-Y', strtotime($today));
@@ -241,19 +170,15 @@ class DashboardController extends Controller
                 'division_id' => session('asid'),
                 'program_id' => session('program_id')
             ])->first();
-            //dd(session('program_id'));
+
             $search2 = DB::Table('public.branch')->where('program_id', session('program_id'))->get();
-            // $search2= Branch::where(['program_id' => session('program_id')])->get();
-            //dd($search2);
         } else {
             return redirect()->back()->with('error', 'Data does not match.');
         }
-        //dd($search2);
         foreach ($search2 as $branch) {
             $branchCode = str_pad($branch->branch_id, 4, "0", STR_PAD_LEFT);
             $branchcode[] = $branchCode;
         }
-        //dd($branchcode);
 
         if (!empty($branchcode)) {
 
@@ -263,27 +188,22 @@ class DashboardController extends Controller
                 ->where('reciverrole', '!=', '0')
                 ->count();
 
-
             $pending_profileadmission = Admission::where('projectcode', session('projectcode'))
                 ->where('Flag', 2)
                 ->whereBetween('created_at', [$from_date, $today])
                 ->where('reciverrole', '!=', '0')
                 ->count();
 
-
             $pending_loan = Loans::where('projectcode', session('projectcode'))
                 ->whereBetween('time', [$from_date, $today])
                 ->where('reciverrole', '!=', '0')
                 ->count();
 
-
-            // status wise count**********************
             $all_pending_loan = Loans::where('reciverrole', '!=', '0')
                 ->where('status', '1')
                 ->where('projectcode', session('projectcode'))
                 ->whereBetween('time', [$from_date, $today])
                 ->count();
-
 
             $all_pending_loan_data = DB::table('dcs.loans')
                 ->where('reciverrole', '!=', '0')
@@ -292,8 +212,6 @@ class DashboardController extends Controller
                 ->whereDate('loans.time', '>=', $from_date)
                 ->whereDate('loans.time', '<=', $today)
                 ->get();
-            // dd($all_pending_loan_data);
-
 
             $all_approve_loan_data = DB::table('dcs.loans')
                 ->where('reciverrole', '!=', '0')
@@ -302,8 +220,6 @@ class DashboardController extends Controller
                 ->whereDate('loans.time', '>=', $from_date)
                 ->whereDate('loans.time', '<=', $today)
                 ->get();
-
-            //  dd($all_approve_loan_data);
 
             $all_approve_loan = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 1)
@@ -317,53 +233,46 @@ class DashboardController extends Controller
                 ->whereBetween('time', [$from_date, $today])
                 ->count();
 
-
             $all_disburse_loan = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 4)
                 ->where('projectcode', session('projectcode'))
                 ->whereBetween('time', [$from_date, $today])
                 ->count();
 
-
-            $all_reject_loan = Loans::where('reciverrole', '!=', '0')
+            $all_reject_loan = DB::table('dcs.loans')
+                ->where('reciverrole', '!=', '0')
+                ->where('status', 3)
+                ->where('ErpStatus', 3)
                 ->where('projectcode', session('projectcode'))
-                ->whereBetween('time', [$from_date, $today])
-                ->where(function ($query) {
-                    $query
-                        ->where('status', 3)
-                        ->orWhere('ErpStatus', 3);
-                })->count();
-            // dd($all_reject_loan);
-
-
+                ->whereDate('loans.time', '>=', $from_date)
+                ->whereDate('loans.time', '<=', $today)
+                ->count();
 
             // roll wise count**********************
+            $bm_pending_loan = Loans::where('status', '1')
+                ->where('projectcode', session('projectcode'))
+                ->where('reciverrole', '1')
+                ->whereBetween('time', [$from_date, $today])
+                ->get();
+                
             $am_pending_loan = Loans::where('status', '1')
                 ->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '2')
                 ->whereBetween('time', [$from_date, $today])
-                ->count();
-
+                ->get();
 
             $rm_pending_loan = Loans::where('status', '1')
                 ->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '3')
                 ->whereBetween('time', [$from_date, $today])
-                ->count();
-
+                ->get();
 
             $dm_pending_loan = Loans::where('status', '1')
                 ->where('projectcode', session('projectcode'))
                 ->where('reciverrole', '4')
                 ->whereBetween('time', [$from_date, $today])
-                ->count();
+                ->get();
 
-
-            $bm_pending_loan = Loans::where('status', '1')
-                ->where('projectcode', session('projectcode'))
-                ->where('reciverrole', '1')
-                ->whereBetween('time', [$from_date, $today])
-                ->count();
 
             $disburse_amt = Loans::where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')
@@ -392,7 +301,6 @@ class DashboardController extends Controller
                 "today" => $today
 
             );
-            //dd($jsondata);
         } else {
             $jsondata = [
                 'pendingloandata' =>  0,
@@ -453,7 +361,6 @@ class DashboardController extends Controller
     }
     public function GetProgramOrganizerData(Request $request)
     {
-        //dd($request);
         $BranchCode = $request->get('branchcode');
         $e = DB::Table('dcs.polist')
             ->select('cono', 'coname')
@@ -461,6 +368,4 @@ class DashboardController extends Controller
 
         return $e;
     }
-
-    //Sagor end
 }

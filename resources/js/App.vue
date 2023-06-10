@@ -57,36 +57,40 @@
 
     <div class="col-md-3" style="margin-top:42px;">
         <div class=" mb-3">
-            <button type="button" id="pending" @click="getDatas"
-                :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">Pending(<span
-                    class="pending_data">{{ this.totallCount.allpendingloan }}</span>)</button>
-
+           <button type="button" id="pending" @click="getDatas(null, 1, 'pending')"
+        :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">
+      Pending(<span class="pending_data">{{ this.totallCount.allpendingloan }}</span>)
+    </button>
         </div>
 
 
         <div class=" mb-3">
-            <button type="button" id="approved" @click="getApproveLoan"
-                :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">Approved(<span
-                    id="approved_data">{{ this.totallCount.allapproveloan }}</span>)</button>
+            <button type="button" id="approved" @click="getDatas(1, 2, 'approved')"
+       :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">
+      Approved(<span id="approved_data">{{ this.totallCount.allapproveloan }}</span>)
+    </button>
         </div>
 
         <div class="mb-3">
-        <button type="button" id="disbursement" @click="getReadyForDisbursement"
-        :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">Ready for Disbursement(<span
-        id="approved_data">{{ this.totallCount.all_disbursement }}</span>)</button>
+       <button type="button" id="disbursement" @click="getDatas(2, 2, 'disbursement')"
+        :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">
+      Ready for Disbursement(<span id="approved_data">{{ this.totallCount.all_disbursement }}</span>)
+    </button>
     </div>
 
         <div class=" mb-3">
-            <button type="button" id="disburse" @click="getDisburseLoan"
-             :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">Disburse(<span
-              id="disburse_data">{{ this.totallCount.alldisburseloan  }}</span>)</button>
+           <button type="button" id="disburse" @click="getDatas(4, 2, 'disburse')"
+      :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
+      Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
+    </button>
 
         </div>
 
          <div class=" mb-3">
-                <button type="button" id="rejected"  @click="getRejectedLoan"
-                :class="{ 'btn btn-block btn-secondary': activeButton !== 'rejected', 'btn btn-block btn-secondary active': activeButton === 'rejected' }">Rejected(<span
-                id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)</button>
+                <button type="button" id="rejected" @click="getDatas(3, 3, 'rejected')"
+      :class="{ 'btn btn-block btn-secondary': activeButton !== 'rejected', 'btn btn-block btn-secondary active': activeButton === 'rejected' }">
+      Rejected(<span id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)
+    </button>
         </div>
  </div>
 
@@ -97,7 +101,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_bm">BM<span id="btn_bm">{{ this.totallCount.bmpendingloan }}</span>
+                            <h4 class="roll_class" id="roll_bm" @click="getBmData()">BM<span id="btn_bm">{{ bmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -108,7 +112,7 @@
 
                         </div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_am">AM<span id="btn_am">{{ this.totallCount.ampendingloan }}</span>
+                            <h4 class="roll_class" id="roll_am" @click="getAmData()">AM<span id="btn_am">{{ amCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -117,7 +121,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_rm">RM<span id="btn_rm">{{ this.totallCount.rmpendingloan }}</span>
+                            <h4 class="roll_class" id="roll_rm" @click="getRmData()">RM<span id="btn_rm">{{ rmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -126,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_dm">DM<span id="btn_dm">{{ this.totallCount.dmpendingloan }}</span>
+                            <h4 class="roll_class" id="roll_dm" @click="getDmData()">DM<span id="btn_dm">{{ dmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -159,6 +163,7 @@ export default {
         return {
             activeButton: 'pending',
             datas: [],
+            length:'',
             pendingCount: [],
             approveCount: [],
             approveLoan: [],
@@ -202,96 +207,80 @@ export default {
     },
     mounted() {
 
-            this.getDatas(),
+            this.getDatas(null, 1, 'pending'),
             this.addClasses(),
-          //  this.getPendingCount(),
-           // this.getApproveCount(),
+            this.getBmData(),
+            this.getAmData(),
+            this.getRmData(),
+            this.getDmData(),
             this.getTottalCount()
 
     },
     methods: {
 
-          getDatas() {
-             const params = {
-                erpStatus: 1 ,
-                status: 0,
+        getDatas(ErpStatus,status, activeButton) {
+            const params = {
+                ErpStatus: ErpStatus,
+                status: status
+
             };
-            axios.post('http://127.0.0.1:8000/allpendingloan',params).then(res => {
-                this.datas = res.data
-                this.activeButton = 'pending';
-                this.initializeDataTable();
-                console.log(res.data);
+            axios.post('http://127.0.0.1:8000/allpendingloan', params)
+                .then(res => {
+                    this.datas = res.data;
+                    this.length = res.data.length;
+                    this.activeButton = activeButton;
+                    this.initializeDataTable();
+                });
+        },
+
+        getTottalCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.totallCount = res.data
+                this.bmCount = this.totallCount.bmpendingloan.length;
+                this.amCount = this.totallCount.ampendingloan.length;
+                this.rmCount = this.totallCount.rmpendingloan.length;
+                this.dmCount = this.totallCount.dmpendingloan.length;
             }
 
-            );
-        },
-        initializeDataTable() {
-            // Initialize DataTable using the ID of the table element
-            $(document).ready(function () {
-                $('#myTable').DataTable();
+        );
+    },
+    getBmData(){
+        axios.get('http://127.0.0.1:8000/allcount').then(res => {
+            this.datas = res.data.bmpendingloan;
+            this.initializeDataTable();
+        });
+    },
+    getAmData() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.datas = res.data.ampendingloan;
+                this.initializeDataTable();
             });
         },
-
-        getApproveLoan() {
-            axios.get('http://127.0.0.1:8000/allapproveloan').then(res => {
-                // console.log(res)
-                this.approveLoan = res.data
-                this.datas = res.data
-                this.activeButton = 'approved';
-            }
-
-            );
-        },
-        getReadyForDisbursement() {
-            axios.get('http://127.0.0.1:8000/allreadyfordisbursementloan').then(res => {
-                this.readyForDisbursement = res.data
-                this.datas = res.data
-                this.activeButton = 'disbursement';
-            }
-
-            );
-
-        },
-         getDisburseLoan() {
-             axios.get('http://127.0.0.1:8000/alldisburseloan').then(res => {
-                this.disburseLoan = res.data
-                this.datas = res.data
-                this.activeButton = 'disburse';
-
-            }
-
-            );
-
-        },
-         getRejectedLoan() {
-            axios.get('http://127.0.0.1:8000/allrejectedloan').then(res => {
-                this.rejectedLoan = res.data
-                this.datas = res.data
-                this.activeButton = 'rejected';
-
-            }
-
-            );
-
-        },
-         getTottalCount() {
+     getRmData() {
             axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                // console.log(res)
-                this.totallCount = res.data
-                //console.log(this.totallCount.pendingloandata)
-
-            }
-
-            );
-
+                this.datas = res.data.rmpendingloan;
+                this.initializeDataTable();
+            });
         },
-
-        addClasses() {
-            document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
+    getDmData() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.datas = res.data.dmpendingloan;
+                this.initializeDataTable();
+            });
         },
-
-
+    initializeDataTable() {
+        $(document).ready(function () {
+             $('#myTable').DataTable();
+        });
     },
+
+
+    addClasses() {
+        document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
+    },
+
+
+},
     components: {
         DataTable,
         Search
@@ -313,7 +302,6 @@ export default {
             text-align: center;
             background: #FB3199;
             color: white;
-            /* font-weight: bold; */
         }
 
         .view_btn {
