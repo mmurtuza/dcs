@@ -1154,3 +1154,19 @@
 [stacktrace]
 #0 {main}
 "} 
+[2023-06-11 03:42:47] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:42:47] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:43:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:44:41] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
