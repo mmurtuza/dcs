@@ -99,6 +99,7 @@ Route::get('admissionRejectview', 'UpdateAdmissionController@AdmissionRejectView
 Route::post('/checkloan', 'UpdateAdmissionController@CheckLoan');
 
 //sagor
+Route::post('/roledata', 'DashboardController@getRollWiseData');
 
 Route::post('/allpendingloan', 'DashboardController@fetchData');
 // Route::get('/allapproveloan', 'DashboardController@GetApproveLoanData');

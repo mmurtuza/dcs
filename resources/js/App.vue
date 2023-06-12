@@ -57,7 +57,7 @@
 
     <div class="col-md-3" style="margin-top:42px;">
         <div class=" mb-3">
-           <button type="button" id="pending" @click="getDatas(null, 1, 'pending')"
+           <button type="button" id="pending" @click="()=>{getDatas(null, 1, 'pending'); this.erpStatus=null; this.roleStatus='1';}"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">
       Pending(<span class="pending_data">{{ this.totallCount.allpendingloan }}</span>)
     </button>
@@ -65,21 +65,21 @@
 
 
         <div class=" mb-3">
-            <button type="button" id="approved" @click="getDatas(1, 2, 'approved')"
+            <button type="button" id="approved" @click="()=>{getDatas(1, 2, 'approved'); this.erpStatus= '1'; this.roleStatus='2';}"
        :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">
       Approved(<span id="approved_data">{{ this.totallCount.allapproveloan }}</span>)
     </button>
         </div>
 
         <div class="mb-3">
-       <button type="button" id="disbursement" @click="getDatas(2, 2, 'disbursement')"
+       <button type="button" id="disbursement" @click="()=>{getDatas(2, 2, 'disbursement'); this.erpStatus= '2'; this.roleStatus='2'}"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">
       Ready for Disbursement(<span id="approved_data">{{ this.totallCount.all_disbursement }}</span>)
     </button>
     </div>
 
         <div class=" mb-3">
-           <button type="button" id="disburse" @click="getDatas(4, 2, 'disburse')"
+           <button type="button" id="disburse" @click="()=>{getDatas(4, 2, 'disburse'); this.erpStatus = '4'; this.roleStatus= '2';}"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
       Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
     </button>
@@ -87,13 +87,22 @@
         </div>
 
          <div class=" mb-3">
-                <button type="button" id="rejected" @click="getDatas(3, 3, 'rejected')"
+                <button type="button" id="rejected" @click="()=>{getDatas(3, 3, 'rejected'); this.erpStatus='3'; this.roleStatus='3';}"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'rejected', 'btn btn-block btn-secondary active': activeButton === 'rejected' }">
       Rejected(<span id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)
     </button>
         </div>
  </div>
+            <!-- pending= erpStatus: null, status: 1
+    approved = erpStatus: 1, status: 2
+    Ready For Disbusrsment = erpStatus: 2, status: 2
+    Disburse= erpStatus: 4, status: 2
+    Rejected=  erpStatus: 3, status: 3
 
+    roleid 1 BM
+    roleid 2 AM
+    roleid 3 RM
+    roleid 4 DM -->
     <div class="col-md-9">
         <div class="roll_btn">
             <div class="row">
@@ -101,7 +110,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_bm" @click="getBmData()">BM<span id="btn_bm">{{ bmCount }}</span>
+                            <h4 class="roll_class" id="roll_bm" @click="getRoleWiseData('1')">BM<span id="btn_bm">{{ bmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -112,7 +121,7 @@
 
                         </div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_am" @click="getAmData()">AM<span id="btn_am">{{ amCount }}</span>
+                            <h4 class="roll_class" id="roll_am" @click="getRoleWiseData('2')">AM<span id="btn_am">{{ amCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -121,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_rm" @click="getRmData()">RM<span id="btn_rm">{{ rmCount }}</span>
+                            <h4 class="roll_class" id="roll_rm" @click="getRoleWiseData('3')">RM<span id="btn_rm">{{ rmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -130,7 +139,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_dm" @click="getDmData()">DM<span id="btn_dm">{{ dmCount }}</span>
+                            <h4 class="roll_class" id="roll_dm" @click="getRoleWiseData('4')">DM<span id="btn_dm">{{ dmCount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -162,6 +171,8 @@ export default {
     data() {
         return {
             activeButton: 'pending',
+            erpStatus: null,
+            roleStatus: '1',
             datas: [],
             length:'',
             pendingCount: [],
@@ -209,11 +220,13 @@ export default {
 
             this.getDatas(null, 1, 'pending'),
             this.addClasses(),
-            this.getBmData(),
-            this.getAmData(),
-            this.getRmData(),
-            this.getDmData(),
+            // this.getBmData(),
+            // this.getAmData(),
+            // this.getRmData(),
+            // this.getDmData(),
             this.getTottalCount()
+           // this.getRoleWiseData({'activeButton':'pending'})
+
 
     },
     methods: {
@@ -230,7 +243,8 @@ export default {
                     this.length = res.data.length;
                     this.activeButton = activeButton;
                     this.initializeDataTable();
-                });
+                    console.log(res.data);
+                }).then(this.getTottalCount);
         },
 
         getTottalCount() {
@@ -244,35 +258,20 @@ export default {
 
         );
     },
-    getBmData(){
-        axios.get('http://127.0.0.1:8000/allcount').then(res => {
-            this.datas = res.data.bmpendingloan;
-            this.initializeDataTable();
-        });
-    },
-    getAmData() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.datas = res.data.ampendingloan;
-                this.initializeDataTable();
+     getRoleWiseData(data) {
+            const params = {
+                activeButton: this.activeButton,
+                roleid: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus
+            }
+            console.table(params);
+            axios.post('http://127.0.0.1:8000/roledata', params).then(res => {
+                this.datas = res.data;
+                // console.log(this.roledata);
             });
         },
-     getRmData() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.datas = res.data.rmpendingloan;
-                this.initializeDataTable();
-            });
-        },
-    getDmData() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.datas = res.data.dmpendingloan;
-                this.initializeDataTable();
-            });
-        },
-    initializeDataTable() {
-        $(document).ready(function () {
-             $('#myTable').DataTable();
-        });
-    },
+
 
 
     addClasses() {
