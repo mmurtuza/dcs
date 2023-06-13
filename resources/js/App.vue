@@ -57,7 +57,7 @@
 
     <div class="col-md-3" style="margin-top:42px;">
         <div class=" mb-3">
-           <button type="button" id="pending" @click="()=>{getDatas(null, 1, 'pending'); this.erpStatus=null; this.roleStatus='1';}"
+           <button type="button" id="pending" @click="()=>{getDatas(null, 1, 'pending'); this.erpStatus=null; this.roleStatus='1'; getPendingCount() }"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">
       Pending(<span class="pending_data">{{ this.totallCount.allpendingloan }}</span>)
     </button>
@@ -65,21 +65,21 @@
 
 
         <div class=" mb-3">
-            <button type="button" id="approved" @click="()=>{getDatas(1, 2, 'approved'); this.erpStatus= '1'; this.roleStatus='2';}"
+            <button type="button" id="approved" @click="()=>{getDatas(1, 2, 'approved'); this.erpStatus= '1'; this.roleStatus='2'; getApproveCount() }"
        :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">
       Approved(<span id="approved_data">{{ this.totallCount.allapproveloan }}</span>)
     </button>
         </div>
 
         <div class="mb-3">
-       <button type="button" id="disbursement" @click="()=>{getDatas(2, 2, 'disbursement'); this.erpStatus= '2'; this.roleStatus='2'}"
+       <button type="button" id="disbursement" @click="()=>{getDatas(2, 2, 'disbursement'); this.erpStatus= '2'; this.roleStatus='2'; getDisbursementCount() }"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">
       Ready for Disbursement(<span id="approved_data">{{ this.totallCount.all_disbursement }}</span>)
     </button>
     </div>
 
         <div class=" mb-3">
-           <button type="button" id="disburse" @click="()=>{getDatas(4, 2, 'disburse'); this.erpStatus = '4'; this.roleStatus= '2';}"
+           <button type="button" id="disburse" @click="()=>{getDatas(4, 2, 'disburse'); this.erpStatus = '4'; this.roleStatus= '2'; getDisburseCount() }"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
       Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
     </button>
@@ -87,7 +87,7 @@
         </div>
 
          <div class=" mb-3">
-                <button type="button" id="rejected" @click="()=>{getDatas(3, 3, 'rejected'); this.erpStatus='3'; this.roleStatus='3';}"
+                <button type="button" id="rejected" @click="()=>{getDatas(3, 3, 'rejected'); this.erpStatus='3'; this.roleStatus='3'; getRejectedCount() }"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'rejected', 'btn btn-block btn-secondary active': activeButton === 'rejected' }">
       Rejected(<span id="rejected_data">{{ this.totallCount.allrejectloan }}</span>)
     </button>
@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_bm" @click="getRoleWiseData('1')">BM<span id="btn_bm">{{ bmCount }}</span>
+                            <h4 class="roll_class" id="roll_bm" @click="getRoleWiseData('1')">BM<span id="btn_bm">{{ bmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
 
                         </div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_am" @click="getRoleWiseData('2')">AM<span id="btn_am">{{ amCount }}</span>
+                            <h4 class="roll_class" id="roll_am" @click="getRoleWiseData('2')">AM<span id="btn_am">{{ amcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_rm" @click="getRoleWiseData('3')">RM<span id="btn_rm">{{ rmCount }}</span>
+                            <h4 class="roll_class" id="roll_rm" @click="getRoleWiseData('3')">RM<span id="btn_rm">{{ rmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_dm" @click="getRoleWiseData('4')">DM<span id="btn_dm">{{ dmCount }}</span>
+                            <h4 class="roll_class" id="roll_dm" @click="getRoleWiseData('4')">DM<span id="btn_dm">{{ dmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -170,6 +170,10 @@ export default {
 
     data() {
         return {
+            amcount: '',
+            bmcount: '',
+            rmcount: '',
+            dmcount: '',
             activeButton: 'pending',
             erpStatus: null,
             roleStatus: '1',
@@ -220,12 +224,10 @@ export default {
 
             this.getDatas(null, 1, 'pending'),
             this.addClasses(),
-            // this.getBmData(),
-            // this.getAmData(),
-            // this.getRmData(),
-            // this.getDmData(),
-            this.getTottalCount()
-           // this.getRoleWiseData({'activeButton':'pending'})
+            this.getTottalCount(),
+            this.getPendingCount()
+
+
 
 
     },
@@ -243,17 +245,14 @@ export default {
                     this.length = res.data.length;
                     this.activeButton = activeButton;
                     this.initializeDataTable();
-                    console.log(res.data);
+                   // console.log(res.data);
                 }).then(this.getTottalCount);
         },
 
         getTottalCount() {
             axios.get('http://127.0.0.1:8000/allcount').then(res => {
                 this.totallCount = res.data
-                this.bmCount = this.totallCount.bmpendingloan.length;
-                this.amCount = this.totallCount.ampendingloan.length;
-                this.rmCount = this.totallCount.rmpendingloan.length;
-                this.dmCount = this.totallCount.dmpendingloan.length;
+
             }
 
         );
@@ -268,8 +267,63 @@ export default {
             console.table(params);
             axios.post('http://127.0.0.1:8000/roledata', params).then(res => {
                 this.datas = res.data;
-                // console.log(this.roledata);
             });
+        },
+         getPendingCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.amcount = res.data.ampending;
+                this.bmcount = res.data.bmpending;
+                this.rmcount = res.data.rmpending;
+                this.dmcount = res.data.dmpending;
+            }
+
+            );
+        },
+         getApproveCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.amcount = res.data.amapprove;
+                this.bmcount = res.data.bmapprove;
+                this.rmcount = res.data.rmapprove;
+                this.dmcount = res.data.dmapprove;
+
+            }
+
+            );
+        },
+         getDisbursementCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.amcount = res.data.amdisbursement;
+                this.bmcount = res.data.bmdisbursement;
+                this.rmcount = res.data.rmdisbursement;
+                this.dmcount = res.data.dmdisbursement;
+
+
+            }
+
+            );
+        },
+         getDisburseCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.amcount = res.data.amdisburse;
+                this.bmcount = res.data.bmdisburse;
+                this.rmcount = res.data.rmdisburse;
+                this.dmcount = res.data.dmdisburse;
+
+
+            }
+
+            );
+        },
+         getRejectedCount() {
+            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+                this.amcount = res.data.amrejected;
+                this.bmcount = res.data.bmrejected;
+                this.rmcount = res.data.rmrejected;
+                this.dmcount = res.data.dmrejected;
+
+            }
+
+            );
         },
 
 
