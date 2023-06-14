@@ -245,7 +245,6 @@ export default {
                     this.length = res.data.length;
                     this.activeButton = activeButton;
                     this.initializeDataTable();
-                   // console.log(res.data);
                 }).then(this.getTottalCount);
         },
 

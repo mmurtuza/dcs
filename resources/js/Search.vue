@@ -44,8 +44,6 @@
                         </div>
                     </div>
                     <div class="form-row">
-
-                        <!-- <label for="dateFrom" class="form-label">Date Range</label> -->
                         <div class="col-md-2 mb-3">
                             <label class="ml-2" for="dateFrom"></label>
 
@@ -56,7 +54,7 @@
                             <input type="date" v-model="dateTo" class="form-control" id="dateTo">
                         </div>
                         <div class="col-md-2 mb-3 mt-8">
-                            <button @click="searchAdmission" class="btn btn-secondary">Search</button>
+                            <button @click="searchData" class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -84,6 +82,7 @@ export default {
             branches: [],
             pos: [],
             totallCount:[],
+            data:[],
             dateFrom: null,
             dateTo: null,
         };
@@ -91,9 +90,6 @@ export default {
      mounted() {
 
         this.getDivisions()
-        //this.getRegions()
-        //this.getApproveLoan()
-
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
 
@@ -107,7 +103,6 @@ export default {
          getDivisions() {
             axios.get('http://127.0.0.1:8000/alldiv?program_id=1').then(res => {
                 this.divisions = res.data
-                //console.log(this.divisions)
             }
 
             );
@@ -123,7 +118,7 @@ export default {
                     this.regions = res.data;
                 })
                 .catch((error) => {
-                    console.error('Error fetching regions:', error); //allarea
+                    console.error('Error fetching regions:', error);
                 });
         },
 
@@ -164,17 +159,14 @@ export default {
             })
                 .then((res) => {
                    this.pos = res.data;
-                   console.log(res.data)
                 })
                 .catch((error) => {
                     console.error('Error fetching POs:', error);
                 });
-                 console.log(this.selectedBranch)
-
         },
 
 
-        searchAdmission() {
+        searchData() {
             const searchParams = {
                 division: this.selectedDivision,
                 region: this.selectedRegion,
@@ -186,15 +178,11 @@ export default {
             };
              axios.post('http://127.0.0.1:8000/search', searchParams)
                 .then((response) => {
-                    // Handle the response from the backend
-                   // console.log(response.data);
-                    data= response.data;
-                    // console.log(data);
-                    // Process the search results
+                    this.data = response.data;
+                    //console.log(response.data);
                 })
                 .catch((error) => {
                     console.error('Error searching admissions:', error);
-                    // Handle the error
                 });
         }
     }

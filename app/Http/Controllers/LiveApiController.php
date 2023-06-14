@@ -2585,7 +2585,7 @@ class LiveApiController extends Controller
   }
   public function Group_Branch_PO_List_Data($db, $BranchCode, $ProjectCode)
   {
-    $polist = DB::Table($db . '.polist')->whereIn('branchcode', $BranchCode)->where('projectcode', $ProjectCode)->where('status', 1)->get();
+    $polist = DB::Table($db . '.polist')->where('projectcode', $ProjectCode)->where('status', 1)->get();
     return $polist;
   }
 }
