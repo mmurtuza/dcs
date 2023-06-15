@@ -172,6 +172,7 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
+                status: 1,
                 po: this.selectedPO,
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
@@ -179,7 +180,7 @@ export default {
              axios.post('http://127.0.0.1:8000/search', searchParams)
                 .then((response) => {
                     this.data = response.data;
-                    //console.log(response.data);
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.error('Error searching admissions:', error);

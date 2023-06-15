@@ -251,6 +251,7 @@ export default {
         getTottalCount() {
             axios.get('http://127.0.0.1:8000/allcount').then(res => {
                 this.totallCount = res.data
+                console.log(this.totallCount)
 
             }
 
