@@ -153,18 +153,8 @@ class DashboardController extends Controller
 
 
 
-    public function GetPendingCount(Request $request)
-    {
-        $all_pending_loan_count = DB::Table('dcs.loans')->where('status', 1)->count();
-        echo json_encode($all_pending_loan_count);
-    }
 
-    public function GetApproveCount(Request $request)
-    {
-        $all_approve_loan_count = DB::Table('dcs.loans')->where('status', 2)->count();
-        echo json_encode($all_approve_loan_count);
-    }
-public function co(Request $request)
+public function allCount(Request $request)
 {
     $db = config('database.db');
     $role_designation = session('role_designation');

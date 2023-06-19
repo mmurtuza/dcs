@@ -100,25 +100,22 @@ Route::get('admissionRejectview', 'UpdateAdmissionController@AdmissionRejectView
 Route::post('/checkloan', 'UpdateAdmissionController@CheckLoan');
 
 //sagor
-Route::post('/roledata', 'DashboardController@getRollWiseData');
 
-Route::post('/allpendingloan', 'DashboardController@fetchData');
-// Route::get('/allapproveloan', 'DashboardController@GetApproveLoanData');
-// Route::get('/allreadyfordisbursementloan', 'DashboardController@GetReadyForDisburseLoanData');
-// Route::get('/alldisburseloan', 'DashboardController@GetDisburseLoanData');
-// Route::get('/allrejectedloan', 'DashboardController@GetRejectedLoanData');
+Route::post('/roledata', 'DashboardController@getRollWiseData');
+Route::post('/fetchdata', 'DashboardController@fetchData');
+
+
+//Search Start
 Route::post('/search', 'DashboardController@search');
 
-
-Route::get('/allpendingloancount', 'DashboardController@GetPendingCount');
-Route::get('/allapproveloancount', 'DashboardController@GetApproveCount');
 Route::get('/alldiv', 'DashboardController@GetDivisionData');
 Route::get('/allreg', 'DashboardController@GetRegionData');
 Route::get('/allarea', 'DashboardController@GetAreaData');
 Route::get('/allbra', 'DashboardController@GetBranchData');
 Route::get('/allpo', 'DashboardController@GetProgramOrganizerData');
-Route::get('/allcount', 'DashboardController@co');
+//Search End
 
+Route::get('/allcount', 'DashboardController@allCount');
 
 //End sagor
 
