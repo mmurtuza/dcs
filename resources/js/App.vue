@@ -355,32 +355,32 @@ export default {
             });
         },
          getPendingCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.amcount = res.data.ampending;
-                this.bmcount = res.data.bmpending;
-                this.rmcount = res.data.rmpending;
-                this.dmcount = res.data.dmpending;
+            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+                this.amcount = res.data.am_pending_loan;
+                this.bmcount = res.data.bm_pending_loan;
+                this.rmcount = res.data.rm_pending_loan;
+                this.dmcount = res.data.dm_pending_loan;
             }
 
             );
         },
          getApproveCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.amcount = res.data.amapprove;
-                this.bmcount = res.data.bmapprove;
-                this.rmcount = res.data.rmapprove;
-                this.dmcount = res.data.dmapprove;
+            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+                this.amcount = res.data.am_approve_loan;
+                this.bmcount = res.data.bm_approve_loan;
+                this.rmcount = res.data.rm_approve_loan;
+                this.dmcount = res.data.dm_approve_loan;
 
             }
 
             );
         },
          getDisbursementCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.amcount = res.data.amdisbursement;
-                this.bmcount = res.data.bmdisbursement;
-                this.rmcount = res.data.rmdisbursement;
-                this.dmcount = res.data.dmdisbursement;
+            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+                this.amcount = res.data.am_disbursement_loan;
+                this.bmcount = res.data.bm_disbursement_loan;
+                this.rmcount = res.data.rm_disbursement_loan;
+                this.dmcount = res.data.dm_disbursement_loan;
 
 
             }
@@ -388,11 +388,11 @@ export default {
             );
         },
          getDisburseCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.amcount = res.data.amdisburse;
-                this.bmcount = res.data.bmdisburse;
-                this.rmcount = res.data.rmdisburse;
-                this.dmcount = res.data.dmdisburse;
+            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+                this.amcount = res.data.am_disburse_loan;
+                this.bmcount = res.data.bm_disburse_loan;
+                this.rmcount = res.data.rm_disburse_loan;
+                this.dmcount = res.data.dm_disburse_loan;
 
 
             }
@@ -400,11 +400,11 @@ export default {
             );
         },
          getRejectedCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
-                this.amcount = res.data.amrejected;
-                this.bmcount = res.data.bmrejected;
-                this.rmcount = res.data.rmrejected;
-                this.dmcount = res.data.dmrejected;
+            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+                this.amcount = res.data.am_rejected_loan;
+                this.bmcount = res.data.bm_rejected_loan;
+                this.rmcount = res.data.rm_rejected_loan;
+                this.dmcount = res.data.dm_rejected_loan;
 
             }
 
@@ -487,13 +487,15 @@ export default {
             };
             axios.post('http://127.0.0.1:8000/search', searchParams)
                 .then((response) => {
-                    this.datas = response.data;
+                    this.datas = response.data.searchDataResult;
+                    this.totallCount = response.data.counts.original;
+                    console.table(this.totallCount.allpendingloan);
 
                 })
                 .catch((error) => {
                     console.error('Error searching admissions:', error);
                 });
-                this.getTottalCount()
+                // this.getTottalCount()
         },
 
 
