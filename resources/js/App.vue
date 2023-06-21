@@ -321,7 +321,15 @@ export default {
         getDatas(ErpStatus,status, activeButton) {
             const params = {
                 ErpStatus: ErpStatus,
-                status: status
+                status: status,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                // status: 1,
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
 
             };
             axios.post('http://127.0.0.1:8000/fetchdata', params)
@@ -336,7 +344,7 @@ export default {
         getTottalCount() {
             axios.get('http://127.0.0.1:8000/allcount').then(res => {
                 this.totallCount = res.data
-                console.table(this.totallCount)
+                // console.table(this.totallCount)
 
             }
 
@@ -489,7 +497,7 @@ export default {
                 .then((response) => {
                     this.datas = response.data.searchDataResult;
                     this.totallCount = response.data.counts.original;
-                    console.table(this.totallCount.allpendingloan);
+                    console.table(this.totallCount);
 
                 })
                 .catch((error) => {

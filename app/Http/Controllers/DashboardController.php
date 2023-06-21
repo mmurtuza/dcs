@@ -36,14 +36,20 @@ class DashboardController extends Controller
         $status = $request->get('status');
         // $role_designation = session('role_designation');
         $erpstatus = $request->get('ErpStatus');
-        $data = DB::table('dcs.loans')
+        $getbranch = $this->getBranch($request->input('division'), $request->input('region'), $request->input('area'), $request->input('branch'), $request->input('po'));
+        $getbranch = $getbranch->pluck('branch_id')->toArray();
+        $query = DB::table('dcs.loans')
             ->where('reciverrole', '!=', '0')
             ->where('status', $status)
             ->where('ErpStatus', $erpstatus)
             ->where('projectcode', session('projectcode'))
             ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $today)
-            ->get();
+            ->whereDate('loans.time', '<=', $today);
+        if(!empty($request->input('division'))){
+            $query->whereIn('branchcode', $getbranch);
+        }
+            
+        $data = $query->get();
 
         return $data;
     }
@@ -61,64 +67,7 @@ class DashboardController extends Controller
         $dateFrom = $request->input('dateFrom');
         $dateTo = $request->input('dateTo');
 
-        if ($division != null and $region == null and $area == null and $branch == null and $po == null) {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('division_id', $division)
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-        else if ($division != null and $region != null and $area == null and $branch == null and $po == null) {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('division_id', $division)
-                ->where('region_id', $region)
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-        else if ($division != null and $region != null and $area != null and $branch == null and $po == null) {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('division_id', $division)
-                ->where('region_id', $region)
-                ->where('area_id', $area)
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-        else if ($division != null and $region != null and $area != null and $branch != null and $po == null) {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('division_id', $division)
-                ->where('region_id', $region)
-                ->where('area_id', $area)
-                ->where('branch_id', $branch)
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-        else if ($division != null and $region != null and $area != null and $branch != null and $po != null) {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('division_id', $division)
-                ->where('region_id', $region)
-                ->where('area_id', $area)
-                ->where('branch_id', $branch)
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-        else
-        {
-            $getbranch = DB::Table('branch')
-                ->select('branch_id')
-                ->where('program_id', 1)
-                ->distinct('branch_id')
-                ->get();
-        }
-
+        $getbranch = $this->getBranch($division, $region, $area, $branch, $po);
 
         $searchDataResult = $this->searchData($getbranch, $status, $erpstatus, $po);
         $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $po);
@@ -242,36 +191,64 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         if(!empty($request->input('division'))){
             $all_pending_loan_query
                 ->whereIn('branchcode', $getbranchIds)
-                ->where('status', $status)
                 ->where('ErpStatus', $erpstatus);
         }
+        
         $all_pending_loan = $all_pending_loan_query->count();
 
-        $all_approve_loan = Loans::where('reciverrole', '!=', '0')
+        $all_approve_loan_query = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 1)
                 ->where('projectcode', session('projectcode'))
-                ->whereBetween('time', [$from_date, $today])
-                ->count();
-         $all_disbursement = Loans::where('reciverrole', '!=', '0')
+                ->whereBetween('time', [$from_date, $today]);
+                
+        if(!empty($request->input('division'))){
+            $all_approve_loan_query
+                ->whereIn('branchcode', $getbranchIds);
+        }
+        // dd($all_approve_loan_query);
+        $all_approve_loan = $all_approve_loan_query->count();
+
+
+
+         $all_disbursement_loan_query = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 2)
                 ->where('projectcode', session('projectcode'))
-                ->whereBetween('time', [$from_date, $today])
-                ->count();
+                ->whereBetween('time', [$from_date, $today]);
+            if(!empty($request->input('division'))){
+                $all_disbursement_loan_query
+                ->whereIn('branchcode', $getbranchIds);
+            }
+         $all_disbursement_loan = $all_disbursement_loan_query->count();
 
-        $all_disburse_loan = Loans::where('reciverrole', '!=', '0')
+
+        $all_disburse_loan_query = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 4)
                 ->where('projectcode', session('projectcode'))
-                ->whereBetween('time', [$from_date, $today])
-                ->count();
+                ->whereBetween('time', [$from_date, $today]);
+                
+         if(!empty($request->input('division'))){
+                $all_disburse_loan_query
+                ->whereIn('branchcode', $getbranchIds);
+            }
+         $all_disburse_loan = $all_disburse_loan_query->count();
 
-        $all_reject_loan = DB::table('dcs.loans')
+
+
+        $all_reject_loan_query = DB::table('dcs.loans')
                 ->where('reciverrole', '!=', '0')
                 ->where('status', 3)
                 ->where('ErpStatus', 3)
                 ->where('projectcode', session('projectcode'))
                 ->whereDate('loans.time', '>=', $from_date)
-                ->whereDate('loans.time', '<=', $today)
-                ->count();
+                ->whereDate('loans.time', '<=', $today);
+
+        if(!empty($request->input('division'))){
+                $all_reject_loan_query
+                ->whereIn('branchcode', $getbranchIds);
+                // ->where('status', $status)
+                // ->where('ErpStatus', $erpstatus);
+            }
+         $all_reject_loan = $all_reject_loan_query->count();      
 
         // $all_pending_loan_data = DB::table('dcs.loans')
         //     ->where('reciverrole', '!=', '0')
@@ -305,14 +282,21 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         //     ->whereDate('loans.time', '<=', $today)
         //     ->get();
 
-        $total_disbursed_amount = Loans::where('projectcode', session('projectcode'))
+        $total_disbursed_amount_query = Loans::where('projectcode', session('projectcode'))
                 ->where('reciverrole', '!=', '0')
                 ->whereBetween('time', [$from_date, $today])
-                ->where('ErpStatus', 4)
-                ->sum(DB::raw('CAST(propos_amt AS double precision)'));
+                ->where('ErpStatus', 4);
+               // ->sum(DB::raw('CAST(propos_amt AS double precision)'));
 
-        // Role wise data counts
-
+        if(!empty($request->input('division'))){
+                $total_disbursed_amount_query
+                ->whereIn('branchcode', $getbranchIds)
+                ->where('status', $status);
+                // ->where('ErpStatus', $erpstatus);
+               //   ->sum(DB::raw('CAST(propos_amt AS double precision)'));
+                
+            }
+         $total_disbursed_amount = $total_disbursed_amount_query->count();
 
 
 //all_pending_loan_data  all_approve_loan_data
@@ -322,7 +306,7 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
             'pendingloan' => $pending_loan,
             'allpendingloan' => $all_pending_loan,
             'allapproveloan' => $all_approve_loan,
-            'all_disbursement' => $all_disbursement,
+            'all_disbursement' => $all_disbursement_loan,
             'allrejectloan' => $all_reject_loan,
             'alldisburseloan' => $all_disburse_loan,
             // 'pendingloandata' => $all_pending_loan_data,
@@ -592,5 +576,66 @@ public function getRollWiseCounts()
             ->where('branchcode', $BranchCode)->get();
 
         return $e;
+    }
+
+    public function getBranch($division = null, $region = null, $area = null, $branch = null, $po = null){
+        if ($division != null and $region == null and $area == null and $branch == null and $po == null) {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('division_id', $division)
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        else if ($division != null and $region != null and $area == null and $branch == null and $po == null) {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('division_id', $division)
+                ->where('region_id', $region)
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        else if ($division != null and $region != null and $area != null and $branch == null and $po == null) {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('division_id', $division)
+                ->where('region_id', $region)
+                ->where('area_id', $area)
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        else if ($division != null and $region != null and $area != null and $branch != null and $po == null) {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('division_id', $division)
+                ->where('region_id', $region)
+                ->where('area_id', $area)
+                ->where('branch_id', $branch)
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        else if ($division != null and $region != null and $area != null and $branch != null and $po != null) {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('division_id', $division)
+                ->where('region_id', $region)
+                ->where('area_id', $area)
+                ->where('branch_id', $branch)
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        else
+        {
+            $getbranch = DB::Table('branch')
+                ->select('branch_id')
+                ->where('program_id', 1)
+                ->distinct('branch_id')
+                ->get();
+        }
+        return $getbranch;
     }
 }
