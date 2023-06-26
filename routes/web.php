@@ -107,7 +107,6 @@ Route::post('/fetchdata', 'DashboardController@fetchData');
 
 //Search Start
 Route::post('/search', 'DashboardController@search');
-
 Route::get('/alldiv', 'DashboardController@GetDivisionData');
 Route::get('/allreg', 'DashboardController@GetRegionData');
 Route::get('/allarea', 'DashboardController@GetAreaData');
@@ -115,9 +114,8 @@ Route::get('/allbra', 'DashboardController@GetBranchData');
 Route::get('/allpo', 'DashboardController@GetProgramOrganizerData');
 //Search End
 
-Route::get('/allcount', 'DashboardController@allCount'); //  getRollWiseCounts
-
-Route::get('/rollcounts', 'DashboardController@getRollWiseCounts'); 
+Route::get('/allcount', 'DashboardController@allCount');
+Route::post('/rollcounts', 'DashboardController@getRollWiseCounts'); 
 
 //End sagor
 

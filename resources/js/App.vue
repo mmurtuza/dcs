@@ -8,15 +8,14 @@
                                 <label class="ml-2" for="division">Division</label>
                                 <select v-model="selectedDivision" @change="getRegions" class="form-control">
                                     <option value="">Select</option>
-                                    <option v-for="division in divisions" :value="division.division_id">{{ division.division_name }}</option>
+                                    <option v-for="division in divisions" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="region">Region</label>
                                 <select v-model="selectedRegion" @change="getAreas" class="form-control">
                                     <option value=""></option>
-                                    <option v-for="region in regions" :value="region.region_id">{{ region.region_id }}-{{
-                                        region.region_name }}</option>
+                                    <option v-for="region in regions" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-2 mb-3">
@@ -126,21 +125,21 @@
 
 
         <div class=" mb-3">
-            <button type="button" id="approved" @click="()=>{getDatas(1, 2, 'approved'); this.erpStatus= '1'; this.roleStatus='2'; getApproveCount() }"
+            <button type="button" id="approved" @click="()=>{getDatas(null, 2, 'approved'); this.erpStatus= null; this.roleStatus='2'; getApproveCount() }"
        :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">
       Approved(<span id="approved_data">{{ this.totallCount.allapproveloan }}</span>)
     </button>
         </div>
 
         <div class="mb-3">
-       <button type="button" id="disbursement" @click="()=>{getDatas(2, 2, 'disbursement'); this.erpStatus= '2'; this.roleStatus='2'; getDisbursementCount() }"
+       <button type="button" id="disbursement" @click="()=>{getDatas(1, null, 'disbursement'); this.erpStatus= '1'; this.roleStatus=null; getDisbursementCount() }"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">
       Ready for Disbursement(<span id="approved_data">{{ this.totallCount.all_disbursement }}</span>)
     </button>
     </div>
 
         <div class=" mb-3">
-           <button type="button" id="disburse" @click="()=>{getDatas(4, 2, 'disburse'); this.erpStatus = '4'; this.roleStatus= '2'; getDisburseCount() }"
+           <button type="button" id="disburse" @click="()=>{getDatas(4, null, 'disburse'); this.erpStatus = '4'; this.roleStatus= null; getDisburseCount() }"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
       Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
     </button>
@@ -154,16 +153,6 @@
     </button>
         </div>
  </div>
-            <!-- pending= erpStatus: null, status: 1
-    approved = erpStatus: 1, status: 2
-    Ready For Disbusrsment = erpStatus: 2, status: 2
-    Disburse= erpStatus: 4, status: 2
-    Rejected=  erpStatus: 3, status: 3
-
-    roleid 1 BM
-    roleid 2 AM
-    roleid 3 RM
-    roleid 4 DM -->
     <div class="col-md-9">
         <div class="roll_btn">
             <div class="row">
@@ -302,11 +291,12 @@ export default {
    
     mounted() {
 
-            this.getDatas(null, 1, 'pending'),
+            this.getDivisions(),
             this.addClasses(),
-            this.getTottalCount(),
-            this.getPendingCount(),
-            this.getDivisions()
+            // this.getTottalCount(),
+            this.getDatas(null, 1, 'pending'),
+            this.getPendingCount()
+
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
 
@@ -332,13 +322,16 @@ export default {
                 dateTo: this.dateTo
 
             };
+            // this.getTottalCount;
             axios.post('http://127.0.0.1:8000/fetchdata', params)
                 .then(res => {
-                    this.datas = res.data;
+                    this.datas = res.data[0];
+                    this.totallCount = res.data[1];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
                     this.initializeDataTable();
-                }).then(this.getTottalCount);
+                });
+                // .then(this.getTottalCount);
         },
 
         getTottalCount() {
@@ -353,17 +346,75 @@ export default {
      getRoleWiseData(data) {
             const params = {
                 activeButton: this.activeButton,
-                roleid: data,
+                reciverrole: data,
                 erpStatus: this.erpStatus,
-                roleStatus: this.roleStatus
+                roleStatus: this.roleStatus,
+                 division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
             }
-            console.table(params);
+            //console.table(params);
             axios.post('http://127.0.0.1:8000/roledata', params).then(res => {
                 this.datas = res.data;
             });
         },
          getPendingCount() {
-            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
+            const params = {
+                activeButton: this.activeButton,
+                // reciverrole: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
+            }
+            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+                this.amcount = res.data.am_pending_loan;
+                this.bmcount = res.data.bm_pending_loan;
+                this.rmcount = res.data.rm_pending_loan;
+                this.dmcount = res.data.dm_pending_loan;
+            }
+            );
+        },
+         getApproveCount() {
+             const params = {
+                activeButton: this.activeButton,
+                // reciverrole: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
+            }
+            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+                this.amcount = res.data.am_pending_loan;
+                this.bmcount = res.data.bm_pending_loan;
+                this.rmcount = res.data.rm_pending_loan;
+                this.dmcount = res.data.dm_pending_loan;
+
+            }
+
+            );
+        },
+         getDisbursementCount() {
+             const params = {
+                activeButton: this.activeButton,
+                // reciverrole: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
+            }
+            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
@@ -372,48 +423,45 @@ export default {
 
             );
         },
-         getApproveCount() {
-            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
-                this.amcount = res.data.am_approve_loan;
-                this.bmcount = res.data.bm_approve_loan;
-                this.rmcount = res.data.rm_approve_loan;
-                this.dmcount = res.data.dm_approve_loan;
-
-            }
-
-            );
-        },
-         getDisbursementCount() {
-            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
-                this.amcount = res.data.am_disbursement_loan;
-                this.bmcount = res.data.bm_disbursement_loan;
-                this.rmcount = res.data.rm_disbursement_loan;
-                this.dmcount = res.data.dm_disbursement_loan;
-
-
-            }
-
-            );
-        },
          getDisburseCount() {
-            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
-                this.amcount = res.data.am_disburse_loan;
-                this.bmcount = res.data.bm_disburse_loan;
-                this.rmcount = res.data.rm_disburse_loan;
-                this.dmcount = res.data.dm_disburse_loan;
-
-
+             const params = {
+                activeButton: this.activeButton,
+                // reciverrole: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
+            }
+            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+                this.amcount = res.data.am_pending_loan;
+                this.bmcount = res.data.bm_pending_loan;
+                this.rmcount = res.data.rm_pending_loan;
+                this.dmcount = res.data.dm_pending_loan;
             }
 
             );
         },
          getRejectedCount() {
-            axios.get('http://127.0.0.1:8000/rollcounts').then(res => {
-                this.amcount = res.data.am_rejected_loan;
-                this.bmcount = res.data.bm_rejected_loan;
-                this.rmcount = res.data.rm_rejected_loan;
-                this.dmcount = res.data.dm_rejected_loan;
-
+             const params = {
+                activeButton: this.activeButton,
+                // reciverrole: data,
+                erpStatus: this.erpStatus,
+                roleStatus: this.roleStatus,
+                division: this.selectedDivision,
+                region: this.selectedRegion,
+                area: this.selectedArea,
+                branch: this.selectedBranch,
+                po: this.selectedPO
+            }
+            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+                this.amcount = res.data.am_pending_loan;
+                this.bmcount = res.data.bm_pending_loan;
+                this.rmcount = res.data.rm_pending_loan;
+                this.dmcount = res.data.dm_pending_loan;
+                console.table(res.data)
             }
 
             );
@@ -496,8 +544,8 @@ export default {
             axios.post('http://127.0.0.1:8000/search', searchParams)
                 .then((response) => {
                     this.datas = response.data.searchDataResult;
-                    this.totallCount = response.data.counts.original;
-                    console.table(this.totallCount);
+                    this.totallCount = response.data.counts;
+                    console.table(response.data);
 
                 })
                 .catch((error) => {
