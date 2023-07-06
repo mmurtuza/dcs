@@ -8,21 +8,21 @@
                                 <label class="ml-2" for="division">Division</label>
                                 <select v-model="selectedDivision" @change="getRegions" class="form-control">
                                     <option value="">Select</option>
-                                    <option v-for="division in divisions" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
+                                    <option v-for="division in divisions" :key="division.division_id" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="region">Region</label>
                                 <select v-model="selectedRegion" @change="getAreas" class="form-control">
                                     <option value=""></option>
-                                    <option v-for="region in regions" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
+                                    <option v-for="region in regions" :key="region.region_id" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="area">Area</label>
                                 <select v-model="selectedArea" @change="getBranches" class="form-control">
                                     <option value=""></option>
-                                    <option v-for="area in areas" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
+                                    <option v-for="area in areas" :key="area.area_id" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
                                     </option>
                                 </select>
                             </div>
@@ -30,7 +30,7 @@
                                 <label class="ml-2" for="branch">Branch</label>
                                 <select v-model="selectedBranch" @change="getPOs" class="form-control">
                                     <option value=""></option>
-                                    <option v-for="branch in branches" :value="branch.branch_id">{{ branch.branch_id }}-{{
+                                    <option v-for="branch in branches" :key="branch.branch_id" :value="branch.branch_id">{{ branch.branch_id }}-{{
                                         branch.branch_name }}</option>
                                 </select>
                             </div>
@@ -38,7 +38,7 @@
                                 <label class="ml-2" for="po">PO</label>
                                 <select v-model="selectedPO" class="form-control">
                                     <option value=""></option>
-                                    <option v-for="po in pos" :value="po.cono">{{ po.cono }}-{{ po.coname }}</option>
+                                    <option v-for="po in pos" :key="po.cono" :value="po.cono">{{ po.cono }}-{{ po.coname }}</option>
                                 </select>
                             </div>
                         </div>
@@ -200,6 +200,7 @@
 
         <DataTable :columns="columns" :data="this.datas" :options="options" class="display" width="100%" />
     </div>
+    <Overlay></Overlay>
 
 </template>
 
@@ -210,6 +211,7 @@ import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-bs5';
 import 'datatables.net-responsive';
 import 'datatables.net-select';
+import Overlay from './Overlay.vue';
 
 DataTable.use(DataTablesCore);
 
@@ -269,13 +271,13 @@ export default {
                     data: 'id',
                     title: 'Details',
                     render: (data) => {
-                        return `<button class="btn btn-warning" onclick="window.open('operation/loan-approval/${data}', '_blank')">View</button>`;
+                        return `<button class="btn btn-warning" onclick="window.open('operation/loan-approval/${data}', "_self")">View</button>`;
                     }
                 },
                 { data: 'orgno', title: 'Vo Code' },
                 { data: 'orgmemno', title: 'Member Number' },
                 { data: 'propos_amt', title: 'Disb. Amt' },
-                { data: 'loan_product', title: 'Product Name' },
+                { data: 'productname', title: 'Product Name' },
                 { data: 'loan_type', title: 'Loan Type' },
                 { data: 'branchcode', title: 'Branch Code' },
                 { data: 'assignedpo', title: 'Applied By' },
@@ -288,7 +290,7 @@ export default {
             }
         }
     },
-   
+
     mounted() {
 
             this.getDivisions(),
@@ -323,44 +325,55 @@ export default {
 
             };
             // this.getTottalCount;
-            axios.post('http://127.0.0.1:8000/fetchdata', params)
+            $("#overlay").fadeIn(300);
+            axios.post(`${window.url}/fetchdata`, params)
                 .then(res => {
+                    $("#overlay").fadeOut(300);
                     this.datas = res.data[0];
                     this.totallCount = res.data[1];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
-                    this.initializeDataTable();
+                    // console.table(res.data[0]);
+                    // this.initializeDataTable();
+                })
+                .catch((error)=>{
+                    $("#overlay").fadeOut(300);
+                    console.error('Error fetching data:', error);
                 });
                 // .then(this.getTottalCount);
         },
 
         getTottalCount() {
-            axios.get('http://127.0.0.1:8000/allcount').then(res => {
+            axios.get(`${window.url}/allcount`).then(res => {
                 this.totallCount = res.data
                 // console.table(this.totallCount)
 
-            }
-
-        );
-    },
-     getRoleWiseData(data) {
+            });
+        },
+        getRoleWiseData(data) {
             const params = {
                 activeButton: this.activeButton,
                 reciverrole: data,
                 erpStatus: this.erpStatus,
                 roleStatus: this.roleStatus,
-                 division: this.selectedDivision,
+                division: this.selectedDivision,
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
             //console.table(params);
-            axios.post('http://127.0.0.1:8000/roledata', params).then(res => {
+            $("#overlay").fadeIn(300);
+            axios.post(`${window.url}/roledata`, params).then(res => {
                 this.datas = res.data;
-            });
+                $("#overlay").fadeOut(300);
+            })
+                .catch((error)=>{
+                    $("#overlay").fadeOut(300);
+                    console.error('Error fetching regions:', error);
+                });
         },
-         getPendingCount() {
+        getPendingCount() {
             const params = {
                 activeButton: this.activeButton,
                 // reciverrole: data,
@@ -372,7 +385,7 @@ export default {
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
-            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+            axios.post(`${window.url}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
@@ -392,7 +405,7 @@ export default {
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
-            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+            axios.post(`${window.url}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
@@ -414,7 +427,7 @@ export default {
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
-            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+            axios.post(`${window.url}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
@@ -435,7 +448,7 @@ export default {
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
-            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+            axios.post(`${window.url}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
@@ -456,18 +469,18 @@ export default {
                 branch: this.selectedBranch,
                 po: this.selectedPO
             }
-            axios.post('http://127.0.0.1:8000/rollcounts', params).then(res => {
+            axios.post(`${window.url}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
                 this.dmcount = res.data.dm_pending_loan;
-                console.table(res.data)
+                // console.table(res.data)
             }
 
             );
         },
-                 getDivisions() {
-            axios.get('http://127.0.0.1:8000/alldiv?program_id=1').then(res => {
+        getDivisions() {
+            axios.get(`${window.url}/alldiv?program_id=1`).then(res => {
                 this.divisions = res.data
             }
 
@@ -475,7 +488,7 @@ export default {
         },
 
         getRegions() {
-            axios.get('http://127.0.0.1:8000/allreg', {
+            axios.get(`${window.url}/allreg`, {
                 params: {
                     division_id: this.selectedDivision,
                 },
@@ -489,7 +502,7 @@ export default {
         },
 
         async getAreas() {
-            axios.get('http://127.0.0.1:8000/allarea', {
+            axios.get(`${window.url}/allarea`, {
                 params: {
                     region_id: this.selectedRegion,
                 },
@@ -502,7 +515,7 @@ export default {
                 });
         },
         async getBranches() {
-            axios.get('http://127.0.0.1:8000/allbra', {
+            axios.get(`${window.url}/allbra`, {
                 params: {
                     area_id: this.selectedArea,
                 },
@@ -516,12 +529,10 @@ export default {
         },
         async getPOs() {
 
-            axios.get('http://127.0.0.1:8000/allpo', {
+            axios.get(`${window.url}/allpo`, {
                 params: {
                     branchcode: this.selectedBranch,
-
                 },
-
             })
                 .then((res) => {
                     this.pos = res.data;
@@ -541,28 +552,31 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             };
-            axios.post('http://127.0.0.1:8000/search', searchParams)
+            $("#overlay").fadeIn(300);
+            axios.post(`${window.url}/search`, searchParams)
                 .then((response) => {
+                    $("#overlay").fadeOut(300);
                     this.datas = response.data.searchDataResult;
                     this.totallCount = response.data.counts;
-                    console.table(response.data);
-
+                    // console.table(response.data);
+                    console.table(this.totallCount);
+                    this.getPendingCount();
                 })
                 .catch((error) => {
+                    $("#overlay").fadeOut(300);
                     console.error('Error searching admissions:', error);
                 });
                 // this.getTottalCount()
         },
 
-
-
     addClasses() {
         document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
     },
-    
+
 },
     components: {
         DataTable,
+        Overlay,
     }
 }
 

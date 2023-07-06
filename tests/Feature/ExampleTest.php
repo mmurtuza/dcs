@@ -12,10 +12,22 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_the_application_returns_a_successful_response()
-    {
-        $response = $this->get('/');
+   public function testFetchData()
+{
+    // Make a request to the fetchData endpoint
+    $response = $this->get('/fetchdata');
 
-        $response->assertStatus(200);
-    }
+    // Assert that the response is successful
+    $response->assertOk();
+
+    // Assert the data and counts returned in the response
+    $responseData = $response->json();
+    $data = $responseData[0];
+    $counts = $responseData[1];
+
+    $this->assertNotEmpty($data);
+    $this->assertNotEmpty($counts);
+    // Perform any additional assertions on the data and counts as needed
+}
+
 }
