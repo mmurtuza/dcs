@@ -20,6 +20,7 @@
         "datatables.net-select": "^1.6.2",
         "datatables.net-vue3": "^2.1.0",
         "laravel-vue-pagination": "^4.1.0",
+        "moment": "^2.29.4",
         "vue": "^3.2.36",
         "vue-datatables-net": "^2.0.1",
         "vue-loader": "^17.0.1"

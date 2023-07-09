@@ -6,9 +6,6 @@
 
 
 @section('content')
-<script>
-    window.url = "{{ $url }}";
-</script>
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
