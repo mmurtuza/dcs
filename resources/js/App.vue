@@ -94,7 +94,7 @@
                 <div class="card-body" style="background-color:#fed8b1">
                     <h5 class="card-title" style="padding: 0; margin: 0;">
                        Total Disbursed Amount</h5>
-                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.disburseamt}}</h5>
+                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.alldisburseloan }}</h5>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
         <div class=" mb-3">
            <button type="button" id="disburse" @click="()=>{getDatas(4, null, 'disburse'); this.erpStatus = '4'; this.roleStatus= null; getDisburseCount() }"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
-      Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
+      Disburse(<span id="disburse_data">{{ this.totallCount.disburseamt }}</span>)
     </button>
 
         </div>
