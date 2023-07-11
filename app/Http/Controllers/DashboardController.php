@@ -28,13 +28,28 @@ class DashboardController extends Controller
     public function fetchData(Request $request): JsonResponse
     {
         $today = date('Y-m-d');
+        $role_designation = session('role_designation');
         $from_date = date('Y-01-01');
         $status = $request->get('status') ?? null;
         $erpstatus = $request->get('ErpStatus') ?? null;
         $getbranch =$request->input('division') ? ($this->getBranch($request->input('division') ?? null, $request->input('region') ?? null, $request->input('area'), $request->input('branch') ?? null)->pluck('branch_id')->toArray() ?? null) : null;
+        $branch = null;
+        
+        if($role_designation === "AM"){
+            $branch = Branch::where('area_id', session('asid'))
+            ->where('program_id', session('program_id'))
+            ->first();
+        } else if($role_designation === "RM"){
+            $branch = Branch::where('region_id', session('asid'))
+            ->where('program_id', session('program_id'))
+            ->first();
+        } else if($role_designation === "DM"){
+            $branch = Branch::where('division_id', session('asid'))
+            ->where('program_id', session('program_id'))
+            ->first();
+        }
 
-
-        $query = Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
+        $data = Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
             ->distinct('loans.id')
             ->leftJoin('dcs.product_project_member_category', function ($join) {
                 $join->on(DB::raw('CAST(loans.loan_product AS INT)'), '=', 'product_project_member_category.productid');
@@ -64,13 +79,14 @@ class DashboardController extends Controller
             ->when($status != null && $erpstatus == null, function ($query) use ($status) {
                 $query->where('loans.status', $status);
             })
-            ->groupBy('loans.id', 'product_project_member_category.productname', 'polist.id');
+            ->groupBy('loans.id', 'product_project_member_category.productname', 'polist.id')
+            ->get();
 
-        $data = $query->get();
+        // $data = $query->get();
 
         $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $request->po);
 
-        return response()->json(["data"=> $data, 'counts'=> $counts]);
+        return response()->json(["data"=> $data, 'counts'=> $counts, 'branch' => $branch]);
     }
 
     public function search(Request $request): JsonResponse
@@ -82,8 +98,9 @@ class DashboardController extends Controller
         $area = $request->input('area') ?? null;
         $branch = $request->input('branch') ?? null;
         $po = $request->input('po') ?? null;
-
-        $getbranch = $this->getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
+        $getbranch = null;
+        if(!empty($division))
+            $getbranch = $this->getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
 
         $searchDataResult = $this->searchData($getbranch, $status, $erpstatus, $po);
         $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $po);
@@ -121,7 +138,9 @@ class DashboardController extends Controller
         } else {
             $data = Loans::select('loans.*', 'product_project_member_category.productname', 'polist.coname')
                 ->where('loans.reciverrole', '!=', '0')
-                ->whereIn('loans.branchcode', $getbranch)
+                ->when(!empty($getbranch), function ($query) use ($getbranch) {
+                    return $query->whereIn('loans.branchcode', $getbranch);
+                })
                 ->where('loans.status', $status)
                 ->where('loans.ErpStatus', $erpstatus)
                 ->where('loans.projectcode', session('projectcode'))
@@ -165,7 +184,7 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
     }
     else if ($role_designation == 'HO' || $role_designation == 'PH')
     {
-        $search = DB::table('public.branch')->where('program_id', session('program_id'))->get();
+        $search = Branch::where('program_id', session('program_id'))->get();
     }
     else
     {
@@ -243,6 +262,9 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 ->where('ErpStatus', 4)
                 ->where('projectcode', session('projectcode'))
                 ->whereBetween('time', [$from_date, $today])
+                ->when(!empty($po), function ($query) use ($po) {
+                    return $query->where('assignedpo', $po);
+                })
                 ->when(empty($po) && !empty($getbranch), function ($query) use ($getbranch) {
                     return $query->whereIn('branchcode', $getbranch);
                 })
@@ -528,29 +550,22 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
     }
 
     public static function getBranch($division = null, $region = null, $area = null, $branch = null){
-        $query = DB::Table('branch')
-                ->select('branch_id')
+        return Branch::select('branch_id')
                 ->where('program_id', 1)
-                ->distinct('branch_id');
-
-        if(!empty($division))
-        {
-            $query->where('division_id', $division);
-        }
-        if(!empty($region))
-        {
-            $query->where('region_id', $region);
-        }
-        if(!empty($area))
-        {
-            $query->where('area_id', $area);
-        }
-        if(!empty($branch))
-        {
-            $query->where('branch_id', $branch);
-        }
-
-        return $query->get();
+                ->distinct('branch_id')
+                ->when(!empty($division), function($query) use ($division){
+                    return $query->where('division_id', $division);
+                })
+                ->when(!empty($region), function($query) use ($region){
+                    return $query->where('region_id', $region);
+                })
+                ->when(!empty($area), function($query) use ($area){
+                    return $query->where('area_id', $area);
+                })
+                ->when(!empty($branch), function($query) use ($branch){
+                    return $query->where('branch_id', $branch);
+                })
+                ->get();
 
     }
 }

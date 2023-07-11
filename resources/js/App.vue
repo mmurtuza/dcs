@@ -6,7 +6,7 @@
                         <div class="form-row">
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="division">Division</label>
-                                <h5 v-if="['AM','BM', 'RM', 'DM'].includes(this.role_designation)">fgfd</h5>
+                                <h5 v-if="['AM', 'RM', 'DM'].includes(this.role_designation)">{{ this.branch.division_id}} - {{ this.branch.division_name }}</h5>
                                 <select v-else v-model="selectedDivision" @change="getRegions" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="division in divisions" :key="division.division_id" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="region">Region</label>
-                                <h5 v-if="['AM','BM', 'RM'].includes(this.role_designation)">fgfd</h5>
+                                <h5 v-if="['AM', 'RM'].includes(this.role_designation)">{{  this.branch.region_id }} - {{ this.branch.region_name}}</h5>
                                 <select v-else v-model="selectedRegion" @change="getAreas" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="region in regions" :key="region.region_id" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="area">Area</label>
-                                <h5 v-if="['AM','BM',].includes(this.role_designation)">fgfd</h5>
+                                <h5 v-if="this.role_designation ==='AM'">{{ this.branch.area_id }}-{{ this.branch.area_name }}</h5>
                                 <select v-else v-model="selectedArea" @change="getBranches" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="area in areas" :key="area.area_id" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
@@ -31,8 +31,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="branch">Branch</label>
-                                <h5 v-if="this.role_designation === 'BM'">fgfd</h5>
-                                <select v-else v-model="selectedBranch" @change="getPOs" class="form-control">
+                                <select v-model="selectedBranch" @change="getPOs" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="branch in branches" :key="branch.branch_id" :value="branch.branch_id">{{ branch.branch_id }}-{{
                                         branch.branch_name }}</option>
@@ -122,10 +121,12 @@
 
     <div class="col-md-3" style="margin-top:42px;">
         <div class=" mb-3">
-           <button type="button" id="pending" @click="()=>{getDatas(null, 1, 'pending'); this.erpStatus=null; this.roleStatus='1'; getPendingCount() }"
-        :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }">
-      Pending(<span class="pending_data">{{ this.totallCount.allpendingloan }}</span>)
-    </button>
+            <button type="button" id="pending"
+            @click="()=>{getDatas(null, 1, 'pending'); this.erpStatus=null; this.roleStatus='1'; getPendingCount() }"
+            :class="{ 'btn btn-block btn-secondary': activeButton !== 'pending', 'btn btn-block btn-secondary active': activeButton === 'pending' }"
+            >
+                Pending(<span class="pending_data">{{ this.totallCount.allpendingloan }}</span>)
+            </button>
         </div>
 
 
@@ -221,7 +222,6 @@ import Overlay from './Overlay.vue';
 
 DataTable.use(DataTablesCore);
 
-
 export default {
 
     name: 'datas',
@@ -270,6 +270,7 @@ export default {
             branches: [],
             pos: [],
             totallCount: [],
+            branch: [],
             data: [],
             dateFrom: null,
             dateTo: null,
@@ -278,7 +279,7 @@ export default {
                     data: 'id',
                     title: 'Details',
                     render: (data) => {
-                        return `<button class="btn btn-warning" onclick="window.open('operation/loan-approval/${data}', "_self")">View</button>`;
+                        return `<a class="btn btn-warning" href='./operation/loan-approval/${data}')">View</a>`;
                     }
                 },
                 { data: 'orgno', title: 'Vo Code' },
@@ -302,16 +303,21 @@ export default {
         }
     },
 
+    watch: {
+        selectedDivision: 'getRegions',
+        selectedRegion: 'getAreas',
+        selectedArea: 'getBranches'
+    },
+
     mounted() {
         this.getDivisions(),
         this.addClasses(),
-        // this.getTottalCount(),
         this.getDatas(null, 1, 'pending'),
         this.getPendingCount()
 
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
-        const dateString = "2023-01-01";
+        const dateString = (new Date()).getFullYear() +"-01-01";
         const dateObject = new Date(dateString);
         this.dateFrom = dateObject.toISOString().slice(0, 10);
     },
@@ -326,7 +332,6 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                // status: 1,
                 po: this.selectedPO,
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
@@ -341,7 +346,10 @@ export default {
                     this.totallCount = res.data['counts'];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
-                    // console.table(res.data['data']);
+                    this.branch = res.data['branch'];
+                    if(['AM', 'RM', 'DM'].includes(this.role_designation))  this.selectedDivision = this.branch.division_id;
+                    if(['AM', 'RM'].includes(this.role_designation)) this.selectedRegion = this.branch.region_id;
+                    if(this.role_designation === 'AM')  (this.selectedArea = this.branch.area_id);
                 })
                 .catch((error)=>{
                     $("#overlay").fadeOut(300);
@@ -484,12 +492,15 @@ export default {
             );
         },
         getDivisions() {
+            $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/alldiv?program_id=1`).then(res => {
                 this.divisions = res.data
             });
+            $("#overlay").fadeOut(300);
         },
 
         getRegions() {
+            $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/allreg`, {
                 params: {
                     division_id: this.selectedDivision,
@@ -501,9 +512,11 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
+            $("#overlay").fadeOut(300);
         },
 
         async getAreas() {
+            $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/allarea`, {
                 params: {
                     region_id: this.selectedRegion,
@@ -515,8 +528,10 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
+            $("#overlay").fadeOut(300);
         },
         async getBranches() {
+            $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/allbra`, {
                 params: {
                     area_id: this.selectedArea,
@@ -528,9 +543,10 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
+            $("#overlay").fadeOut(300);
         },
         async getPOs() {
-
+            $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/allpo`, {
                 params: {
                     branchcode: this.selectedBranch,
@@ -542,6 +558,7 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching POs:', error);
                 });
+            $("#overlay").fadeOut(300);
         },
         searchData() {
             const searchParams = {
@@ -560,8 +577,6 @@ export default {
                     $("#overlay").fadeOut(300);
                     this.datas = response.data.searchDataResult.original;
                     this.totallCount = response.data.counts;
-                    // console.log(response.data.searchDataResult.original);
-                    // console.log(this.datas);
                     this.getPendingCount();
                 })
                 .catch((error) => {
@@ -570,11 +585,12 @@ export default {
                 });
         },
 
-    addClasses() {
-        document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
+        addClasses() {
+            document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
+        },
+
     },
 
-},
     components: {
         DataTable,
         Overlay,
