@@ -6,7 +6,7 @@
                         <div class="form-row">
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="division">Division</label>
-                                <h5 v-if="role_designation === 'AM'">fgfd</h5>
+                                <h5 v-if="['AM','BM', 'RM', 'DM'].includes(this.role_designation)">fgfd</h5>
                                 <select v-else v-model="selectedDivision" @change="getRegions" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="division in divisions" :key="division.division_id" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
@@ -14,14 +14,16 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="region">Region</label>
-                                <select v-model="selectedRegion" @change="getAreas" class="form-control">
+                                <h5 v-if="['AM','BM', 'RM'].includes(this.role_designation)">fgfd</h5>
+                                <select v-else v-model="selectedRegion" @change="getAreas" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="region in regions" :key="region.region_id" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="area">Area</label>
-                                <select v-model="selectedArea" @change="getBranches" class="form-control">
+                                <h5 v-if="['AM','BM',].includes(this.role_designation)">fgfd</h5>
+                                <select v-else v-model="selectedArea" @change="getBranches" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="area in areas" :key="area.area_id" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
                                     </option>
@@ -29,7 +31,8 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="branch">Branch</label>
-                                <select v-model="selectedBranch" @change="getPOs" class="form-control">
+                                <h5 v-if="this.role_designation === 'BM'">fgfd</h5>
+                                <select v-else v-model="selectedBranch" @change="getPOs" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="branch in branches" :key="branch.branch_id" :value="branch.branch_id">{{ branch.branch_id }}-{{
                                         branch.branch_name }}</option>
@@ -93,8 +96,9 @@
             <div class="card" style="width: 18rem; height: 131;">
                 <div class="card-body" style="background-color:#fed8b1">
                     <h5 class="card-title" style="padding: 0; margin: 0;">
-                       Total Disbursed Amount</h5>
-                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.alldisburseloan }}</h5>
+                        Total Disbursed Amount
+                    </h5>
+                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.disburseamt }}</h5>
                 </div>
             </div>
         </div>
@@ -142,7 +146,7 @@
         <div class=" mb-3">
            <button type="button" id="disburse" @click="()=>{getDatas(4, null, 'disburse'); this.erpStatus = '4'; this.roleStatus= null; getDisburseCount() }"
       :class="{ 'btn btn-block btn-secondary': activeButton !== 'disburse', 'btn btn-block btn-secondary active': activeButton === 'disburse' }">
-      Disburse(<span id="disburse_data">{{ this.totallCount.disburseamt }}</span>)
+      Disburse(<span id="disburse_data">{{ this.totallCount.alldisburseloan }}</span>)
     </button>
 
         </div>
@@ -332,12 +336,12 @@ export default {
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, params)
                 .then(res => {
                     $("#overlay").fadeOut(300);
-                    this.role_designation = res.data["role_designation"]
+                    this.role_designation = res.data['counts']["role_designation"];
                     this.datas = res.data['data'];
                     this.totallCount = res.data['counts'];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
-                    console.table(res.data['data']);
+                    // console.table(res.data['data']);
                 })
                 .catch((error)=>{
                     $("#overlay").fadeOut(300);
