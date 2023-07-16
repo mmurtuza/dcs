@@ -625,77 +625,77 @@
                       <th colspan="7" class="bgColor">@lang('loanApproval.title2')</th>
                     </tr>
                     <tr>
-                      <td rowspan="6"></td>
+                      <td rowspan="3"></td>
                       <td>@lang('loanApproval.label18')</td>
-                      <td rowspan="6"></td>
+                      <td rowspan="3"></td>
                       <td>@lang('loanApproval.label13')</td>
                       <td>@lang('loanApproval.label14')</td>
                       <td>@lang('loanApproval.label15')</td>
-                      <td rowspan="6"></td>
+                      <td rowspan="3"></td>
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label19')</td>
                       <td>{{$rca->house_rent}}</td>
                       <td>{{$rca->bm_house_rent}}</td>
                       @if($rca->am_house_rent!=null)
-                      <td rowspan="6"><input class="form-control" type="text" id="all_house_rent" name="am_house_rent"
+                      <td ><input class="form-control" type="text" id="all_house_rent" name="am_house_rent"
                           value="{{$rca->am_house_rent}}"></td>
                       @else
-                      <td rowspan="6"><input class="form-control" type="text" id="all_house_rent" name="am_house_rent"
+                      <td ><input class="form-control" type="text" id="all_house_rent" name="am_house_rent"
                           value="{{$rca->bm_house_rent}}"></td>
                       @endif
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td>@lang('loanApproval.label20')</td>
                       <td>{{$rca->food}}</td>
                       <td>{{$rca->bm_food}}</td>
-                      {{-- @if($rca->am_food!=null)
+                      @if($rca->am_food!=null)
                       <td><input class="form-control" type="text" id="all_food" name="am_food"
                           value="{{$rca->am_food}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_food" name="am_food"
                           value="{{$rca->bm_food}}"></td>
-                      @endif --}}
+                      @endif
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label21')</td>
                       <td>{{$rca->education}}</td>
                       <td>{{$rca->bm_education}}</td>
-                      {{-- @if($rca->am_education!=null)
+                      @if($rca->am_education!=null)
                       <td><input class="form-control" type="text" id="all_education" name="am_education"
                           value="{{$rca->am_education}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_education" name="am_education"
                           value="{{$rca->bm_education}}"></td>
-                      @endif --}}
+                      @endif
 
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label22')</td>
                       <td>{{$rca->medical}}</td>
                       <td>{{$rca->bm_medical}}</td>
-                      {{-- @if($rca->am_medical!=null)
+                      @if($rca->am_medical!=null)
                       <td><input class="form-control" type="text" id="all_medical" name="am_medical"
                           value="{{$rca->am_medical}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_medical" name="am_medical"
                           value="{{$rca->bm_medical}}"></td>
-                      @endif --}}
+                      @endif
 
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label25')</td>
                       <td>{{$rca->other}}</td>
                       <td>{{$rca->bm_other}}</td>
-                      {{-- @if($rca->am_other!=null)
+                      @if($rca->am_other!=null)
                       <td><input class="form-control" type="text" id="all_other" name="am_other"
                           value="{{$rca->am_other}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_other" name="am_other"
                           value="{{$rca->bm_other}}"></td>
-                      @endif --}}
+                      @endif
 
-                    </tr>
+                    </tr> --}}
                     <tr>
                       <th colspan="7" class="bgColor">@lang('loanApproval.title4')</th>
                     </tr>
@@ -713,30 +713,30 @@
                       <td>{{$rca->debt ?? 0}}</td>
                       <td>{{$rca->bm_debt ?? 0}}</td>
                       @if($rca->am_debt!=null)
-                      <td rowspan="3"><input class="form-control" type="text" id="all_debt" name="am_debt"
+                      <td><input class="form-control" type="text" id="all_debt" name="am_debt"
                           value="{{$rca->am_debt}}"></td>
                       @else
-                      <td rowspan="3"><input class="form-control" type="text" id="all_debt" name="am_debt"
+                      <td><input class="form-control" type="text" id="all_debt" name="am_debt"
                           value="{{$rca->bm_debt}}"></td>
                       @endif
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td>@lang('loanApproval.label28')</td>
                       <td>{{$rca->monthly_cash}}</td>
                       <td>{{$rca->bm_monthly_cash}}</td>
-                      {{-- @if($rca->am_monthly_cash!=null)
+                      @if($rca->am_monthly_cash!=null)
                       <td><input class="form-control" type="text" id="all_monthly_cash" name="am_monthly_cash"
                           value="{{$rca->am_monthly_cash}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_monthly_cash" name="am_monthly_cash"
                           value="{{$rca->bm_monthly_cash}}"></td>
-                      @endif --}}
+                      @endif
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label29')</td>
                       <td>{{$rca->instal_proposloan}}</td>
                       <td>{{$rca->bm_instal_proposloan}}</td>
-                      {{-- @if($rca->am_instal_proposloan!=null)
+                      @if($rca->am_instal_proposloan!=null)
                       <td><input class="form-control" type="text" id="all_instal_proposloan" name="am_instal_proposloan"
                           value="{{$rca->am_instal_proposloan}}">
                       </td>
@@ -744,8 +744,8 @@
                       <td><input class="form-control" type="text" id="all_instal_proposloan" name="am_instal_proposloan"
                           value="{{$rca->bm_instal_proposloan}}">
                       </td>
-                      @endif --}}
-                    </tr>
+                      @endif
+                    </tr> --}}
                     <tr>
                       <td>@lang('loanApproval.label30')</td>
                       <td>
