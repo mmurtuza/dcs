@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Admission;
 use App\Models\Loans;
 use App\Models\Branch;
-use Illuminate\Http\JsonResponse;
+use App\Models\Admission;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 ini_set('memory_limit', '3072M');
 ini_set('max_execution_time', 1800);
@@ -448,7 +449,7 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
 
         return $counts;
     }
-    public function getRollWiseData(Request $request)
+    public function getRollWiseData(Request $request): JsonResponse
     {
         $today = date('Y-m-d');
         $from_date = date('Y-01-01');
