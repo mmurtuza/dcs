@@ -3042,7 +3042,8 @@ class AdmissionController extends Controller
         if ($getServerUrl->isEmpty()) {
             $ownbaseurl = '';
         } else {
-            $ownbaseurl = $getServerUrl[0]->server_url;
+            // $ownbaseurl = $getServerUrl[0]->server_url;
+            $ownbaseurl = 'dcs.test/';
         }
         return $ownbaseurl;
     }

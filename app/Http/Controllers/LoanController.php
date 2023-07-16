@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Loans;
-use App\Models\Admission;
-use DB;
-use Log;
-use App\Models\RcaTable;
-use App\Models\Branch;
-use Illuminate\Support\Facades\Http;
+// use Log;
 use Session;
-use App\Http\Controllers\DashboardController;
+use App\Models\Loans;
+// use DB;
+use App\Models\Branch;
+use App\Models\RcaTable;
+use App\Models\Admission;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\LiveApiController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\DashboardController;
 
 class LoanController extends Controller
 {
@@ -1425,10 +1427,9 @@ class LoanController extends Controller
     public function assessmentInsertion($request)
     {
         $db = config('database.db');
-        //dd("Huda");
 
-        if (session('role_designation') == 'AM' and $request->action != "Reject") {
-
+        // dd($request->all());
+        if (session('role_designation') == 'AM' && $request->action != "Reject") {
             $am_assessment = array(
                 'am_primary_earner' => $request->all_primary_earner1,
                 'am_monthlyincome_main' => $request->all_monthlyincome_main1,
@@ -1453,7 +1454,8 @@ class LoanController extends Controller
                 'am_operation_childBirth' => $request->all_operation_childBirth1,
                 'am_foreigntravel' => $request->all_foreigntravel1
             );
-            DB::table($db . '.rca')->where('loan_id', $request->id)->update($am_assessment);
+            $a = DB::table($db . '.rca')->where('loan_id', $request->id)->update($am_assessment);
+            dd($a);
         }
         if (session('role_designation') == 'RM' and $request->action != "Reject") {
             $rm_assessment = array(
@@ -1499,6 +1501,7 @@ class LoanController extends Controller
             ->where($db . '.loans.id', '=', $request->id)
             ->where($db . '.loans.projectcode', session('projectcode'))
             ->first();
+        dd($db1);
         $branchcode = $db1->branchcode;
         $loan_id = $db1->loan_id;
         $projectcode = $db1->projectcode;
@@ -1507,19 +1510,19 @@ class LoanController extends Controller
         $pin = session('user_pin');
         $comment = urlencode($request->comment);
 
-
-        $document_url = $baseurl . "DocumentManager?doc_id=$doc_id&projectcode=$projectcode&doc_type=loan&pin=$pin&role=$role&branchcode=$branchcode&action=$action&comment=$comment";
-        //dd($document_url);
+        $document_url = $baseurl . "DocumentManager?doc_id=".$doc_id."&projectcode=".$projectcode."&doc_type=loan&pin=".$pin."&role=".$role."&branchcode=".$branchcode."&action=".$action."&comment=".$comment;
+        // dd($document_url);
         Log::channel('daily')->info('Document_url : ' . $document_url);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $document_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
         $documentoutput = curl_exec($ch);
         curl_close($ch);
 
         $collectionfordocument = json_decode($documentoutput);
-        // dd($collectionfordocument);
+        // dd($documentoutput);
 
         if ($collectionfordocument != NULL) {
             return redirect('/operation/loan')->with('success', 'Action suucessful.');
@@ -1582,12 +1585,13 @@ class LoanController extends Controller
         }
 
         $document_url = $baseurl . "DocumentManager?doc_id=$doc_id&projectcode=$projectcode&doc_type=loan&pin=$pin&role=$role&branchcode=$branchcode&action=$action";
-        //dd($document_url);
+        // dd($document_url);
         Log::channel('daily')->info('Document_url : ' . $document_url);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $document_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
         $documentoutput = curl_exec($ch);
         curl_close($ch);
 

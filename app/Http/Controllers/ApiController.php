@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
+// use Log;
 // use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use File;
 use view;
 use DateTime;
-use Illuminate\Support\Facades\Input;
-use DB;
+use ZipArchive;
+// use DB;
 
 date_default_timezone_set('Asia/Dhaka');
 
 ini_set('memory_limit', '3072M');
 ini_set('max_execution_time', 3600);
 
-use ZipArchive;
-use Log;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use File;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Input;
 //use App\Http\Controllers\TestingController_Version;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LiveApiController;
 
 header('Content-Type: application/json; charset=utf-8');
@@ -35,16 +37,16 @@ class ApiController extends Controller
   {
     echo "Test";
   }
-  public function PoSync(Request $req)
+  public function PoSync(Request $request)
   {
     $this->LaravelLog();
     //echo "Huda";
     // dd("H");
     $db = $this->db;
-    $token = Request::input('token');
-    $branchcode = Request::input('branchcode');
-    $ProjectCode = Request::input('projectcode');
-    $project_code = Request::input('projectcode');
+    $token =$request->input('token');
+    $branchcode =$request->input('branchcode');
+    $ProjectCode =$request->input('projectcode');
+    $project_code =$request->input('projectcode');
     $auth_array = [];
     $branchcode = (int)$branchcode;
     $projectcode = (int)$ProjectCode;
@@ -114,16 +116,16 @@ class ApiController extends Controller
     }
   }
 
-  public function OperationsDataSync(Request $req)
+  public function OperationsDataSync(Request $request)
   {
-    $token = Request::input('token');
-    $branch_code = Request::input('branchcode');
+    $token =$request->input('token');
+    $branch_code =$request->input('branchcode');
     $branchcode = str_pad($branch_code, 4, "0", STR_PAD_LEFT);
-    $pin = Request::input('pin');
-    $project_code = Request::input('projectcode');
+    $pin =$request->input('pin');
+    $project_code =$request->input('projectcode');
     $projectcode = str_pad($project_code, 3, "0", STR_PAD_LEFT);
 
-    $this->GetErpPostedAdmissionData($branchcode); //erp dcs admission data sync 
+    $this->GetErpPostedAdmissionData($branchcode); //erp dcs admission data sync
     $this->GetErpPostedLoanData($branchcode); //erp dcs Loan data sync
 
 
@@ -724,7 +726,7 @@ class ApiController extends Controller
     return $dataset;
   }
 
-  public function Index(Request $req)
+  public function Index(Request $request)
   {
     $baseUrl = url('');
     $projectCode = json_decode($projectCode);
@@ -733,10 +735,10 @@ class ApiController extends Controller
     //echo "Huda";
     //dd("H");
     $db = $this->db;
-    $projectCode = Request::input('projectcode');
-    $Approver = Request::input('approver');
-    $GrowthRate = Request::input('growthrate');
-    $apikey = Request::input('apikey');
+    $projectCode =$request->input('projectcode');
+    $Approver =$request->input('approver');
+    $GrowthRate =$request->input('growthrate');
+    $apikey =$request->input('apikey');
     $json = DB::Table($db . '.celing_configs')->where('projectcode', $projectCode)->where('approver', $Approver)->where('growth_rate', $GrowthRate)->get();
     if ($json->isEmpty()) {
       $result = array("status" => "E", "message" => "Data Not Found!");
@@ -759,11 +761,11 @@ class ApiController extends Controller
     echo "Delete Successfully";
   }
 
-  public function erpVOList(Request $req)
+  public function erpVOList(Request $request)
   {
     $dberp = $this->dberp;
     $db = $this->db;
-    $token = Request::input('token');
+    $token =$request->input('token');
 
     $serverurl = $this->ServerURL($db);
     $urlindex = $serverurl[0];
@@ -789,11 +791,11 @@ class ApiController extends Controller
       echo $json;
       die;
     }
-    $BranchCode = Request::get('BranchCode');
-    $PIN = Request::get('PIN');
-    $ProjectCode = Request::get('ProjectCode');
-    $UpdatedAt = Request::get('UpdatedAt');
-    $key = Request::get('key');
+    $BranchCode =$request->get('BranchCode');
+    $PIN =$request->get('PIN');
+    $ProjectCode =$request->get('ProjectCode');
+    $UpdatedAt =$request->get('UpdatedAt');
+    $key =$request->get('key');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $url4 = $url . "VOList?BranchCode=$BranchCode&PIN=$PIN&ProjectCode=$ProjectCode&UpdatedAt=$UpdatedAt&key=$key";
       // dd($url);
@@ -819,12 +821,12 @@ class ApiController extends Controller
   public function LastOneCloseLoanBehavior()
   {
     $db = $this->db;
-    $token = Request::input('token');
-    $BranchCode = Request::get('BranchCode');
-    $MemberId = Request::get('MemberId');
-    $OrgNo = Request::get('OrgNo');
-    $OrgMemNo = Request::get('OrgMemNo');
-    $key = Request::get('key');
+    $token =$request->input('token');
+    $BranchCode =$request->get('BranchCode');
+    $MemberId =$request->get('MemberId');
+    $OrgNo =$request->get('OrgNo');
+    $OrgMemNo =$request->get('OrgMemNo');
+    $key =$request->get('key');
     // dd($MemberId, $OrgMemNo, $OrgNo);
     $serverurl = $this->ServerURL($db);
     $urlindex = $serverurl[0];
@@ -879,19 +881,19 @@ class ApiController extends Controller
     }
   }
 
-  public function erpMemberList(Request $req)
+  public function erpMemberList(Request $request)
   {
     $db = $this->db;
-    $BranchCode = Request::get('BranchCode');
-    $PIN = Request::get('PIN');
-    $ProjectCode = Request::get('ProjectCode');
-    $CONo = Request::get('CONo');
-    $UpdatedAt = Request::get('UpdatedAt');
-    $key = Request::get('key');
-    $Status = Request::get('Status');
-    $OrgNo = Request::get('OrgNo');
-    $OrgMemNo = Request::get('OrgMemNo');
-    $token = Request::input('token');
+    $BranchCode =$request->get('BranchCode');
+    $PIN =$request->get('PIN');
+    $ProjectCode =$request->get('ProjectCode');
+    $CONo =$request->get('CONo');
+    $UpdatedAt =$request->get('UpdatedAt');
+    $key =$request->get('key');
+    $Status =$request->get('Status');
+    $OrgNo =$request->get('OrgNo');
+    $OrgMemNo =$request->get('OrgMemNo');
+    $token =$request->input('token');
 
     $serverurl = $this->ServerURL($db);
     $urlindex = $serverurl[0];
@@ -940,20 +942,20 @@ class ApiController extends Controller
     }
   }
 
-  public function erpSavingsInfo(Request $req)
+  public function erpSavingsInfo(Request $request)
   {
     $this->LaravelLog();
     $dberp = $this->dberp;
     $db = $this->db;
-    $BranchCode = Request::get('BranchCode');
-    $PIN = Request::get('PIN');
-    $ProjectCode = Request::get('ProjectCode');
-    $CONo = Request::get('CONo');
-    $UpdatedAt = Request::get('UpdatedAt');
-    $key = Request::get('key');
-    $Status = Request::get('Status');
-    $OrgNo = Request::get('OrgNo');
-    $token = Request::input('token');
+    $BranchCode =$request->get('BranchCode');
+    $PIN =$request->get('PIN');
+    $ProjectCode =$request->get('ProjectCode');
+    $CONo =$request->get('CONo');
+    $UpdatedAt =$request->get('UpdatedAt');
+    $key =$request->get('key');
+    $Status =$request->get('Status');
+    $OrgNo =$request->get('OrgNo');
+    $token =$request->input('token');
     $serverurl = $this->ServerURL($db);
     $urlindex = $serverurl[0];
     $urlindex1 = $serverurl[1];
@@ -1116,12 +1118,12 @@ class ApiController extends Controller
     $db = $this->db;
     $loanProductId = '';
     //$json = json_encode(Request::all());
-    $projectCode = Request::get('projectCode');
-    $LoanProduct = Request::get('loanProductCode');
-    $policyType = Request::get('policyType');
-    $proposalDurationInMonths = Request::get('proposalDurationInMonths');
-    $proposedLoanAmount = Request::get('proposedLoanAmount');
-    //$premiumAmount = Request::get('premiumAmount');
+    $projectCode =$request->get('projectCode');
+    $LoanProduct =$request->get('loanProductCode');
+    $policyType =$request->get('policyType');
+    $proposalDurationInMonths =$request->get('proposalDurationInMonths');
+    $proposedLoanAmount =$request->get('proposedLoanAmount');
+    //$premiumAmount =$request->get('premiumAmount');
     $LoanProductCode1 = $this->Insurance_ProductId($db, $loanProductId, $projectCode, $LoanProduct);
     if ($LoanProductCode1 != '') {
       $insuranceProductId = $LoanProductCode1;
@@ -1207,11 +1209,11 @@ class ApiController extends Controller
   {
     //dd("H");
     $db = $this->db;
-    $projectCode = Request::input('projectcode');
-    $branchcode = Request::input('branchcode');
-    $Approver = Request::input('approver');
-    $apikey = Request::input('apikey');
-    $token = Request::input('token');
+    $projectCode =$request->input('projectcode');
+    $branchcode =$request->input('branchcode');
+    $Approver =$request->input('approver');
+    $apikey =$request->input('apikey');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $BranchGrowthType = DB::Table($db . '.project_wise_branch_growth_types')->where('project_code', (int)$projectCode)->where('office_code', $branchcode)->first();
       if ($BranchGrowthType != null) {
@@ -1239,15 +1241,15 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $projectCode = Request::input('projectcode');
-    $appid = Request::input('appid');
-    $updatedat = Request::input('LastSynctime');
+    $projectCode =$request->input('projectcode');
+    $appid =$request->input('appid');
+    $updatedat =$request->input('LastSynctime');
     //$new_timestamp=strtotime("-12 hour 30 minute", $source_timestamp);
-    $apikey = Request::input('apikey');
-    $formconfig = Request::input('formconfig');
+    $apikey =$request->input('apikey');
+    $formconfig =$request->input('formconfig');
     //$json = DB::Table($db.'.form_configs')->where('projectcode',$projectCode)->where('created_at','>=',$updatedat)->get();
     $json = DB::Table($db . '.form_configs')->where('projectcode', $projectCode)->get();
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($json->isEmpty()) {
         $result = array("status" => "E", "message" => "Data Not Found!");
@@ -1298,12 +1300,12 @@ class ApiController extends Controller
   public function Auth(Request $request)
   {
     $db = $this->db;
-    $projectCode = Request::input('projectcode');
-    $appid = Request::input('appid');
-    $processId = Request::input('processId');
-    $apikey = Request::input('apikey');
+    $projectCode =$request->input('projectcode');
+    $appid =$request->input('appid');
+    $processId =$request->input('processId');
+    $apikey =$request->input('apikey');
     $json = DB::Table($db . '.auths')->where('projectcode', $projectCode)->where('processId', $processId)->get();
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($json->isEmpty()) {
         $result = array("status" => "E", "message" => "Data Not Found!");
@@ -1321,11 +1323,11 @@ class ApiController extends Controller
   public function NIDVerification(Request $req)
   {
     $db = $this->db;
-    $appid = Request::input('appid');
-    $apikey = Request::input('apikey');
-    $nid =  Request::input('nid');
+    $appid =$request->input('appid');
+    $apikey =$request->input('apikey');
+    $nid = $request->input('nid');
     $nidverificationcheck = DB::Table($db . '.nids')->where('nidno', $nid)->get();
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($nidverificationcheck->isEmpty()) {
         $result = array("status" => "E", "message" => "Data Not Found!");
@@ -1343,9 +1345,9 @@ class ApiController extends Controller
   public function ImageUpload(Request $req)
   {
     $db = $this->db;
-    $appid = Request::input('appid');
-    $apikey = Request::input('apikey');
-    $image = Request::input('file');
+    $appid =$request->input('appid');
+    $apikey =$request->input('apikey');
+    $image =$request->input('file');
     $uploaddir = '/var/www/html/uploads/';
     $baseurl = 'http://35.194.177.21/uploads/';
     $time = date('Y-m-d h:i:s');
@@ -1367,7 +1369,7 @@ class ApiController extends Controller
     // $json = '{"token":"xxxxxxxxx","appid":"bmsm","data":[{"entollmentid":"12321","projectcode":"015","voCode":"123","branch_code":"321",
     // 	"client_name":"Rz Tutul","mainid_type":"Smart ID","mainid_number":"123456789","phone":"01726553589","status":"Potential","label":"High","fdate":"June 28, 2021","reffered_by":"tutul"}],"extra":[{"fieldName":"Location","fieldType":"input","fieldValue":"Mirpur-2"},{"fieldName":"City","fieldType":"input","fieldValue":"Dhaka"}]
     // 	}';
-    $json = Request::input('json');
+    $json =$request->input('json');
     Log::channel('daily')->info('Survey Data: ' . $json);
     $dataset = json_decode($json);
     // $token = $dataset->token;
@@ -1376,7 +1378,7 @@ class ApiController extends Controller
     $dynamicfieldvalue = $dataset->extra;
     $projectcode = $data->projectcode;
     $projectcode = str_pad($projectcode, 3, "0", STR_PAD_LEFT);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $entollmentid = $data->entollmentid;
       $branchcode = $data->branch_code;
@@ -1426,7 +1428,7 @@ class ApiController extends Controller
     $this->LaravelLog();
     $db = $this->db;
     $baseUrl = url('');
-    $json = Request::input('json');
+    $json =$request->input('json');
     $currentTime = date('Y-m-d h:i:s');
     Log::channel('daily')->info('Admission Data: ' . $json);
     $dataset = json_decode($json);
@@ -1437,7 +1439,7 @@ class ApiController extends Controller
     $dynamicfieldvalue = $dataset->extra;
     $projectcode = $data->project_code;
     $projectcode = str_pad($projectcode, 3, "0", STR_PAD_LEFT);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $roleid = 0;
       $reciverrole = 1;
@@ -1607,7 +1609,7 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $json = Request::input('json');
+    $json =$request->input('json');
     Log::channel('daily')->info('Bm Assessment Admission Data: ' . $json);
     $dataset = json_decode($json);
     $token = $dataset->token;
@@ -1615,7 +1617,7 @@ class ApiController extends Controller
     $data = $dataset->admission[0];
     $projectcode = $data->project_code;
     $projectcode = str_pad($projectcode, 3, "0", STR_PAD_LEFT);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $orgno = $data->vo_code;
       $pin = $data->pin;
@@ -1666,7 +1668,7 @@ class ApiController extends Controller
     $this->LaravelLog();
     $db = $this->db;
     //$json = '{"token":"xxxxxxxxx","loan_checklist":[{"vo_code":"2029","loan_id":"494a31fb-aa50-4d84-a401-e9e6d0c525e2","branch_code":"1344","project_code":"015","pin":"00122372","mem_id":"35900701","erp_mem_id":null,"bm_repay_loan":null,"bm_conduct_activity":null,"bm_action_required":null,"bm_rca_rating":"3.0","bm_noofChild":"1","bm_earningMember":"5","bm_duration":"10","bm_hometown":"0","bm_landloard":"0","bm_recomand":"0","bm_occupation":"0","bm_aware":"0","bm_grantor":"0","bm_socialAcecptRating":7,"bm_grantorRating":7,"bm_clienthouse":"","bm_remarks":"test"}],"rca":[{"bm_monthlyincome_main":"2000","bm_monthlyincome_spouse_child":"","bm_monthlyincome_other":"","bm_house_rent":"1000","bm_food":"300","bm_education":"","bm_medical":"","bm_festive":"0","bm_utility":"0","bm_saving":"0","bm_other":"","bm_monthly_instal":"","bm_debt":"400","bm_monthly_cash":"700","bm_instal_proposloan":"0.0"}]}';
-    $json = Request::input('json');
+    $json =$request->input('json');
     Log::channel('daily')->info('Bm Loan Assessment Data: ' . $json);
     $dataset = json_decode($json);
     $token = $dataset->token;
@@ -1676,7 +1678,7 @@ class ApiController extends Controller
     $dataRca = $dataset->rca[0];
     $projectcode = $dataLoan->project_code;
     $projectcode = str_pad($projectcode, 3, "0", STR_PAD_LEFT);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       $orgno = $dataLoan->vo_code;
       $pin = $dataLoan->pin;
@@ -1791,13 +1793,13 @@ class ApiController extends Controller
   public function AllSurveyData(Request $request)
   {
     $db = $this->db;
-    // $projectCode = Request::input('projectcode');
-    // $appid = Request::input('appid');
-    // $processId = Request::input('processId');
-    // $apikey = Request::input('apikey');
+    // $projectCode =$request->input('projectcode');
+    // $appid =$request->input('appid');
+    // $processId =$request->input('processId');
+    // $apikey =$request->input('apikey');
     $json = DB::Table($db . '.surveys')->get();
     // dd($json);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($json->isEmpty()) {
         $result = array("status" => "E", "message" => "Data Not Found!");
@@ -1815,12 +1817,12 @@ class ApiController extends Controller
   public function AllAdmissionData(Request $request)
   {
     $db = $this->db;
-    // $projectCode = Request::input('projectcode');
-    // $appid = Request::input('appid');
-    // $processId = Request::input('processId');
-    // $apikey = Request::input('apikey');
+    // $projectCode =$request->input('projectcode');
+    // $appid =$request->input('appid');
+    // $processId =$request->input('processId');
+    // $apikey =$request->input('apikey');
     $json = DB::Table($db . '.admissions')->get();
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($json->isEmpty()) {
         $result = array("status" => "E", "message" => "Data Not Found!");
@@ -1842,7 +1844,7 @@ class ApiController extends Controller
     $this->LaravelLog();
     $db = $this->db;
     $baseUrl = url('');
-    $json = Request::input('json');
+    $json =$request->input('json');
     Log::channel('daily')->info('Loan Rca Data: ' . $json);
     $dataset = json_decode($json);
     // $token = $dataset->token;
@@ -1850,7 +1852,7 @@ class ApiController extends Controller
     $dataRca = $dataset->rca[0];
     $projectcode = $data->project_code;
     $projectcode = str_pad($projectcode, 3, "0", STR_PAD_LEFT);
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($projectcode == '015') {
         $roleid = 0;
@@ -2349,10 +2351,10 @@ class ApiController extends Controller
   public function AllLoanRcaData(Request $request)
   {
     $db = $this->db;
-    // $projectCode = Request::input('projectcode');
-    // $appid = Request::input('appid');
-    // $processId = Request::input('processId');
-    // $apikey = Request::input('apikey');
+    // $projectCode =$request->input('projectcode');
+    // $appid =$request->input('appid');
+    // $processId =$request->input('processId');
+    // $apikey =$request->input('apikey');
     $loans = DB::Table($db . '.loans')->get();
     $rca = DB::Table($db . '.rca')->get();
 
@@ -2368,10 +2370,10 @@ class ApiController extends Controller
   public function NotificationManager(Request $request)  //dummy
   {
     $db = $this->db;
-    // $projectCode = Request::input('projectcode');
-    // $appid = Request::input('appid');
-    // $processId = Request::input('processId');
-    // $apikey = Request::input('apikey');
+    // $projectCode =$request->input('projectcode');
+    // $appid =$request->input('appid');
+    // $processId =$request->input('processId');
+    // $apikey =$request->input('apikey');
     $result = array("status" => "E", "message" => "Data Not Found!");
     echo json_encode($result);
   }
@@ -2380,15 +2382,15 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $branchcode = Request::input('branchcode');
-    $projectcode = Request::input('projectcode');
-    $pin = Request::input('pin');
+    $branchcode =$request->input('branchcode');
+    $projectcode =$request->input('projectcode');
+    $pin =$request->input('pin');
     $branch__code = str_pad($branchcode, 4, "0", STR_PAD_LEFT);
     //after schuler have to remove this function call
-    $this->GetErpPostedAdmissionData($branch__code); //erp dcs admission data sync 
+    $this->GetErpPostedAdmissionData($branch__code); //erp dcs admission data sync
     // dd(date('Y-m-d H:i:s'));
 
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($branchcode != null and $pin == null) {
         // $admissiondata = DB::table($db . '.admissions')->where('branchcode', $branchcode)->orderBy('id', 'desc')->get();
@@ -2608,19 +2610,19 @@ class ApiController extends Controller
     $this->LaravelLog();
     $db = $this->db;
     $dberp = $this->dberp;
-    $branchcode = Request::input('branchcode');
-    $projectcode = Request::input('projectcode');
-    $pin = Request::input('pin');
-    $appid = Request::input('appid');
-    $appversion = Request::input('appversion');
+    $branchcode =$request->input('branchcode');
+    $projectcode =$request->input('projectcode');
+    $pin =$request->input('pin');
+    $appid =$request->input('appid');
+    $appversion =$request->input('appversion');
     $branch__code = str_pad($branchcode, 4, "0", STR_PAD_LEFT);
     //after schuler have to remove this function call
-    $this->GetErpPostedLoanData($branch__code); //erp dcs Loan data sync 
+    $this->GetErpPostedLoanData($branch__code); //erp dcs Loan data sync
     $todate = date('Y-m-d');
     $fromdate = date('Y-m-d', strtotime($todate . ' - 10 days'));
     Log::info("fromdate" . $fromdate);
     $dataset = [];
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($branchcode != null and $pin == null) {
         // $loandata = DB::table($db . '.loans')->where('branchcode', $branchcode)->where('projectcode', $projectcode)->orderBy('id', 'desc')->get();
@@ -2986,7 +2988,7 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $json = Request::input('json');
+    $json =$request->input('json');
     // Log::channel('daily')->info('Bm Assesment Data: '.$json);
     $dataset = json_decode($json);
     // dd($dataset);
@@ -2996,7 +2998,7 @@ class ApiController extends Controller
     $loanid = $data->loan_id;
 
     $loan = DB::table($db . '.loans')->where('loan_id', $loanid)->first();
-    $token = Request::input('token');
+    $token =$request->input('token');
     if ($token == '7f30f4491cb4435984616d1913e88389') {
       if ($loan != null) {
         $id = $loan->id;
@@ -3059,15 +3061,15 @@ class ApiController extends Controller
     $this->LaravelLog();
     $db = $this->db;
     $baseUrl = url('');
-    $projectcode = Request::input('projectcode');
-    $doc_type = Request::input('doc_type');
-    $doc_id = Request::input('doc_id');
-    $entollmentid = Request::input('entollmentid');
-    $pin = Request::input('pin');
-    $roleid = Request::input('role');
-    $branchcode = Request::input('branchcode');
-    $action = Request::input('action');
-    $comment = Request::input('comment');
+    $projectcode =$request->input('projectcode');
+    $doc_type =$request->input('doc_type');
+    $doc_id =$request->input('doc_id');
+    $entollmentid =$request->input('entollmentid');
+    $pin =$request->input('pin');
+    $roleid =$request->input('role');
+    $branchcode =$request->input('branchcode');
+    $action =$request->input('action');
+    $comment =$request->input('comment');
     // dd("Huda");
     //get proccessid by doc type request
     if ($doc_type == 'admission') {
@@ -3175,7 +3177,6 @@ class ApiController extends Controller
               if ($checkErpResponse[0] != '200') {
                 $result = array("status" => "E", "httpstatus" => $checkErpResponse[0], "errors" => $checkErpResponse[1]);
                 return json_encode($result);
-                die;
               } else {
                 //$checkErpResponse = 'OK';
                 Log::channel('daily')->info("Check Approve Log" . $nextrole . "/" . $nextroledesig . "/" . $action . "/" . $reciverrole . "/" . $pin . "/" . $processid . "/" . $doc_type . "/" . $doc_id . '/' . $projectcode);
@@ -3359,15 +3360,15 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $projectcode = Request::input('projectcode');
-    $doc_type = Request::input('doc_type');
-    $doc_id = Request::input('doc_id');
-    $entollmentid = Request::input('entollmentid');
-    $pin = Request::input('pin');
-    $roleid = Request::input('role');
-    $branchcode = Request::input('branchcode');
-    $action = Request::input('action');
-    // $comment = Request::input('comment');
+    $projectcode =$request->input('projectcode');
+    $doc_type =$request->input('doc_type');
+    $doc_id =$request->input('doc_id');
+    $entollmentid =$request->input('entollmentid');
+    $pin =$request->input('pin');
+    $roleid =$request->input('role');
+    $branchcode =$request->input('branchcode');
+    $action =$request->input('action');
+    // $comment =$request->input('comment');
 
     //get doc_id by enrollment id
     if ($doc_id == '' and $entollmentid != '') {
@@ -3438,7 +3439,7 @@ class ApiController extends Controller
     $reciverpin = '';
     $associateid = 0;
     $brcode = $branchcode;
-    $branchcode = (int)$branchcode; //for remover inital zero 
+    $branchcode = (int)$branchcode; //for remover inital zero
     $tendxbmpin = 'b' . $branchcode;
 
     if ($projectcode == '015') {
@@ -3549,7 +3550,7 @@ class ApiController extends Controller
     // 	} elseif ($projectcode == '060') {
     // 		$reciverpin = '445566';
     // 	}
-    // } 
+    // }
 
     //trendx api integration for am,rm,dm
     // $trendx = Http::get($trendxurl . 'branch', [
@@ -3681,7 +3682,7 @@ class ApiController extends Controller
       $expires_in = $tokenCheckDb[0]->expires_in;
       if ($expires_in > $currentDatetime) {
 
-        //get token from DB 
+        //get token from DB
         $access_token = $tokenCheckDb[0]->access_token;
         return $access_token;
       } else {
@@ -3775,7 +3776,8 @@ class ApiController extends Controller
       'Authorization: Bearer ' . $access_token,
       'Content-Type: application/json'
     );*/
-    $serverurl = $this->ServerURL($db);
+    // $serverurl = $this->ServerURL($db);
+    $serverurl = "https://dcs.test";
     $urlindex = $serverurl[0];
     $urlindex1 = $serverurl[1];
     if ($urlindex != '' or $urlindex1 != '') {
@@ -3849,7 +3851,7 @@ class ApiController extends Controller
         return $message;
       }
       /*if (array_key_exists("message", $response)) {
-        
+
       }*/
     }
   }
@@ -3927,7 +3929,7 @@ class ApiController extends Controller
       $response = json_decode($response);
 
       /*if (array_key_exists("message", $response)) {
-        
+
       }*/
       $updatedAt = date('Y-m-d H:i:s');
       if ($response->message == "OK") {
@@ -3990,7 +3992,7 @@ class ApiController extends Controller
     $guarantor = array();
     $guarantor[] = array(
       "dateOfBirth" => null,
-      "idCard" => array(),
+    //   "idCard" => array(),
       "idCard" => array(
         "backImageUrl" => null,
         "cardTypeId" => null,
@@ -4008,7 +4010,7 @@ class ApiController extends Controller
       "contactNo" => $data->NomineePhoneNumber,
       "dateOfBirth" => $NomineeDOB,
       "id" => null,
-      "idCard" => array(),
+    //   "idCard" => array(),
       "idCard" => array(
         "backImageUrl" => $data->NomineeNidBack,
         "cardTypeId" => $data->NomineeNidType,
@@ -4038,7 +4040,7 @@ class ApiController extends Controller
       "genderId" => $data->GenderId,
       "guarantor" => null,
       "id" => $data->entollmentid,
-      "idCard" => array(),
+    //   "idCard" => array(),
       "idCard" => array(
         "backImageUrl" => $data->BackSideOfIdimg,
         "cardTypeId" => $data->MainIdTypeId,
@@ -4069,7 +4071,7 @@ class ApiController extends Controller
       "routingNumber" => null,
       "savingsProductId" => $data->SavingsProductId,
       "spouseDateOfBirth" => $SposeDOB,
-      "spouseIdCard" => array(),
+    //   "spouseIdCard" => array(),
       "spouseIdCard" => array(
         "backImageUrl" => $data->SpouseNidBack,
         "cardTypeId" => $data->SpouseCardType,
@@ -4793,7 +4795,7 @@ class ApiController extends Controller
           // "frontImageUrl" => $data->coBorrowerDto->idCard->backImageUrl,
           // "coborrowerdtoidcardno" => $data->coBorrowerDto->idCard->idCardNo,
           // "coborrowerdtoissuedate" => $data->coBorrowerDto->idCard->issueDate,
-          // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,            
+          // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,
           // "coborrowerdtoname" => $data->coBorrowerDto->name,
           // "coborrowerdtorelationshipid" => $data->coBorrowerDto->relationshipId,
           "consenturl" => $data->consentUrl,
@@ -4964,7 +4966,7 @@ class ApiController extends Controller
 
     $checkRoleHierarchie = DB::table($db . '.role_hierarchies')->select('designation')->where('projectcode', $projectcode)->where('position', 1)->first();
 
-    // for bm role 
+    // for bm role
     if ($checkRoleHierarchie->designation == 'BM') {
       $liveApi = new LiveApiController();
       $polist = $liveApi->PoList($db, $brcode, $projectcode, $popin);
@@ -5036,7 +5038,7 @@ class ApiController extends Controller
 
     $checkRoleHierarchie = DB::table($db . '.role_hierarchies')->select('designation')->where('projectcode', $projectcode)->where('position', 1)->first();
 
-    // for bm role 
+    // for bm role
     $liveApi = new LiveApiController();
     if ($checkRoleHierarchie->designation == 'BM') {
       $polist = $liveApi->PoList($db, $brcode, $projectcode, $popin);
@@ -5078,16 +5080,16 @@ class ApiController extends Controller
   //end erp api's functions
 
   //tab po bm dashboard reports api
-  public function ReportSync(Request $req)
+  public function ReportSync(Request $request)
   {
     $this->LaravelLog();
     //echo "Huda";
     //dd("H");
     $db = $this->db;
-    $token = Request::input('token');
-    $branchcode = Request::input('branchcode');
-    $ProjectCode = Request::input('projectcode');
-    $project_code = Request::input('projectcode');
+    $token =$request->input('token');
+    $branchcode =$request->input('branchcode');
+    $ProjectCode =$request->input('projectcode');
+    $project_code =$request->input('projectcode');
     $branchcode = (int)$branchcode;
     $projectcode = (int)$ProjectCode;
     if ($token == '7f30f4491cb4435984616d1913e88389') {
@@ -5593,7 +5595,7 @@ class ApiController extends Controller
         // "frontImageUrl" => $data->coBorrowerDto->idCard->backImageUrl,
         // "coborrowerdtoidcardno" => $data->coBorrowerDto->idCard->idCardNo,
         // "coborrowerdtoissuedate" => $data->coBorrowerDto->idCard->issueDate,
-        // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,            
+        // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,
         // "coborrowerdtoname" => $data->coBorrowerDto->name,
         // "coborrowerdtorelationshipid" => $data->coBorrowerDto->relationshipId,
         "consenturl" => $data->consentUrl,
@@ -5954,8 +5956,8 @@ class ApiController extends Controller
       return "Data Pulled Sucessfully";
     } catch (\Throwable $e) {
       DB::rollback();
-      throw $e;
       Log::channel('daily')->info('Data mapping pull error: ' . $e);
+      throw $e;
     }
   }
   public function TokenCheck()
@@ -6026,7 +6028,7 @@ class ApiController extends Controller
     $db = $this->db;
     $url = '';
     $url2 = '';
-    $serverurl = DB::Table($db . '.server_url')->where('server_status', 1)->where('status', 1)->first();
+    $serverurl = DB::Table($db . '.server_url')->where('server_status', 3)->where('status', 1)->first();
     //dd($serverurl);
     if (empty($serverurl)) {
       $statuss = array("status" => "CUSTMSG", "message" => "Server Api Not Found");
@@ -6053,9 +6055,9 @@ class ApiController extends Controller
   {
     $this->LaravelLog();
     $db = $this->db;
-    $appid = Request::input('appid');
-    $apikey = Request::input('apikey');
-    $image = Request::input('file');
+    $appid =$request->input('appid');
+    $apikey =$request->input('apikey');
+    $image =$request->input('file');
     $uploaddir = '/data/uploads/';
     $baseurl = 'http://35.194.177.21/data/uploads/';
     $time = date('Y-m-d h:i:s');
@@ -6426,7 +6428,7 @@ class ApiController extends Controller
         // "frontImageUrl" => $data->coBorrowerDto->idCard->backImageUrl,
         // "coborrowerdtoidcardno" => $data->coBorrowerDto->idCard->idCardNo,
         // "coborrowerdtoissuedate" => $data->coBorrowerDto->idCard->issueDate,
-        // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,            
+        // "coborrowerdtoissueplace" => $data->coBorrowerDto->idCard->issuePlace,
         // "coborrowerdtoname" => $data->coBorrowerDto->name,
         // "coborrowerdtorelationshipid" => $data->coBorrowerDto->relationshipId,
         "consenturl" => $data->consentUrl,
