@@ -601,26 +601,26 @@
                       <td>{{$rca->monthlyincome_main}}</td>
                       <td>{{$rca->bm_monthlyincome_main}}</td>
                       @if($rca->am_monthlyincome_main!=null)
-                      <td rowspan="2"><input class="form-control" type="text" id="all_monthlyincome_main"
+                      <td><input class="form-control" type="text" id="all_monthlyincome_main"
                           name="am_monthlyincome_main" value="{{$rca->am_monthlyincome_main}}"></td>
                       @else
-                      <td rowspan="2"><input class="form-control" type="text" id="all_monthlyincome_main"
+                      <td><input class="form-control" type="text" id="all_monthlyincome_main"
                           name="am_monthlyincome_main" value="{{$rca->bm_monthlyincome_main}}"></td>
                       @endif
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td>@lang('loanApproval.label17')</td>
                       <td>{{$rca->monthlyincome_spouse_child}}</td>
                       <td>{{$rca->bm_monthlyincome_spouse_child}}</td>
-                      {{-- @if($rca->am_monthlyincome_spouse_child!=null)
+                      @if($rca->am_monthlyincome_spouse_child!=null)
                       <td><input class="form-control" type="text" id="all_monthlyincome_spouse_child"
                           name="am_monthlyincome_spouse_child" value="{{$rca->am_monthlyincome_spouse_child}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_monthlyincome_spouse_child"
                           name="am_monthlyincome_spouse_child" value="{{$rca->bm_monthlyincome_spouse_child}}"></td>
-                      @endif --}}
+                      @endif
 
-                    </tr>
+                    </tr> --}}
                     <tr>
                       <th colspan="7" class="bgColor">@lang('loanApproval.title2')</th>
                     </tr>
@@ -925,7 +925,7 @@
                   @if(session('role_designation')=='RM')
                   <table class="table table-bordered">
                     <tr>
-                      <th colspan="8" class="bgColor">@lang('loanApproval.title1')</th>
+                      <th colspan="8" class="bgColor">@lang('loanApproval.title1')</th> {{-- MontlyIncome --}}
                     </tr>
                     <tr>
                       <td rowspan="4"></td>
@@ -962,7 +962,7 @@
                           name="rm_monthlyincome_main" value="{{$rca->am_monthlyincome_main}}"></td>
                       @endif
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td>@lang('loanApproval.label17')</td>
                       <td>{{$rca->monthlyincome_spouse_child}}</td>
                       <td>{{$rca->bm_monthlyincome_spouse_child}}</td>
@@ -974,7 +974,7 @@
                       <td><input class="form-control" type="text" id="all_monthlyincome_spouse_child"
                           name="rm_monthlyincome_spouse_child" value="{{$rca->am_monthlyincome_spouse_child}}"></td>
                       @endif
-                    </tr>
+                    </tr> --}}
                     <tr>
                       <th colspan="8" class="bgColor">@lang('loanApproval.title2')</th>
                     </tr>
@@ -2439,18 +2439,15 @@
                         @endif
                       </td>
                     </tr>
-                    <?php
-                                        if ((session('role_designation') == 'AM' or session('role_designation') == 'RM') or (session('role_designation') == 'DM')) {
-                                        ?>
-                    <tr>
-                      <td>@lang('loanApproval.label70')</td>
-                      <td colspan="2">
-                        <textarea class="form-control" rows="5" id="comments" name="AMRMDM_Comments"></textarea>
-                      </td>
-                    </tr>
-                    <?php
-                                        }
-                                        ?>
+
+                    @if ((session('role_designation') == 'AM' or session('role_designation') == 'RM') or (session('role_designation') == 'DM'))
+                        <tr>
+                        <td>@lang('loanApproval.label70')</td>
+                        <td colspan="2">
+                            <textarea class="form-control" rows="5" id="comments" name="AMRMDM_Comments"></textarea>
+                        </td>
+                        </tr>
+                    @endif
                   </table>
                   <input type="hidden" value="{{$data->id}}" name="id">
                   <input type="hidden" value="Approve" name="action">
@@ -2516,7 +2513,7 @@
               required>
           </div>
           <div>
-
+            //content will load by js
           </div>
         </div><!-- /.box-body -->
         <div class="form-footer">
@@ -2551,29 +2548,7 @@
           <div class="form-group">
             <textarea name="comment" id="comment" class="form-control" cols="30" rows="5"></textarea>
           </div>
-          {{-- <div>
-            <input type="hidden" value="" name="all_monthlyincome_main1" id="all_monthlyincome_main1">
-            <input type="hidden" value="" name="all_monthlyincome_spouse_child1" id="all_monthlyincome_spouse_child1">
-            <input type="hidden" value="" name="all_monthlyincome_other1" id="all_monthlyincome_other1">
-            <input type="hidden" value="" name="all_house_rent1" id="all_house_rent1">
-            <input type="hidden" value="" name="all_food1" id="all_food1">
-            <input type="hidden" value="" name="all_education1" id="all_education1">
-            <input type="hidden" value="" name="all_medical1" id="all_medical1">
-            <input type="hidden" value="" name="all_festive1" id="all_festive1">
-            <input type="hidden" value="" name="all_utility1" id="all_utility1">
-            <input type="hidden" value="" name="all_saving1" id="all_saving1">
-            <input type="hidden" value="" name="all_other1" id="all_other1">
-            <input type="hidden" value="" name="all_debt1" id="all_debt1">
-            <input type="hidden" value="" name="all_monthly_cash1" id="all_monthly_cash1">
-            <input type="hidden" value="" name="all_instal_proposloan1" id="all_instal_proposloan1">
-            <input type="hidden" value="" name="all_seasonal_income1" id="all_seasonal_income1">
-            <input type="hidden" value="" name="all_incomeformfixedassets1" id="all_incomeformfixedassets1">
-            <input type="hidden" value="" name="all_imcomeformsavings1" id="all_imcomeformsavings1">
-            <input type="hidden" value="" name="all_houseconstructioncost1" id="all_houseconstructioncost1">
-            <input type="hidden" value="" name="all_expendingonmarriage1" id="all_expendingonmarriage1">
-            <input type="hidden" value="" name="all_operation_childBirth1" id="all_operation_childBirth1">
-            <input type="hidden" value="" name="all_foreigntravel1" id="all_foreigntravel1">
-          </div> --}}
+
         </div><!-- /.box-body -->
         <div class="form-footer">
           <div class="row">
@@ -2678,27 +2653,27 @@ $(document).ready(function() {
   }
   $('#approve').on('click', function() {
     $("#approve_form").append(`<input type="hidden" value="Approve" name="action">
-        <input type="hidden" value="${$('#all_monthlyincome_main').val()}" name="all_monthlyincome_main1">
-        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val()}" name="all_monthlyincome_spouse_child1">
-        <input type="hidden" value="${$('#all_monthlyincome_other').val()}" name="all_monthlyincome_other1">
-        <input type="hidden" value="${$('#all_house_rent').val()}" name="all_house_rent1">
-        <input type="hidden" value="${$('#all_food').val()}" name="all_food1">
-        <input type="hidden" value="${$('#all_education').val()}" name="all_education1">
-        <input type="hidden" value="${$('#all_medical').val()}" name="all_medical1">
-        <input type="hidden" value="${$('#all_festive').val()}" name="all_festive1">
-        <input type="hidden" value="${$('#all_utility').val()}" name="all_utility1">
-        <input type="hidden" value="${$('#all_saving').val()}" name="all_saving1">
-        <input type="hidden" value="${$('#all_other').val()}" name="all_other1">
-        <input type="hidden" value="${$('#all_debt').val()}" name="all_debt1">
-        <input type="hidden" value="${$('#all_monthly_cash').val()}" name="all_monthly_cash1">
-        <input type="hidden" value="${$('#all_instal_proposloan').val()}" name="all_instal_proposloan1">
-        <input type="hidden" value="${$('#all_seasonal_income').val()}" name="all_seasonal_income1">
-        <input type="hidden" value="${$('#all_incomeformfixedassets').val()}" name="all_incomeformfixedassets1">
-        <input type="hidden" value="${$('#all_imcomeformsavings').val()}" name="all_imcomeformsavings1">
-        <input type="hidden" value="${$('#all_houseconstructioncost').val()}" name="all_houseconstructioncost1">
-        <input type="hidden" value="${$('#all_expendingonmarriage').val()}" name="all_expendingonmarriage1">
-        <input type="hidden" value="${$('#all_operation_childBirth').val()}" name="all_operation_childBirth1">
-        <input type="hidden" value="${$('#all_foreigntravel').val()}" name="all_foreigntravel1">
+        <input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
+        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
+        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
+        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
+        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
+        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
+        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
+        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
+        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
+        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
+        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
+        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
+        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
+        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
+        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
+        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
+        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
+        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
+        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
+        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
+        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
     `);
     document.querySelector('#approve_modal').style.display = 'block';
 
@@ -2710,182 +2685,59 @@ $(document).ready(function() {
   })
   // recommend model
   $('#recommend').on('click', function() {
-    $("#action").append(`<input type="hidden" value="Recommend" name="action">`);
-    let all_monthlyincome_main = $('#all_monthlyincome_main').val();
-    $("#action").append('<input type="hidden" value="' + all_monthlyincome_main+'" name="all_monthlyincome_main1" id="all_monthlyincome_main1">');
-
-    let all_monthlyincome_spouse_child = $('#all_monthlyincome_spouse_child').val();
-    $('action').append('<input type="hidden" value="'+ all_monthlyincome_spouse_child +'" name="all_monthlyincome_spouse_child1">');
-
-    let all_monthlyincome_other = $('#all_monthlyincome_other').val();
-    $("#action").append('<input type="hidden" value="' + all_monthlyincome_other + '" name="all_monthlyincome_other1">');
-
-    let all_house_rent = $('#all_house_rent').val();
-    $("#action").append('<input type="hidden" value="' + all_house_rent + '" name="all_house_rent1">');
-
-    let all_food = $('#all_food').val();
-    $("#action").append('<input type="hidden" value="' + all_food + '" name="all_food1">');
-
-    let all_education = $('#all_education').val();
-    $("#action").append('<input type="hidden" value="' + all_education + '" name="all_education1">');
-
-    let all_medical = $('#all_medical').val();
-    $("#action").append('<input type="hidden" value="' + all_medical + '" name="all_medical1">');
-
-    let all_festive = $('#all_festive').val();
-    $("#action").append('<input type="hidden" value="' + all_festive + '" name="all_festive1">');
-
-    let all_utility = $('#all_utility').val();
-    $("#action").append('<input type="hidden" value="' + all_utility + '" name="all_utility1">');
-
-    let all_saving = $('#all_saving').val();
-    $("#action").append('<input type="hidden" value="' + all_saving + '" name="all_saving1">');
-
-    let all_other = $('#all_other').val();
-    $("#action").append('<input type="hidden" value="' + all_other + '" name="all_other1">');
-
-    let all_debt = $('#all_debt').val();
-    $("#action").append('<input type="hidden" value="' + all_debt + '" name="all_debt1">');
-
-    let all_monthly_cash = $('#all_monthly_cash').val();
-    $("#action").append('<input type="hidden" value="' + all_monthly_cash + '" name="all_monthly_cash1">');
-
-    let all_instal_proposloan = $('#all_instal_proposloan').val();
-    $("#action").append('<input type="hidden" value="' + all_instal_proposloan + '" name="all_instal_proposloan1">');
-
-    let all_seasonal_income = $('#all_seasonal_income').val();
-    $("#action").append('<input type="hidden" value="' + all_seasonal_income + '" name="all_seasonal_income1">');
-
-    let all_incomeformfixedassets = $('#all_incomeformfixedassets').val();
-    $("#action").append('<input type="hidden" value="' + all_incomeformfixedassets + '" name="all_incomeformfixedassets1">');
-
-    let all_imcomeformsavings = $('#all_imcomeformsavings').val();
-    $("#action").append('<input type="hidden" value="' + all_imcomeformsavings + '" name="all_imcomeformsavings1">');
-
-    let all_houseconstructioncost = $('#all_houseconstructioncost').val();
-    $("#action").append('<input type="hidden" value="' + all_houseconstructioncost + '" name="all_houseconstructioncost1">');
-
-    let all_expendingonmarriage = $('#all_expendingonmarriage').val();
-    $("#action").append('<input type="hidden" value="' + all_expendingonmarriage + '" name="all_expendingonmarriage1">');
-
-    let all_operation_childBirth = $('#all_operation_childBirth').val();
-    $("#action").append('<input type="hidden" value="' + all_operation_childBirth + '" name="all_operation_childBirth1">');
-
-    let all_foreigntravel = $('#all_foreigntravel').val();
-    $("#action").append('<input type="hidden" value="' + all_foreigntravel + '" name="all_foreigntravel1">');
-
+    $("#action").append(`<input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
+        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
+        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
+        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
+        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
+        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
+        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
+        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
+        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
+        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
+        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
+        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
+        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
+        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
+        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
+        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
+        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
+        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
+        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
+        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
+        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
+    `);
     document.querySelector('#reject_modal').style.display = 'block';
   });
 
   //Prepare sendback model
   $('#sendback').on('click', function() {
-    let all_monthlyincome_main = $('#all_monthlyincome_main').val();
-    $("#action").append('<input type="hidden" value="' + all_monthlyincome_main + '" name="all_monthlyincome_main1">');
-
-    let all_monthlyincome_spouse_child = $('#all_monthlyincome_spouse_child').val();
-    $("#action").append('<input type="hidden" value="' + all_monthlyincome_spouse_child + '" name="all_monthlyincome_spouse_child1">');
-
-    let all_monthlyincome_other = $('#all_monthlyincome_other').val();
-    $("#action").append('<input type="hidden" value="' + all_monthlyincome_other + '" name="all_monthlyincome_other1">');
-
-    let all_house_rent = $('#all_house_rent').val();
-    $("#action").append('<input type="hidden" value="' + all_house_rent + '" name="all_house_rent1">');
-
-    let all_food = $('#all_food').val();
-    $("#action").append('<input type="hidden" value="' + all_food + '" name="all_food1">');
-
-    let all_education = $('#all_education').val();
-    $("#action").append('<input type="hidden" value="' + all_education + '" name="all_education1">');
-
-    let all_medical = $('#all_medical').val();
-    $("#action").append('<input type="hidden" value="' + all_medical + '" name="all_medical1">');
-
-    let all_festive = $('#all_festive').val();
-    $("#action").append('<input type="hidden" value="' + all_festive + '" name="all_festive1">');
-
-    let all_utility = $('#all_utility').val();
-    $("#action").append('<input type="hidden" value="' + all_utility + '" name="all_utility1">');
-
-    let all_saving = $('#all_saving').val();
-    $("#action").append('<input type="hidden" value="' + all_saving + '" name="all_saving1">');
-
-    let all_other = $('#all_other').val();
-    $("#action").append('<input type="hidden" value="' + all_other + '" name="all_other1">');
-
-    let all_debt = $('#all_debt').val();
-    $("#action").append('<input type="hidden" value="' + all_debt + '" name="all_debt1">');
-
-    let all_monthly_cash = $('#all_monthly_cash').val();
-    $("#action").append('<input type="hidden" value="' + all_monthly_cash + '" name="all_monthly_cash1">');
-
-    let all_instal_proposloan = $('#all_instal_proposloan').val();
-    $("#action").append('<input type="hidden" value="' + all_instal_proposloan + '" name="all_instal_proposloan1">');
-
-    let all_seasonal_income = $('#all_seasonal_income').val();
-    $("#action").append('<input type="hidden" value="' + all_seasonal_income + '" name="all_seasonal_income1">');
-
-    let all_incomeformfixedassets = $('#all_incomeformfixedassets').val();
-    $("#action").append('<input type="hidden" value="' + all_incomeformfixedassets + '" name="all_incomeformfixedassets1">');
-
-    let all_imcomeformsavings = $('#all_imcomeformsavings').val();
-    $("#action").append('<input type="hidden" value="' + all_imcomeformsavings + '" name="all_imcomeformsavings1">');
-
-    let all_houseconstructioncost = $('#all_houseconstructioncost').val();
-    $("#action").append('<input type="hidden" value="' + all_houseconstructioncost + '" name="all_houseconstructioncost1">');
-
-    let all_expendingonmarriage = $('#all_expendingonmarriage').val();
-    $("#action").append('<input type="hidden" value="' + all_expendingonmarriage + '" name="all_expendingonmarriage1">');
-
-    let all_operation_childBirth = $('#all_operation_childBirth').val();
-    $("#action").append('<input type="hidden" value="' + all_operation_childBirth + '" name="all_operation_childBirth1">');
-
-    let all_foreigntravel = $('#all_foreigntravel').val();
-    $("#action").append('<input type="hidden" value="' + all_foreigntravel + '" name="all_foreigntravel1">');
+    $("#action").append(`<input type="hidden" value="Approve" name="action">
+        <input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
+        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
+        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
+        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
+        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
+        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
+        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
+        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
+        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
+        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
+        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
+        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
+        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
+        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
+        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
+        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
+        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
+        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
+        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
+        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
+        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
+    `);
 
     document.querySelector('#reject_modal').style.display = 'block';
-    // $("#action").append(`<input type="hidden" value="Sendback" name="action">`);
-    // let all_monthlyincome_main = $('#all_monthlyincome_main').val();
-    // $("#all_monthlyincome_main1").val(all_monthlyincome_main);
-    // let all_monthlyincome_spouse_child = $('#all_monthlyincome_spouse_child').val();
-    // $("#all_monthlyincome_spouse_child1").val(all_monthlyincome_spouse_child);
-    // let all_monthlyincome_other = $('#all_monthlyincome_other').val();
-    // $("#all_monthlyincome_other1").val(all_monthlyincome_other);
-    // let all_house_rent = $('#all_house_rent').val();
-    // $("#all_house_rent1").val(all_house_rent);
-    // let all_food = $('#all_food').val();
-    // $("#all_food1").val(all_food);
-    // let all_education = $('#all_education').val();
-    // $("#all_education1").val(all_education);
-    // let all_medical = $('#all_medical').val();
-    // $("#all_medical1").val(all_medical);
-    // let all_festive = $('#all_festive').val();
-    // $("#all_festive1").val(all_festive);
-    // let all_utility = $('#all_utility').val();
-    // $("#all_utility1").val(all_utility);
-    // let all_saving = $('#all_saving').val();
-    // $("#all_saving1").val(all_saving);
-    // let all_other = $('#all_other').val();
-    // $("#all_other1").val(all_other);
-    // let all_debt = $('#all_debt').val();
-    // $("#all_debt1").val(all_debt);
-    // let all_monthly_cash = $('#all_monthly_cash').val();
-    // $("#all_monthly_cash1").val(all_monthly_cash);
-    // let all_instal_proposloan = $('#all_instal_proposloan').val();
-    // $("#all_instal_proposloan1").val(all_instal_proposloan);
-    // let all_seasonal_income = $('#all_seasonal_income').val();
-    // $("#all_seasonal_income1").val(all_seasonal_income);
-    // let all_incomeformfixedassets = $('#all_incomeformfixedassets').val();
-    // $("#all_incomeformfixedassets1").val(all_incomeformfixedassets);
-    // let all_imcomeformsavings = $('#all_imcomeformsavings').val();
-    // $("#all_imcomeformsavings1").val(all_imcomeformsavings);
-    // let all_houseconstructioncost = $('#all_houseconstructioncost').val();
-    // $("#all_houseconstructioncost1").val(all_houseconstructioncost);
-    // let all_expendingonmarriage = $('#all_expendingonmarriage').val();
-    // $("#all_expendingonmarriage1").val(all_expendingonmarriage);
-    // let all_operation_childBirth = $('#all_operation_childBirth').val();
-    // $("#all_operation_childBirth1").val(all_operation_childBirth);
-    // let all_foreigntravel = $('#all_foreigntravel').val();
-    // $("#all_foreigntravel1").val(all_foreigntravel);
+
   })
 
   $('#approve').on('click', function() {
