@@ -1,0 +1,1192 @@
+[2023-06-10 07:56:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 07:57:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 07:58:14] local.INFO: Staus2  
+[2023-06-10 07:58:14] local.INFO: ERP1  
+[2023-06-10 07:58:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 07:58:44] local.INFO: Staus1  
+[2023-06-10 07:58:44] local.INFO: ERP  
+[2023-06-10 07:58:48] local.INFO: Staus2  
+[2023-06-10 07:58:48] local.INFO: ERP1  
+[2023-06-10 07:59:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:00:16] local.INFO: Staus1  
+[2023-06-10 08:00:16] local.INFO: ERP  
+[2023-06-10 08:00:19] local.INFO: Staus3  
+[2023-06-10 08:00:19] local.INFO: ERP3  
+[2023-06-10 08:00:21] local.INFO: Staus2  
+[2023-06-10 08:00:21] local.INFO: ERP4  
+[2023-06-10 08:00:24] local.INFO: Staus2  
+[2023-06-10 08:00:24] local.INFO: ERP2  
+[2023-06-10 08:00:27] local.INFO: Staus2  
+[2023-06-10 08:00:27] local.INFO: ERP1  
+[2023-06-10 08:00:31] local.INFO: Staus1  
+[2023-06-10 08:00:31] local.INFO: ERP  
+[2023-06-10 08:00:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:01:16] local.INFO: Staus1  
+[2023-06-10 08:01:16] local.INFO: ERP  
+[2023-06-10 08:01:21] local.INFO: Staus1  
+[2023-06-10 08:01:21] local.INFO: ERP  
+[2023-06-10 08:01:27] local.INFO: Staus2  
+[2023-06-10 08:01:27] local.INFO: ERP1  
+[2023-06-10 08:01:28] local.INFO: Staus2  
+[2023-06-10 08:01:28] local.INFO: ERP2  
+[2023-06-10 08:01:29] local.INFO: Staus2  
+[2023-06-10 08:01:29] local.INFO: ERP4  
+[2023-06-10 08:01:29] local.INFO: Staus3  
+[2023-06-10 08:01:29] local.INFO: ERP3  
+[2023-06-10 08:01:33] local.INFO: Staus1  
+[2023-06-10 08:01:33] local.INFO: ERP  
+[2023-06-10 08:01:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:02:07] local.INFO: Staus3  
+[2023-06-10 08:02:07] local.INFO: ERP3  
+[2023-06-10 08:02:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:02:46] local.INFO: Staus1  
+[2023-06-10 08:02:46] local.INFO: ERP  
+[2023-06-10 08:02:46] local.INFO: Staus1  
+[2023-06-10 08:02:46] local.INFO: ERP  
+[2023-06-10 08:02:49] local.INFO: Staus1  
+[2023-06-10 08:02:49] local.INFO: ERP  
+[2023-06-10 08:02:50] local.INFO: Staus1  
+[2023-06-10 08:02:50] local.INFO: ERP  
+[2023-06-10 08:02:54] local.INFO: Staus1  
+[2023-06-10 08:02:54] local.INFO: ERP  
+[2023-06-10 08:02:54] local.INFO: Staus1  
+[2023-06-10 08:02:54] local.INFO: ERP  
+[2023-06-10 08:03:26] local.INFO: Staus1  
+[2023-06-10 08:03:26] local.INFO: ERP  
+[2023-06-10 08:03:26] local.INFO: Staus1  
+[2023-06-10 08:03:26] local.INFO: ERP  
+[2023-06-10 08:03:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:03:42] local.INFO: Staus1  
+[2023-06-10 08:03:42] local.INFO: ERP  
+[2023-06-10 08:03:42] local.INFO: Staus1  
+[2023-06-10 08:03:42] local.INFO: ERP  
+[2023-06-10 08:03:58] local.INFO: Staus1  
+[2023-06-10 08:03:58] local.INFO: ERP  
+[2023-06-10 08:03:58] local.INFO: Staus1  
+[2023-06-10 08:03:58] local.INFO: ERP  
+[2023-06-10 08:04:03] local.INFO: Staus1  
+[2023-06-10 08:04:03] local.INFO: ERP  
+[2023-06-10 08:04:03] local.INFO: Staus1  
+[2023-06-10 08:04:03] local.INFO: ERP  
+[2023-06-10 08:04:23] local.INFO: Staus1  
+[2023-06-10 08:04:23] local.INFO: ERP  
+[2023-06-10 08:04:23] local.INFO: Staus1  
+[2023-06-10 08:04:23] local.INFO: ERP  
+[2023-06-10 08:04:29] local.INFO: Staus1  
+[2023-06-10 08:04:29] local.INFO: ERP  
+[2023-06-10 08:04:29] local.INFO: Staus1  
+[2023-06-10 08:04:29] local.INFO: ERP  
+[2023-06-10 08:04:38] local.INFO: Staus1  
+[2023-06-10 08:04:38] local.INFO: ERP  
+[2023-06-10 08:04:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:04:39] local.INFO: Staus1  
+[2023-06-10 08:04:39] local.INFO: ERP  
+[2023-06-10 08:05:01] local.INFO: Staus1  
+[2023-06-10 08:05:01] local.INFO: ERP  
+[2023-06-10 08:05:04] local.INFO: Staus2  
+[2023-06-10 08:05:04] local.INFO: ERP1  
+[2023-06-10 08:05:06] local.INFO: Staus2  
+[2023-06-10 08:05:06] local.INFO: ERP2  
+[2023-06-10 08:05:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:06:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:07:08] local.INFO: Staus2  
+[2023-06-10 08:07:08] local.INFO: ERP4  
+[2023-06-10 08:07:10] local.INFO: Staus3  
+[2023-06-10 08:07:10] local.INFO: ERP3  
+[2023-06-10 08:07:36] local.INFO: Staus1  
+[2023-06-10 08:07:36] local.INFO: ERP  
+[2023-06-10 08:07:37] local.INFO: Staus1  
+[2023-06-10 08:07:37] local.INFO: ERP  
+[2023-06-10 08:07:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:08:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:09:37] local.INFO: Staus1  
+[2023-06-10 08:09:37] local.INFO: ERP  
+[2023-06-10 08:09:37] local.INFO: Staus1  
+[2023-06-10 08:09:37] local.INFO: ERP  
+[2023-06-10 08:09:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:09:39] local.INFO: Staus1  
+[2023-06-10 08:09:39] local.INFO: ERP  
+[2023-06-10 08:09:40] local.INFO: Staus1  
+[2023-06-10 08:09:40] local.INFO: ERP  
+[2023-06-10 08:09:41] local.INFO: Staus1  
+[2023-06-10 08:09:41] local.INFO: ERP  
+[2023-06-10 08:09:41] local.INFO: Staus1  
+[2023-06-10 08:09:41] local.INFO: ERP  
+[2023-06-10 08:09:43] local.INFO: Staus1  
+[2023-06-10 08:09:43] local.INFO: ERP  
+[2023-06-10 08:09:43] local.INFO: Staus1  
+[2023-06-10 08:09:43] local.INFO: ERP  
+[2023-06-10 08:09:45] local.INFO: Staus1  
+[2023-06-10 08:09:45] local.INFO: ERP  
+[2023-06-10 08:09:45] local.INFO: Staus1  
+[2023-06-10 08:09:45] local.INFO: ERP  
+[2023-06-10 08:09:45] local.INFO: Staus1  
+[2023-06-10 08:09:45] local.INFO: ERP  
+[2023-06-10 08:09:45] local.INFO: Staus1  
+[2023-06-10 08:09:45] local.INFO: ERP  
+[2023-06-10 08:09:46] local.INFO: Staus1  
+[2023-06-10 08:09:46] local.INFO: ERP  
+[2023-06-10 08:09:46] local.INFO: Staus1  
+[2023-06-10 08:09:46] local.INFO: ERP  
+[2023-06-10 08:09:46] local.INFO: Staus1  
+[2023-06-10 08:09:46] local.INFO: ERP  
+[2023-06-10 08:09:46] local.INFO: Staus1  
+[2023-06-10 08:09:46] local.INFO: ERP  
+[2023-06-10 08:09:48] local.INFO: Staus1  
+[2023-06-10 08:09:48] local.INFO: ERP  
+[2023-06-10 08:09:48] local.INFO: Staus1  
+[2023-06-10 08:09:48] local.INFO: ERP  
+[2023-06-10 08:10:01] local.INFO: Staus1  
+[2023-06-10 08:10:01] local.INFO: ERP  
+[2023-06-10 08:10:01] local.INFO: Staus1  
+[2023-06-10 08:10:01] local.INFO: ERP  
+[2023-06-10 08:10:06] local.INFO: Staus1  
+[2023-06-10 08:10:06] local.INFO: ERP  
+[2023-06-10 08:10:07] local.INFO: Staus1  
+[2023-06-10 08:10:07] local.INFO: ERP  
+[2023-06-10 08:10:08] local.INFO: Staus1  
+[2023-06-10 08:10:08] local.INFO: ERP  
+[2023-06-10 08:10:08] local.INFO: Staus1  
+[2023-06-10 08:10:08] local.INFO: ERP  
+[2023-06-10 08:10:11] local.INFO: Staus1  
+[2023-06-10 08:10:11] local.INFO: ERP  
+[2023-06-10 08:10:12] local.INFO: Staus1  
+[2023-06-10 08:10:12] local.INFO: ERP  
+[2023-06-10 08:10:19] local.INFO: Staus1  
+[2023-06-10 08:10:19] local.INFO: ERP  
+[2023-06-10 08:10:20] local.INFO: Staus1  
+[2023-06-10 08:10:20] local.INFO: ERP  
+[2023-06-10 08:10:21] local.INFO: Staus1  
+[2023-06-10 08:10:21] local.INFO: ERP  
+[2023-06-10 08:10:21] local.INFO: Staus1  
+[2023-06-10 08:10:21] local.INFO: ERP  
+[2023-06-10 08:10:23] local.INFO: Staus1  
+[2023-06-10 08:10:23] local.INFO: ERP  
+[2023-06-10 08:10:23] local.INFO: Staus1  
+[2023-06-10 08:10:23] local.INFO: ERP  
+[2023-06-10 08:10:26] local.INFO: Staus1  
+[2023-06-10 08:10:26] local.INFO: ERP  
+[2023-06-10 08:10:26] local.INFO: Staus1  
+[2023-06-10 08:10:26] local.INFO: ERP  
+[2023-06-10 08:10:28] local.INFO: Staus1  
+[2023-06-10 08:10:28] local.INFO: ERP  
+[2023-06-10 08:10:28] local.INFO: Staus1  
+[2023-06-10 08:10:28] local.INFO: ERP  
+[2023-06-10 08:10:30] local.INFO: Staus1  
+[2023-06-10 08:10:30] local.INFO: ERP  
+[2023-06-10 08:10:30] local.INFO: Staus1  
+[2023-06-10 08:10:30] local.INFO: ERP  
+[2023-06-10 08:10:31] local.INFO: Staus1  
+[2023-06-10 08:10:31] local.INFO: ERP  
+[2023-06-10 08:10:31] local.INFO: Staus1  
+[2023-06-10 08:10:31] local.INFO: ERP  
+[2023-06-10 08:10:34] local.INFO: Staus1  
+[2023-06-10 08:10:34] local.INFO: ERP  
+[2023-06-10 08:10:35] local.INFO: Staus1  
+[2023-06-10 08:10:35] local.INFO: ERP  
+[2023-06-10 08:10:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:10:52] local.INFO: Staus1  
+[2023-06-10 08:10:52] local.INFO: ERP  
+[2023-06-10 08:10:52] local.INFO: Staus1  
+[2023-06-10 08:10:52] local.INFO: ERP  
+[2023-06-10 08:10:53] local.INFO: Staus1  
+[2023-06-10 08:10:53] local.INFO: ERP  
+[2023-06-10 08:10:53] local.INFO: Staus1  
+[2023-06-10 08:10:53] local.INFO: ERP  
+[2023-06-10 08:11:00] local.INFO: Staus1  
+[2023-06-10 08:11:00] local.INFO: ERP  
+[2023-06-10 08:11:14] local.INFO: Staus2  
+[2023-06-10 08:11:14] local.INFO: ERP4  
+[2023-06-10 08:11:17] local.INFO: Staus3  
+[2023-06-10 08:11:17] local.INFO: ERP3  
+[2023-06-10 08:11:20] local.INFO: Staus1  
+[2023-06-10 08:11:20] local.INFO: ERP  
+[2023-06-10 08:11:21] local.INFO: Staus2  
+[2023-06-10 08:11:21] local.INFO: ERP1  
+[2023-06-10 08:11:22] local.INFO: Staus1  
+[2023-06-10 08:11:22] local.INFO: ERP  
+[2023-06-10 08:11:23] local.INFO: Staus1  
+[2023-06-10 08:11:23] local.INFO: ERP  
+[2023-06-10 08:11:24] local.INFO: Staus2  
+[2023-06-10 08:11:24] local.INFO: ERP1  
+[2023-06-10 08:11:24] local.INFO: Staus2  
+[2023-06-10 08:11:24] local.INFO: ERP2  
+[2023-06-10 08:11:25] local.INFO: Staus2  
+[2023-06-10 08:11:25] local.INFO: ERP4  
+[2023-06-10 08:11:26] local.INFO: Staus3  
+[2023-06-10 08:11:26] local.INFO: ERP3  
+[2023-06-10 08:11:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:12:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:12:48] local.INFO: Staus1  
+[2023-06-10 08:12:48] local.INFO: ERP  
+[2023-06-10 08:12:49] local.INFO: Staus1  
+[2023-06-10 08:12:49] local.INFO: ERP  
+[2023-06-10 08:12:59] local.INFO: Staus2  
+[2023-06-10 08:12:59] local.INFO: ERP1  
+[2023-06-10 08:13:00] local.INFO: Staus2  
+[2023-06-10 08:13:00] local.INFO: ERP2  
+[2023-06-10 08:13:01] local.INFO: Staus2  
+[2023-06-10 08:13:01] local.INFO: ERP4  
+[2023-06-10 08:13:02] local.INFO: Staus3  
+[2023-06-10 08:13:02] local.INFO: ERP3  
+[2023-06-10 08:13:04] local.INFO: Staus2  
+[2023-06-10 08:13:04] local.INFO: ERP4  
+[2023-06-10 08:13:05] local.INFO: Staus3  
+[2023-06-10 08:13:05] local.INFO: ERP3  
+[2023-06-10 08:13:21] local.INFO: Staus1  
+[2023-06-10 08:13:21] local.INFO: ERP  
+[2023-06-10 08:13:21] local.INFO: Staus1  
+[2023-06-10 08:13:21] local.INFO: ERP  
+[2023-06-10 08:13:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:13:47] local.INFO: Staus1  
+[2023-06-10 08:13:47] local.INFO: ERP  
+[2023-06-10 08:13:48] local.INFO: Staus1  
+[2023-06-10 08:13:48] local.INFO: ERP  
+[2023-06-10 08:13:49] local.INFO: Staus1  
+[2023-06-10 08:13:49] local.INFO: ERP  
+[2023-06-10 08:13:50] local.INFO: Staus1  
+[2023-06-10 08:13:50] local.INFO: ERP  
+[2023-06-10 08:14:30] local.INFO: Staus1  
+[2023-06-10 08:14:30] local.INFO: ERP  
+[2023-06-10 08:14:30] local.INFO: Staus1  
+[2023-06-10 08:14:30] local.INFO: ERP  
+[2023-06-10 08:14:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:15:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:16:38] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:17:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:18:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:19:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:20:37] local.INFO: Staus2  
+[2023-06-10 08:20:37] local.INFO: ERP1  
+[2023-06-10 08:20:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:20:41] local.INFO: Staus1  
+[2023-06-10 08:20:41] local.INFO: ERP  
+[2023-06-10 08:20:42] local.INFO: Staus2  
+[2023-06-10 08:20:42] local.INFO: ERP2  
+[2023-06-10 08:20:43] local.INFO: Staus2  
+[2023-06-10 08:20:43] local.INFO: ERP4  
+[2023-06-10 08:20:44] local.INFO: Staus3  
+[2023-06-10 08:20:44] local.INFO: ERP3  
+[2023-06-10 08:20:49] local.INFO: Staus2  
+[2023-06-10 08:20:49] local.INFO: ERP4  
+[2023-06-10 08:20:50] local.INFO: Staus3  
+[2023-06-10 08:20:50] local.INFO: ERP3  
+[2023-06-10 08:20:52] local.INFO: Staus2  
+[2023-06-10 08:20:52] local.INFO: ERP4  
+[2023-06-10 08:20:54] local.INFO: Staus2  
+[2023-06-10 08:20:54] local.INFO: ERP2  
+[2023-06-10 08:20:56] local.INFO: Staus2  
+[2023-06-10 08:20:56] local.INFO: ERP1  
+[2023-06-10 08:21:38] local.INFO: Staus1  
+[2023-06-10 08:21:38] local.INFO: ERP  
+[2023-06-10 08:21:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:21:42] local.INFO: Staus3  
+[2023-06-10 08:21:42] local.INFO: ERP3  
+[2023-06-10 08:21:46] local.INFO: Staus2  
+[2023-06-10 08:21:46] local.INFO: ERP4  
+[2023-06-10 08:21:47] local.INFO: Staus2  
+[2023-06-10 08:21:47] local.INFO: ERP2  
+[2023-06-10 08:21:47] local.INFO: Staus2  
+[2023-06-10 08:21:47] local.INFO: ERP1  
+[2023-06-10 08:21:48] local.INFO: Staus1  
+[2023-06-10 08:21:48] local.INFO: ERP  
+[2023-06-10 08:22:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:23:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:24:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:25:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:26:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:27:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:28:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:29:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:29:49] local.INFO: Staus2  
+[2023-06-10 08:29:49] local.INFO: ERP1  
+[2023-06-10 08:30:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:31:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:32:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:33:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:33:40] local.INFO: Staus1  
+[2023-06-10 08:33:40] local.INFO: ERP  
+[2023-06-10 08:33:44] local.INFO: Staus2  
+[2023-06-10 08:33:44] local.INFO: ERP1  
+[2023-06-10 08:33:50] local.INFO: Staus2  
+[2023-06-10 08:33:50] local.INFO: ERP2  
+[2023-06-10 08:33:53] local.INFO: Staus2  
+[2023-06-10 08:33:53] local.INFO: ERP4  
+[2023-06-10 08:33:55] local.INFO: Staus3  
+[2023-06-10 08:33:55] local.INFO: ERP3  
+[2023-06-10 08:34:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:35:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:36:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:37:01] local.ERROR: Object of class stdClass could not be converted to string {"exception":"[object] (Error(code: 0): Object of class stdClass could not be converted to string at D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:660)
+[stacktrace]
+#0 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(660): PDOStatement->bindValue(3, Object(stdClass), 2)
+#1 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(417): Illuminate\\Database\\Connection->bindValues(Object(PDOStatement), Array)
+#2 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from \"...', Array)
+#3 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from \"...', Array, Object(Closure))
+#4 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(405): Illuminate\\Database\\Connection->run('select * from \"...', Array, Object(Closure))
+#5 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2705): Illuminate\\Database\\Connection->select('select * from \"...', Array, true)
+#6 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#7 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#8 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#9 D:\\Qsoft\\app\\Http\\Controllers\\DashboardController.php(167): Illuminate\\Database\\Query\\Builder->get()
+#10 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\DashboardController->search(Object(Illuminate\\Http\\Request))
+#11 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('search', Array)
+#12 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\DashboardController), 'search')
+#13 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 D:\\Qsoft\\app\\Http\\Middleware\\Localization.php(25): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Localization->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 D:\\Qsoft\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Qsoft\\\\public...')
+#55 {main}
+"} 
+[2023-06-10 08:37:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:38:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:39:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:40:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:41:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:42:16] local.INFO: Staus1  
+[2023-06-10 08:42:16] local.INFO: ERP  
+[2023-06-10 08:42:21] local.INFO: Staus2  
+[2023-06-10 08:42:21] local.INFO: ERP1  
+[2023-06-10 08:42:24] local.INFO: Staus2  
+[2023-06-10 08:42:24] local.INFO: ERP2  
+[2023-06-10 08:42:26] local.INFO: Staus2  
+[2023-06-10 08:42:26] local.INFO: ERP4  
+[2023-06-10 08:42:28] local.INFO: Staus3  
+[2023-06-10 08:42:28] local.INFO: ERP3  
+[2023-06-10 08:42:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:42:46] local.INFO: Staus1  
+[2023-06-10 08:42:46] local.INFO: ERP  
+[2023-06-10 08:43:24] local.INFO: Staus2  
+[2023-06-10 08:43:24] local.INFO: ERP1  
+[2023-06-10 08:43:26] local.INFO: Staus1  
+[2023-06-10 08:43:26] local.INFO: ERP  
+[2023-06-10 08:43:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:44:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:45:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:46:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:47:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:48:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:49:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:50:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:51:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:52:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:53:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:54:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:55:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:56:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:57:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:58:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 08:59:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:00:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:01:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:03:09] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:03:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:04:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:05:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:06:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:07:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:08:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:09:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:10:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:11:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:12:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:13:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:14:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:15:17] local.ERROR: Object of class stdClass could not be converted to string {"exception":"[object] (Error(code: 0): Object of class stdClass could not be converted to string at D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:660)
+[stacktrace]
+#0 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(660): PDOStatement->bindValue(3, Object(stdClass), 2)
+#1 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(417): Illuminate\\Database\\Connection->bindValues(Object(PDOStatement), Array)
+#2 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from \"...', Array)
+#3 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from \"...', Array, Object(Closure))
+#4 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(405): Illuminate\\Database\\Connection->run('select * from \"...', Array, Object(Closure))
+#5 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2705): Illuminate\\Database\\Connection->select('select * from \"...', Array, true)
+#6 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#7 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#8 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#9 D:\\Qsoft\\app\\Http\\Controllers\\DashboardController.php(85): Illuminate\\Database\\Query\\Builder->get()
+#10 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\DashboardController->search(Object(Illuminate\\Http\\Request))
+#11 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('search', Array)
+#12 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\DashboardController), 'search')
+#13 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 D:\\Qsoft\\app\\Http\\Middleware\\Localization.php(25): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Localization->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 D:\\Qsoft\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 D:\\Qsoft\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Qsoft\\\\public...')
+#55 {main}
+"} 
+[2023-06-10 09:15:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:16:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:17:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:18:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:19:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:20:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:21:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:22:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:23:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:24:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:25:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:26:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:27:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:28:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:29:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:30:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:31:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:32:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:33:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:34:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:35:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:36:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:37:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:38:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:39:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:40:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:41:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:42:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:43:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:44:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:45:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:46:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:47:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:48:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:49:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:50:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:51:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:52:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:53:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:54:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:55:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:56:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:57:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:58:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 09:59:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:00:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:01:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:02:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:03:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:04:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:05:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:06:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:07:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:09:10] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:09:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:10:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:11:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:12:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:13:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:14:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:15:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:16:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:17:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:18:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:19:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:20:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:21:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:22:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:23:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:24:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:25:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:26:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:27:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:28:39] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:29:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:30:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:31:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:32:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:33:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:34:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:35:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:36:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:37:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:38:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:39:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:40:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:41:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:42:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:43:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:44:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:45:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:46:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:47:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:48:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:49:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:50:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:51:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:52:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:53:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:54:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:55:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:56:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:57:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:58:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 10:59:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 11:00:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-10 11:01:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\Qsoft\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:42:47] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:42:47] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:43:40] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:44:41] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-11 03:49:46] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-07-16 06:53:21] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-07-16 06:54:22] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-07-16 06:56:04] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2023-07-16 06:57:00] local.ERROR: Trait "App\Models\Notifiable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Notifiable\" not found at D:\\laragon\\www\\dcs\\app\\Models\\RoleAction.php:7)
+[stacktrace]
+#0 {main}
+"} 
