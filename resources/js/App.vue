@@ -372,7 +372,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             //console.table(params);
             $("#overlay").fadeIn(300);
@@ -395,7 +397,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
@@ -415,7 +419,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
@@ -437,7 +443,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
@@ -458,7 +466,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
@@ -479,7 +489,9 @@ export default {
                 region: this.selectedRegion,
                 area: this.selectedArea,
                 branch: this.selectedBranch,
-                po: this.selectedPO
+                po: this.selectedPO,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo
             }
             axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
                 this.amcount = res.data.am_pending_loan;
