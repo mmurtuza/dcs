@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Polist extends Model
 {
-    protected $table= 'bmfpoerp.polist';
-    
+    protected $table= 'dcs.polist';
+
     protected $guarded = [];
 }

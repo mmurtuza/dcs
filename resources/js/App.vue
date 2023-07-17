@@ -7,7 +7,7 @@
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="division">Division</label>
                                 <h5 v-if="['AM', 'RM', 'DM'].includes(this.role_designation)">{{ this.branch.division_id}} - {{ this.branch.division_name }}</h5>
-                                <select v-else v-model="selectedDivision" @change="getRegions" class="form-control">
+                                <select v-else v-model="selectedDivision" @change="getRegions" class="form-control" id="division">
                                     <option value="">Select</option>
                                     <option v-for="division in divisions" :key="division.division_id" :value="division.division_id">{{ division.division_id }}-{{ division.division_name }}</option>
                                 </select>
@@ -15,7 +15,7 @@
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="region">Region</label>
                                 <h5 v-if="['AM', 'RM'].includes(this.role_designation)">{{  this.branch.region_id }} - {{ this.branch.region_name}}</h5>
-                                <select v-else v-model="selectedRegion" @change="getAreas" class="form-control">
+                                <select v-else v-model="selectedRegion" @change="getAreas" class="form-control" id="region">
                                     <option value="">Select</option>
                                     <option v-for="region in regions" :key="region.region_id" :value="region.region_id">{{ region.region_id }}-{{region.region_name }}</option>
                                 </select>
@@ -23,7 +23,7 @@
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="area">Area</label>
                                 <h5 v-if="this.role_designation ==='AM'">{{ this.branch.area_id }}-{{ this.branch.area_name }}</h5>
-                                <select v-else v-model="selectedArea" @change="getBranches" class="form-control">
+                                <select v-else v-model="selectedArea" @change="getBranches" class="form-control" id="">
                                     <option value="">Select</option>
                                     <option v-for="area in areas" :key="area.area_id" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
                                     </option>
