@@ -89,8 +89,7 @@ class DashboardController extends Controller
         $branch = $request->input('branch') ?? null;
         $po = $request->input('po') ?? null;
         $getbranch = null;
-        if(!empty($division))
-            $getbranch = $this->getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
+        $getbranch = $this->getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
 
         $searchDataResult = $this->searchData($request, $getbranch, $status, $erpstatus, $po);
         $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $po);
@@ -107,11 +106,22 @@ class DashboardController extends Controller
         $from_date =$request->dateFrom ?: date('Y-01-01');
 
         if ($po != null) {
-            $data = Loans::select('loans.*', 'product_project_member_category.productname', 'polist.coname')
+            $data = Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
+                ->distinct('loans.id')
                 ->where('loans.reciverrole', '!=', '0')
-                ->where('loans.status', $status)
                 ->where('loans.assignedpo', $po)
-                ->where('loans.ErpStatus', $erpstatus)
+                ->when($erpstatus != null && $status == null, function ($query) use ($erpstatus) {
+                    $query->where('ErpStatus', $erpstatus);
+                })
+                ->when($status != null && $erpstatus != null, function ($query) {
+                    $query->where(function ($query) {
+                        $query->where('loans.status', 3)
+                            ->orWhere('loans.ErpStatus', 3);
+                    });
+                })
+                ->when($status != null && $erpstatus == null, function ($query) use ($status) {
+                    $query->where('loans.status', $status);
+                })
                 ->where('loans.projectcode', session('projectcode'))
                 ->whereDate('loans.time', '>=', $from_date)
                 ->whereDate('loans.time', '<=', $to_date)
@@ -126,13 +136,24 @@ class DashboardController extends Controller
 
             return response()->json($data);
         } else {
-            $data = Loans::select('loans.*', 'product_project_member_category.productname', 'polist.coname')
+            $data = Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
+                ->distinct('loans.id')
                 ->where('loans.reciverrole', '!=', '0')
                 ->when(!empty($getbranch), function ($query) use ($getbranch) {
                     return $query->whereIn('loans.branchcode', $getbranch);
                 })
-                ->where('loans.status', $status)
-                ->where('loans.ErpStatus', $erpstatus)
+                ->when($erpstatus != null && $status == null, function ($query) use ($erpstatus) {
+                    $query->where('ErpStatus', $erpstatus);
+                })
+                ->when($status != null && $erpstatus != null, function ($query) {
+                    $query->where(function ($query) {
+                        $query->where('loans.status', 3)
+                            ->orWhere('loans.ErpStatus', 3);
+                    });
+                })
+                ->when($status != null && $erpstatus == null, function ($query) use ($status) {
+                    $query->where('loans.status', $status);
+                })
                 ->where('loans.projectcode', session('projectcode'))
                 ->whereDate('loans.time', '>=', $from_date)
                 ->whereDate('loans.time', '<=', $to_date)
