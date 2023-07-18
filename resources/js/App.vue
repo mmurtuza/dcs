@@ -512,7 +512,7 @@ export default {
         },
 
         getRegions() {
-            $("#overlay").fadeIn(300);
+            $("#region").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
             axios.get(`${import.meta.env.VITE_API_URL}/allreg`, {
                 params: {
                     division_id: this.selectedDivision,
@@ -524,7 +524,7 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
-            $("#overlay").fadeOut(300);
+            $("#region").find(':first-child').remove();
         },
 
         async getAreas() {
