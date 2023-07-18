@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $status = $request->get('status') ?? null;
         $erpstatus = $request->get('ErpStatus') ?? null;
 
-        $getbranch = Branch::getBranch($request->input('division') ?? null, $request->input('region') ?? null, $request->input('area'), $request->input('branch') ?? null)->pluck('branch_id')->toArray() ?? null;
+        $getbranch = Branch::getBranch($request->input('division') , $request->input('region') , $request->input('area'), $request->input('branch'))->pluck('branch_id')->toArray() ?? [];
         $branch = Branch::getBranchForRole($role_designation);
 
         $data = Loans::fetchLoans($request, $getbranch);
@@ -53,7 +53,7 @@ class DashboardController extends Controller
         $po = $request->input('po') ?? null;
         $getbranch = Branch::getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
 
-        $searchDataResult = $this->searchData($request, $getbranch, $status, $erpstatus, $po);
+        $searchDataResult = $this->searchData($request, $getbranch);
         $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $po);
         return response()->json([
             'searchDataResult'=>$searchDataResult,
@@ -61,7 +61,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function searchData(Request $request, $getbranch, $status, $erpstatus, $po): JsonResponse
+    public function searchData(Request $request, $getbranch): JsonResponse
     {
         $data = Loans::fetchLoans($request, $getbranch);
 
@@ -105,31 +105,38 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         return str_pad($branchId, 4, "0", STR_PAD_LEFT);
     })->toArray();
 
+    $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+
     if (!empty($branchcodes)) {
         $pending_admission = Admission::where('projectcode', session('projectcode'))
-            ->whereIn('branchcode', $branchcodes)
             ->where('Flag', 1)
             ->whereBetween('created_at', [$from_date, $to_date])
             ->where('reciverrole', '!=', '0')
+            ->when(!empty($request->po), function ($query) use ($request) {
+                $query->where('assignedpo', $request->po);
+            })
             ->count();
 
         $pending_profileadmission = Admission::where('projectcode', session('projectcode'))
             ->where('Flag', 2)
             ->whereBetween('created_at', [$from_date, $to_date])
-            ->where('reciverrole', '!=', '0')
+            ->where('reciverrole', '!=', '0')->when(!empty($request->po), function ($query) use ($request) {
+                $query->where('assignedpo', $request->po);
+            })
             ->count();
 
-        $pending_loan_query = Loans::where('projectcode', session('projectcode'))
+        $pending_loan = Loans::where('projectcode', session('projectcode'))
             ->whereBetween('time', [$from_date, $to_date])
-            ->where('reciverrole', '!=', '0');
-        if(empty($po) && !empty($getbranch)){
-            $pending_loan_query
-                ->whereIn('branchcode', $getbranch)
+            ->where('reciverrole', '!=', '0')
+            ->when(empty($po) && !empty($polist), function($q) use ($polist, $status, $erpstatus){
+                return $q
                 ->where('status', $status)
-                ->where('ErpStatus', $erpstatus);
-        }
-
-        $pending_loan = $pending_loan_query->count();
+                ->where('ErpStatus', $erpstatus)
+                ->when(!empty($polist), function ($query) use ($polist){
+                        return $query->whereIn('loans.assignedpo', $polist);
+                });
+            })
+            ->count();
 
         $all_pending_loan = Loans::where('reciverrole', '!=', '0')
             ->where('status', '1')
@@ -138,8 +145,8 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
             ->when(!empty($po), function ($query) use ($po) {
                 return $query->where('assignedpo', $po);
             })
-            ->when(empty($po) && !empty($getbranch), function ($query) use ($getbranch){
-                return $query->whereIn('branchcode', $getbranch);
+            ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                return $query->whereIn('loans.assignedpo', $polist);
             })
             ->count();
 
@@ -150,8 +157,8 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 ->when(!empty($po), function ($query) use ($po) {
                     return $query->where('assignedpo', $po);
                 })
-                ->when(!empty($getbranch), function ($query) use ($getbranch){
-                    return $query->whereIn('branchcode', $getbranch);
+                ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                    return $query->whereIn('loans.assignedpo', $polist);
                 })
                 ->count();
 
@@ -162,20 +169,20 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 ->when(!empty($po), function ($query) use ($po) {
                     return $query->where('assignedpo', $po);
                 })
-                ->when(!empty($getbranch), function ($query) use ($getbranch){
-                    return $query->whereIn('branchcode', $getbranch);
+                ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                    return $query->whereIn('loans.assignedpo', $polist);
                 })
                 ->count();
 
-            $all_disburse_loan = Loans::where('reciverrole', '!=', '0')
+        $all_disburse_loan = Loans::where('reciverrole', '!=', '0')
                 ->where('ErpStatus', 4)
                 ->where('projectcode', session('projectcode'))
                 ->whereBetween('time', [$from_date, $to_date])
                 ->when(!empty($po), function ($query) use ($po) {
                     return $query->where('assignedpo', $po);
                 })
-                ->when(!empty($getbranch), function ($query) use ($getbranch){
-                    return $query->whereIn('branchcode', $getbranch);
+                ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                    return $query->whereIn('loans.assignedpo', $polist);
                 })
                 ->count();
 
@@ -190,8 +197,8 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 ->when(!empty($po), function ($query) use ($po) {
                     return $query->where('assignedpo', $po);
                 })
-                ->when(!empty($getbranch), function ($query) use ($getbranch){
-                    return $query->whereIn('branchcode', $getbranch);
+                ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                    return $query->whereIn('loans.assignedpo', $polist);
                 })
                 ->count();
 
@@ -202,17 +209,17 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 ->when(!empty($po), function ($query) use ($po) {
                     return $query->where('assignedpo', $po);
                 })
-                ->when(!empty($getbranch), function ($query) use ($getbranch){
-                    return $query->whereIn('branchcode', $getbranch);
-                })
                 ->when(!empty($status), function($query) use($status){
                     return $query->where('status', $status);
+                })
+                ->when(empty($po) && !empty($polist), function ($query) use ($polist){
+                    return $query->whereIn('loans.assignedpo', $polist);
                 })
                 ->count();
 
 
         //all_pending_loan_data  all_approve_loan_data
-        $jsondata = [
+        return  [
             'role_designation' => $role_designation,
             'pendingadminssioncount' => $pending_admission,
             'pendingprofileadmission' => $pending_profileadmission,
@@ -227,7 +234,6 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
             'today' => $to_date
         ];
 
-        return $jsondata;
     }
 
     // return response()->json([]);
@@ -247,62 +253,17 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
 
         // Pending Loans
-        $am_query = Loans::where('reciverrole', '2')
+        $counts['am_pending_loan'] = Loans::where('reciverrole', '2')
         ->where('projectcode', $projectcode)
         ->whereBetween('time', [$from_date, $to_date])
         ->when(!empty($po), function ($query) use ($po) {
             return $query->where('assignedpo', $po);
         })
-        ->whereIn('assignedpo', $polist);
+        ->where(function ($q) use ($request, $polist) {
+            return self::searchFilter($request, $q, $polist);
+        })
+        ->count();
 
-        // if(!empty($request->input('division'))){
-        //     if(!empty($branchId)){
-        //         $am_query->whereIn('branchcode', $branchId);
-        //     }
-        // }
-
-        if($erpstatus !=null && $status == null) $am_query->where('ErpStatus', $erpstatus);
-
-        if($status !=null && $erpstatus !=null)
-        {
-            $am_query->where(function($am_query){
-                $am_query->where('status', 3)
-                    ->orWhere('ErpStatus', 3);
-            });
-        }elseif($status !=null && $erpstatus ==null){
-            $am_query->where('status', $status);
-        }
-
-        $counts['am_pending_loan'] = $am_query->count();
-        unset($am_query);
-
-        $bm_query = Loans::where('reciverrole', '1')
-            ->where('projectcode', $projectcode)
-            ->whereBetween('time', [$from_date, $to_date])
-            ->when(!empty($po), function ($query) use ($po) {
-                return $query->where('assignedpo', $po);
-            })
-            ->whereIn('assignedpo', $polist);
-
-        // if(!empty($request->input('division'))){
-        //     if(!empty($branchId)){
-        //         $bm_query->whereIn('branchcode', $branchId);
-        //     }
-        // }
-
-        if($erpstatus !=null && $status == null) $bm_query->where('ErpStatus', $erpstatus);
-
-        if($status !=null && $erpstatus !=null)
-        {
-            $bm_query->where(function($bm_query){
-                $bm_query->where('status', 3)
-                    ->orWhere('ErpStatus', 3);
-            });
-        }elseif($status !=null && $erpstatus ==null){
-            $bm_query->where('status', $status);
-        }
-
-        // $counts['bm_pending_loan'] = $bm_query->count();
         $counts['bm_pending_loan'] = Loans::where('reciverrole', '1')
             ->where('projectcode', $projectcode)
             ->when(!empty($po), function ($query) use ($po) {
@@ -312,63 +273,28 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
                 return self::searchFilter($request, $q, $polist);
             })
             ->count();
-        unset($bm_query);
 
-        $rm_query = Loans::where('reciverrole', '3')
+        $counts['rm_pending_loan'] = Loans::where('reciverrole', '3')
             ->where('projectcode', $projectcode)
             ->whereBetween('time', [$from_date, $to_date])
             ->when(!empty($po), function ($query) use ($po) {
                 return $query->where('assignedpo', $po);
             })
-            ->whereIn('branchcode', $branchId);
+            ->where(function ($q) use ($request, $polist) {
+                return self::searchFilter($request, $q, $polist);
+            })
+            ->count();
 
-        // if(!empty($request->input('division'))){
-        //     if(!empty($branchId)){
-        //         $rm_query->whereIn('branchcode', $branchId);
-        //     }
-        // }
-
-        if($erpstatus !=null && $status == null) $rm_query->where('ErpStatus', $erpstatus);
-
-        if($status !=null && $erpstatus !=null)
-        {
-            $rm_query->where(function($rm_query){
-                $rm_query->where('status', 3)
-                    ->orWhere('ErpStatus', 3);
-            });
-
-        }elseif($status !=null && $erpstatus ==null){
-            $rm_query->where('status', $status);
-        }
-        $counts['rm_pending_loan'] = $rm_query->count();
-        unset($rm_query);
-
-        $dm_query = Loans::where('reciverrole', '4')
+        $counts['dm_pending_loan'] = Loans::where('reciverrole', '4')
             ->where('projectcode', $projectcode)
             ->whereBetween('time', [$from_date, $to_date])
             ->when(!empty($po), function ($query) use ($po) {
                 return $query->where('assignedpo', $po);
             })
-            ->whereIn('branchcode', $branchId);
-        // if(!empty($request->input('division'))){
-        //     if(!empty($branchId)){
-        //         $dm_query->whereIn('branchcode', $branchId);
-        //     }
-        // }
-
-        if($erpstatus !=null && $status == null) $dm_query->where('ErpStatus', $erpstatus);
-
-        if($status !=null && $erpstatus !=null)
-        {
-            $dm_query->where(function($dm_query){
-                $dm_query->where('status', 3)
-                    ->orWhere('ErpStatus', 3);
-            });
-        }elseif($status !=null && $erpstatus ==null){
-            $dm_query->where('status', $status);
-        }
-        $counts['dm_pending_loan'] = $dm_query->count();
-        unset($dm_query);
+            ->where(function ($q) use ($request, $polist) {
+                return self::searchFilter($request, $q, $polist);
+            })
+            ->count();
 
         return $counts;
     }
@@ -380,48 +306,25 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         $po = $request->get('po') ?? null;
         $erpstatus = $request->input('erpStatus')?? null;
         $reciverrole = $request->input('reciverrole');
-        $getbranch = $this->getBranch($request->input('division') ?? null, $request->input('region') ?? null, $request->input('area'), $request->input('branch') ?? null);
+        $getbranch = Branch::getBranch($request->input('division') ?? null, $request->input('region') ?? null, $request->input('area'), $request->input('branch') ?? null);
         $branchId = $getbranch->pluck('branch_id')->toArray() ?? null;
+        $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
 
-        $query =Loans::select('loans.id','loans.*', 'product_project_member_category.productname','polist.coname')
+        $data = Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
             ->distinct('loans.id')
             ->where('loans.reciverrole', $reciverrole)
-            ->whereIn('loans.branchcode', $branchId)
             ->where('loans.projectcode', session('projectcode'))
-            ->whereDate('loans.time', '>=', $from_date)
-            ->whereDate('loans.time', '<=', $to_date)
-            ->when(!empty($po), function ($query) use ($po) {
-                return $query->where('assignedpo', $po);
-            });
-
-        // if(!empty($request->input('division'))){
-        //     $getbranch = $this->getBranch($request->input('division') ?? null, $request->input('region') ?? null, $request->input('area'), $request->input('branch') ?? null);
-        //     $branchId = $getbranch->pluck('branch_id')->toArray() ?? null;
-        //     if(!empty($branchId)){
-        //         $query->whereIn('loans.branchcode', $branchId);
-        //     }
-        // }
-
-        if($erpstatus !=null && $status == null) $query->where('ErpStatus', $erpstatus);
-
-        if($status !=null && $erpstatus !=null)
-        {
-            $query->where(function($query){
-                $query->where('loans.status', 3)
-                    ->orWhere('loans.ErpStatus', 3);
-            });
-        }elseif($status !=null && $erpstatus ==null){
-            $query->where('loans.status', $status);
-        }
-
-        $data = $query->leftJoin('dcs.product_project_member_category', function ($join) {
-            $join->on(DB::raw('CAST(loans.loan_product AS INT)'), '=', 'product_project_member_category.productid');
-        })
-        ->leftJoin('dcs.polist', function ($join) {
-            $join->on('loans.assignedpo', '=', 'polist.cono');
-        })
-        ->groupBy('loans.id','product_project_member_category.productname', 'polist.id')
-        ->get();
+            ->where(function ($q) use ($request, $polist) {
+                return self::searchFilter($request, $q, $polist);
+            })
+            ->leftJoin('dcs.product_project_member_category', function ($join) {
+                $join->on(DB::raw('CAST(loans.loan_product AS INT)'), '=', 'product_project_member_category.productid');
+            })
+            ->leftJoin('dcs.polist', function ($join) {
+                $join->on('loans.assignedpo', '=', 'polist.cono');
+            })
+            ->groupBy('loans.id','product_project_member_category.productname', 'polist.id')
+            ->get();
 
 
         return response()->json($data);
@@ -480,26 +383,23 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
 
         return $query->whereDate('loans.time', '>=', $from_date)
             ->whereDate('loans.time', '<=', $to_date)
-            ->when(!empty($request->po), function ($query) use ($request) {
-                $query->where('assignedpo', $request->po);
-            })
-            ->when(!empty($polist), function ($query) use ($polist) {
+            ->when(empty($po) && !empty($polist), function ($query) use ($polist) {
                 return $query->whereIn('loans.assignedpo', $polist);
             })
-            // ->when(empty($request->po) && !empty($request->input('division') || !empty($getbranch)), function ($query) use ($getbranch) {
-            //     $query->whereIn('loans.branchcode', $getbranch);
-            // })
-            ->when($request->erpStatus != null && $request->status == null, function ($query) use ($request) {
-                $query->where('ErpStatus', $request->erpStatus);
+            ->when($request->erpStatus != null && $request->roleStatus == null, function ($query) use ($request) {
+                return $query->where('ErpStatus', $request->erpStatus);
             })
             ->when($request->roleStatus != null && $request->erpStatus != null, function ($query) {
-                $query->where(function ($query) {
+                return $query->where(function ($query) {
                     $query->where('loans.status', 3)
                         ->orWhere('loans.ErpStatus', 3);
                 });
             })
             ->when($request->roleStatus != null && $request->erpStatus == null, function ($query) use ($request) {
-                $query->where('loans.status', $request->roleStatus);
+                return $query->where('loans.status', $request->roleStatus);
+            })
+            ->when(!empty($request->po), function ($query) use ($request) {
+                $query->where('assignedpo', $request->po);
             });
     }
 

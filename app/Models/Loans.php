@@ -38,7 +38,7 @@ class Loans extends Model
             ->when(!empty($request->po), function ($query) use ($request) {
                 $query->where('assignedpo', $request->po);
             })
-            ->when(!empty($polist), function ($query) use ($polist){
+            ->when(empty($request->po) && !empty($polist), function ($query) use ($polist){
                 return $query->whereIn('loans.assignedpo', $polist);
             })
             // ->when(empty($request->po) && !empty($request->input('division') || !empty($getbranch)), function ($query) use ($getbranch) {
@@ -54,7 +54,7 @@ class Loans extends Model
                 });
             })
             ->when($status != null && $erpstatus == null, function ($query) use ($status) {
-                $query->where('loans.status', $status);
+                $query->where('loans.status', (string)$status);
             })
             ->leftJoin('dcs.product_project_member_category', function ($join) {
                 $join->on(DB::raw('CAST(loans.loan_product AS INT)'), '=', 'product_project_member_category.productid');
