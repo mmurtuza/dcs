@@ -310,10 +310,10 @@ export default {
     },
 
     mounted() {
-        this.getDivisions(),
         this.addClasses(),
         this.getDatas(null, 1, 'pending'),
-        this.getPendingCount()
+        this.getPendingCount(),
+        this.getDivisions()
 
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
@@ -504,11 +504,11 @@ export default {
             );
         },
         getDivisions() {
-            $("#overlay").fadeIn(300);
+            // $("#overlay").fadeIn(300);
             axios.get(`${import.meta.env.VITE_API_URL}/alldiv?program_id=1`).then(res => {
                 this.divisions = res.data
             });
-            $("#overlay").fadeOut(300);
+            // $("#overlay").fadeOut(300);
         },
 
         getRegions() {

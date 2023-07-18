@@ -16,7 +16,7 @@ class Loans extends Model
         'DynamicFieldValue' => 'array'
     ];
 
-    public static function fetchLoans(Request $request, array $getbranch= [])
+    public static function fetchLoans(Request $request, array $polist= [])
     {
         $to_date = $request->dataTo ?: date('Y-m-d');
         $from_date =$request->dateFrom ?: date('Y-01-01');
@@ -24,7 +24,7 @@ class Loans extends Model
         $status = $request->get('status') ?? null;
         $erpstatus = $request->get('ErpStatus') ?? null;
 
-        $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+        // $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
 
         return Loans::select('loans.id', 'loans.*', 'product_project_member_category.productname', 'polist.coname')
             ->distinct('loans.id')

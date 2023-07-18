@@ -34,10 +34,11 @@ class DashboardController extends Controller
 
         $getbranch = Branch::getBranch($request->input('division') , $request->input('region') , $request->input('area'), $request->input('branch'))->pluck('branch_id')->toArray() ?? [];
         $branch = Branch::getBranchForRole($role_designation);
+        $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
 
-        $data = Loans::fetchLoans($request, $getbranch);
+        $data = Loans::fetchLoans($request, $polist);
 
-        $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $request->po);
+        $counts = $this->allCount($request, $polist, $status, $erpstatus, $request->po);
 
         return response()->json(["data"=> $data, 'counts'=> $counts, 'branch' => $branch]);
     }
@@ -53,8 +54,11 @@ class DashboardController extends Controller
         $po = $request->input('po') ?? null;
         $getbranch = Branch::getBranch($division, $region, $area, $branch)->pluck('branch_id')->toArray();
 
-        $searchDataResult = $this->searchData($request, $getbranch);
-        $counts = $this->allCount($request, $getbranch, $status, $erpstatus, $po);
+        $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+
+
+        $searchDataResult = $this->searchData($request, $polist);
+        $counts = $this->allCount($request, $polist, $status, $erpstatus, $po);
         return response()->json([
             'searchDataResult'=>$searchDataResult,
             'counts'=>$counts
@@ -68,7 +72,7 @@ class DashboardController extends Controller
         return response()->json($data);
     }
 
-public function allCount(Request $request, $getbranch=null, $status=null, $erpstatus =null, $po =null)
+public function allCount(Request $request, array $polist = [], $status=null, $erpstatus =null, $po =null)
 {
     $db = config('database.db');
     $role_designation = session('role_designation');
@@ -105,7 +109,7 @@ public function allCount(Request $request, $getbranch=null, $status=null, $erpst
         return str_pad($branchId, 4, "0", STR_PAD_LEFT);
     })->toArray();
 
-    $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+    // $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
 
     if (!empty($branchcodes)) {
         $pending_admission = Admission::where('projectcode', session('projectcode'))
