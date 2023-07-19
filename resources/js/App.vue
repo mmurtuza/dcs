@@ -23,7 +23,7 @@
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="area">Area</label>
                                 <h5 v-if="this.role_designation ==='AM'">{{ this.branch.area_id }}-{{ this.branch.area_name }}</h5>
-                                <select v-else v-model="selectedArea" @change="getBranches" class="form-control" id="">
+                                <select v-else v-model="selectedArea" @change="getBranches" class="form-control" id="area">
                                     <option value="">Select</option>
                                     <option v-for="area in areas" :key="area.area_id" :value="area.area_id">{{ area.area_id }}-{{ area.area_name }}
                                     </option>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="branch">Branch</label>
-                                <select v-model="selectedBranch" @change="getPOs" class="form-control">
+                                <select v-model="selectedBranch" @change="getPOs" id="branch" class="form-control">
                                     <option value="">Select</option>
                                     <option v-for="branch in branches" :key="branch.branch_id" :value="branch.branch_id">{{ branch.branch_id }}-{{
                                         branch.branch_name }}</option>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <label class="ml-2" for="po">PO</label>
-                                <select v-model="selectedPO" class="form-control">
+                                <select v-model="selectedPO" class="form-control" id="po">
                                     <option value="">Select</option>
                                     <option v-for="po in pos" :key="po.cono" :value="po.cono">{{ po.cono }}-{{ po.coname }}</option>
                                 </select>
@@ -504,15 +504,21 @@ export default {
             );
         },
         getDivisions() {
-            // $("#overlay").fadeIn(300);
+            $("#po option:not(:first)").remove();
+            $("#branch option:not(:first)").remove();
+            $("#area option:not(:first)").remove();
+            $("#division").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
             axios.get(`${import.meta.env.VITE_API_URL}/alldiv?program_id=1`).then(res => {
                 this.divisions = res.data
             });
-            // $("#overlay").fadeOut(300);
+            $("#division").find(':first-child').remove();
         },
 
         getRegions() {
+            $("#po option:not(:first)").remove();
+            $("#branch option:not(:first)").remove();
             $("#region").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
+
             axios.get(`${import.meta.env.VITE_API_URL}/allreg`, {
                 params: {
                     division_id: this.selectedDivision,
@@ -528,7 +534,9 @@ export default {
         },
 
         async getAreas() {
-            $("#overlay").fadeIn(300);
+            $("#po option:not(:first)").remove();
+            $("#branch option:not(:first)").remove();
+            $("#area").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
             axios.get(`${import.meta.env.VITE_API_URL}/allarea`, {
                 params: {
                     region_id: this.selectedRegion,
@@ -540,10 +548,12 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
-            $("#overlay").fadeOut(300);
+            $("#area").find(':first-child').remove();
         },
         async getBranches() {
-            $("#overlay").fadeIn(300);
+            $("#po option:not(:first)").remove();
+            $("#branch").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
+
             axios.get(`${import.meta.env.VITE_API_URL}/allbra`, {
                 params: {
                     area_id: this.selectedArea,
@@ -555,10 +565,11 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching regions:', error);
                 });
-            $("#overlay").fadeOut(300);
+            $("#branch").find(':first-child').remove();
         },
         async getPOs() {
-            $("#overlay").fadeIn(300);
+            $("#po").prepend(`<option class="spinner-border text-primary" role="status" selected><span class="sr-only">Loading...</span></option>`)
+
             axios.get(`${import.meta.env.VITE_API_URL}/allpo`, {
                 params: {
                     branchcode: this.selectedBranch,
@@ -570,7 +581,7 @@ export default {
                 .catch((error) => {
                     console.error('Error fetching POs:', error);
                 });
-            $("#overlay").fadeOut(300);
+            $("#po").find(':first-child').remove();
         },
         searchData() {
             const searchParams = {
