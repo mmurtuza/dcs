@@ -97,7 +97,7 @@
                     <h5 class="card-title" style="padding: 0; margin: 0;">
                         Total Disbursed Amount
                     </h5>
-                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.disburseamt }}</h5>
+                    <h5 class="text-center" style="margin-top:7px;" id="total_disbuse">{{ this.totallCount.disbursment_amnt }}</h5>
                 </div>
             </div>
         </div>

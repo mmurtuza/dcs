@@ -41,9 +41,6 @@ class Loans extends Model
             ->when(empty($request->po) && !empty($polist), function ($query) use ($polist){
                 return $query->whereIn('loans.assignedpo', $polist);
             })
-            // ->when(empty($request->po) && !empty($request->input('division') || !empty($getbranch)), function ($query) use ($getbranch) {
-            //     $query->whereIn('loans.branchcode', $getbranch);
-            // })
             ->when($erpstatus != null && $status == null, function ($query) use ($erpstatus) {
                 $query->where('ErpStatus', $erpstatus);
             })

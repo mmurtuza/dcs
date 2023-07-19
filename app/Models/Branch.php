@@ -38,7 +38,7 @@ class Branch extends Model
         $role_designation =session('role_designation');
         $asid = session('asid');
         return Branch::select('branch_id')
-                ->where('program_id', 1)
+                ->where('program_id', session('program_id'))
                 ->distinct('branch_id')
                 ->when( $role_designation ==='AM', function($query) use($asid){
                     return $query->where('area_id', $asid);
