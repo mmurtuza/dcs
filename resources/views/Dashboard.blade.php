@@ -1,8 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('title', 'Dashboard')
-{{-- <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
 
 @section('content')
