@@ -204,7 +204,12 @@
 
         </div>
 
-        <DataTable :columns="columns" :data="this.datas" :options="this.options" class="display" width="100%" />
+        <DataTable
+            :columns="columns"
+            :data="this.datas"
+            :options="this.options"
+            class="display table table-bordered no-footer dtr-inline dataTable collapsed"
+        />
     </div>
     <Overlay></Overlay>
 
@@ -248,14 +253,6 @@ export default {
             readyDisburse: '',
             disburse: '',
             rejected: '',
-            options: {
-                processing: true,
-                ordering: false,
-                searching: false,
-                bLengthChange: false,
-                responsive: true,
-            },
-
             selectedDivision: '',
             selectedRegion: '',
             selectedArea: '',
@@ -274,6 +271,14 @@ export default {
             data: [],
             dateFrom: null,
             dateTo: null,
+            options: {
+                responsive: true,
+                processing: true,
+                ordering: false,
+                searching: false,
+                bLengthChange: false,
+                // select: true,
+            },
             columns: [
                 {
                     data: 'id',
@@ -310,7 +315,6 @@ export default {
     },
 
     mounted() {
-        this.addClasses(),
         this.getDatas(null, 1, 'pending'),
         this.getPendingCount(),
         this.getDivisions()
@@ -608,20 +612,22 @@ export default {
                 });
         },
 
-        addClasses() {
-            document.querySelector('.datatable').classList.add('table', 'table-bordered', 'dataTable', 'no-footer', 'dtr-inline');
-        },
-
     },
 
     components: {
-        DataTable,
+        DataTable, // Add the DataTable component to the components option
         Overlay,
-    }
+    },
 }
 
 </script>
 <style>
+/* @import 'bootstrap';
+@import 'datatables.net-bs5'; */
+.datatable:not(.table){
+    display:block !important;
+}
+
 .datatable thead tr{
     background-color: #f3eded;
     color: #000;
