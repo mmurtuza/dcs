@@ -205,10 +205,12 @@
         </div>
 
         <DataTable
+            ref="table"
             :columns="columns"
             :data="this.datas"
             :options="this.options"
-            class="display table table-bordered no-footer dtr-inline dataTable collapsed"
+            class="display table table-bordered no-footer dtr-inline dataTable"
+            width="100%"
         />
     </div>
     <Overlay></Overlay>
@@ -277,7 +279,10 @@ export default {
                 ordering: false,
                 searching: false,
                 bLengthChange: false,
-                // select: true,
+                select: false,
+                createdRow: (row, data, dataIndex) => {
+                    $(row).attr('role', 'row');
+                }
             },
             columns: [
                 {
@@ -301,10 +306,6 @@ export default {
                 },
 
             ],
-            createdRow: ()=>{
-            document.querySelector('.datatable tbody tr').setAttribute('role', 'row');
-
-            }
         }
     },
 
@@ -344,7 +345,6 @@ export default {
             $("#overlay").fadeIn(300);
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, params)
                 .then(res => {
-                    $("#overlay").fadeOut(300);
                     this.role_designation = res.data['counts']["role_designation"];
                     this.datas = res.data['data'];
                     this.totallCount = res.data['counts'];
@@ -356,8 +356,10 @@ export default {
                     if(this.role_designation === 'AM')  (this.selectedArea = this.branch.area_id);
                 })
                 .catch((error)=>{
-                    $("#overlay").fadeOut(300);
                     console.error('Error fetching data:', error);
+                })
+                .finally(() => {
+                    $("#overlay").fadeOut(300);
                 });
         },
 
@@ -621,9 +623,8 @@ export default {
 }
 
 </script>
-<style>
-/* @import 'bootstrap';
-@import 'datatables.net-bs5'; */
+<style lang="scss">
+@import 'datatables.net-bs5';
 .datatable:not(.table){
     display:block !important;
 }
@@ -631,6 +632,32 @@ export default {
 .datatable thead tr{
     background-color: #f3eded;
     color: #000;
+}
+.dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+    top: 50%;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    margin-top: -9px;
+    font-size: 10px;
+    color: #fb3199;
+    border: 0;
+    background-color: transparent;
+    font-family: Ki;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    content: "";
 }
 
         .user_info {
