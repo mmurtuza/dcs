@@ -633,32 +633,6 @@ export default {
     background-color: #f3eded;
     color: #000;
 }
-.dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 0;
-    top: 50%;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    margin-top: -9px;
-    font-size: 10px;
-    color: #fb3199;
-    border: 0;
-    background-color: transparent;
-    font-family: Ki;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    line-height: 1;
-    text-decoration: inherit;
-    text-rendering: optimizeLegibility;
-    text-transform: none;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    content: "";
-}
 
         .user_info {
             margin-bottom: 50px;
