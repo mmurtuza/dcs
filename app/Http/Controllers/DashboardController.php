@@ -6,7 +6,6 @@ use App\Models\Loans;
 use App\Models\Branch;
 use App\Models\Admission;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -73,44 +72,15 @@ class DashboardController extends Controller
 
 public function allCount(Request $request, array $polist = [], $status=null, $erpstatus =null, $po =null)
 {
-    $db = config('database.db');
+
     $role_designation = session('role_designation');
     $request->session()->put('status_btn', '1');
     // Get current date
     $to_date = $request->dataTo ?: date('Y-m-d');
     $from_date =$request->dateFrom ?: date('Y-01-01');
 
-    // Role wise data distribution
-    $branchcodes = [];
-    if ($role_designation == 'AM')
-    {
-        $search = Branch::where(['area_id' => session('asid'),'program_id' => session('program_id')])->distinct('branch_id')->get();
-    }
-    else if ($role_designation == 'RM')
-    {
-        $search = Branch::where(['region_id' => session('asid'),'program_id' => session('program_id')])->distinct('area_id')->get();
-    }
-    else if ($role_designation == 'DM')
-    {
-        $search = Branch::where(['division_id' => session('asid'),'program_id' => session('program_id')])->distinct('region_id')->get();
-    }
-    else if ($role_designation == 'HO' || $role_designation == 'PH')
-    {
-        $search = Branch::where('program_id', session('program_id'))->get();
-    }
-    else
-    {
-        return redirect()->back()->with('error', 'Data does not match.');
-    }
 
-    $branchcodes = $search->pluck('branch_id')->map(function ($branchId)
-    {
-        return str_pad($branchId, 4, "0", STR_PAD_LEFT);
-    })->toArray();
-
-    // $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
-
-    if (!empty($branchcodes)) {
+    if (!empty($polist)) {
         // No of Admission
         $pending_admission = Admission::where('projectcode', session('projectcode'))
             ->where('Flag', 1)
