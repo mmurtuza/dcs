@@ -115,7 +115,7 @@ class DashboardController extends Controller
         $request->session()->put('status_btn', '1');
         // Get current date
         $to_date = $request->dataTo ?: date('Y-m-d');
-        $from_date =$request->dateFrom ?: date('Y-01-01');
+        $from_date =$request->dateFrom ?: date('Y-m-01');
 
 
         if (!empty($polist)) {
@@ -289,7 +289,7 @@ class DashboardController extends Controller
     public function getRollWiseCounts(Request $request):array
     {
         $to_date = $request->dataTo ?: date('Y-m-d');
-        $from_date =$request->dateFrom ?: date('Y-01-01');
+        $from_date =$request->dateFrom ?: date('Y-m-01');
         $projectcode = session('projectcode');
         $counts = [];
         $po = $request->input('po') ?? null;
@@ -368,8 +368,9 @@ class DashboardController extends Controller
             ->leftJoin('dcs.polist', function ($join) {
                 $join->on('loans.assignedpo', '=', 'polist.cono');
             })
-            ->groupBy('loans.id','product_project_member_category.productname', 'polist.id')
-            ->get();
+            ->groupBy('loans.id', 'product_project_member_category.productname', 'polist.id')
+            // ->get();
+            ->paginate(10);
 
 
         return response()->json($data);
@@ -457,7 +458,7 @@ class DashboardController extends Controller
     public static function searchFilter(Request $request, $query,  array $polist): mixed
     {
         $to_date = $request->dataTo ?: date('Y-m-d');
-        $from_date =$request->dateFrom ?: date('Y-01-01');
+        $from_date =$request->dateFrom ?: date('Y-m-01');
 
         return $query->whereDate('loans.time', '>=', $from_date)
             ->whereDate('loans.time', '<=', $to_date)

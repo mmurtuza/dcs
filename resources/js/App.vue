@@ -346,7 +346,7 @@ export default {
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, params)
                 .then(res => {
                     this.role_designation = res.data['counts']["role_designation"];
-                    this.datas = res.data['data'];
+                    this.datas = res.data['data']['data'];
                     this.totallCount = res.data['counts'];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
@@ -385,7 +385,7 @@ export default {
             //console.table(params);
             $("#overlay").fadeIn(300);
             axios.post(`${import.meta.env.VITE_API_URL}/roledata`, params).then(res => {
-                this.datas = res.data;
+                this.datas = res.data.data;
                 $("#overlay").fadeOut(300);
             })
                 .catch((error)=>{

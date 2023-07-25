@@ -19,7 +19,7 @@ class Loans extends Model
     public static function fetchLoans(Request $request, array $polist= [])
     {
         $to_date = $request->dataTo ?: date('Y-m-d');
-        $from_date =$request->dateFrom ?: date('Y-01-01');
+        $from_date =$request->dateFrom ?: date('Y-m-01');
         $role_designation = session('role_designation');
         $status = $request->get('status') ?? null;
         $erpstatus = $request->get('ErpStatus') ?? null;
@@ -60,6 +60,6 @@ class Loans extends Model
                 $join->on('loans.assignedpo', '=', 'polist.cono');
             })
             ->groupBy('loans.id', 'product_project_member_category.productname', 'polist.id')
-            ->get();
+            ->paginate(10);
             }
         }
