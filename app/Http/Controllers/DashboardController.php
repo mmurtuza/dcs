@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Loans;
 use App\Models\Branch;
 use App\Models\Admission;
+use App\Models\Polist;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use \Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 ini_set('memory_limit', '3072M');
 ini_set('max_execution_time', 1800);
@@ -377,9 +379,9 @@ class DashboardController extends Controller
      * GetDivisionData
      *
      * @param  Request $request
-     * @return Branch
+     * @return Collection
      */
-    public function GetDivisionData(Request $request): Branch
+    public function GetDivisionData(Request $request): Collection
     {
         $programId = $request->get('program_id');
         $division_list = Branch::select('division_id', 'division_name')
@@ -391,9 +393,9 @@ class DashboardController extends Controller
      * GetRegionData
      *
      * @param  Request $request
-     * @return Branch
+     * @return Collection
      */
-    public function GetRegionData(Request $request): Branch
+    public function GetRegionData(Request $request): Collection
     {
         $divisionId = $request->get('division_id');
         $region_list = Branch::select('region_id', 'region_name')
@@ -405,9 +407,9 @@ class DashboardController extends Controller
      * GetAreaData
      *
      * @param  Request $request
-     * @return Branch
+     * @return Collection
      */
-    public function GetAreaData(Request $request): Branch
+    public function GetAreaData(Request $request): Collection
     {
         $regionId = $request->get('region_id');
         $area_list = Branch::select('area_id', 'area_name')
@@ -419,9 +421,9 @@ class DashboardController extends Controller
      * GetBranchData
      *
      * @param  Request $request
-     * @return Branch
+     * @return Collection
      */
-    public function GetBranchData(Request $request): Branch
+    public function GetBranchData(Request $request): Collection
     {
         $areaId = $request->get('area_id');
         $branch_list = Branch::select('branch_id', 'branch_name')
@@ -433,12 +435,12 @@ class DashboardController extends Controller
      * GetProgramOrganizerData
      *
      * @param  Request $request
-     * @return Branch
+     * @return Collection
      */
-    public function GetProgramOrganizerData(Request $request): Branch
+    public function GetProgramOrganizerData(Request $request): Collection
     {
         $BranchCode = $request->get('branchcode');
-        $pos_list = Branch::select('cono', 'coname')
+        $pos_list = Polist::select('cono', 'coname')
             ->where('branchcode', $BranchCode)->get();
 
         return $pos_list;
