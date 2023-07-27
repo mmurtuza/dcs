@@ -114,9 +114,9 @@
 </div>
 
 <h4 class="col-12">Loan Disbursement Status(<span style="color:red;">Showing Data from <span id="startDateShow"
-            style="font-style: italic; text-decoration: underline;">{{ this.totallCount.fromdate }}</span>
+            style="font-style: italic; text-decoration: underline;">{{ moment(this.totallCount.fromdate) }}</span>
         to <span id="endDateShow"
-            style="font-style: italic; text-decoration: underline;">{{ this.totallCount.today }}</span></span>)
+            style="font-style: italic; text-decoration: underline;">{{ moment(this.totallCount.today) }}</span></span>)
 </h4>
 
     <div class="col-md-3" style="margin-top:42px;">
@@ -131,14 +131,14 @@
 
 
         <div class=" mb-3">
-            <button type="button" id="approved" @click="()=>{getDatas(null, 2, 'approved'); this.erpStatus= null; this.roleStatus='2'; getApproveCount() }"
+            <button type="button" id="approved" @click="()=>{getDatas(1, null, 'approved'); this.erpStatus= 1; this.roleStatus=null; getApproveCount() }"
        :class="{ 'btn btn-block btn-secondary': activeButton !== 'approved', 'btn btn-block btn-secondary active': activeButton === 'approved' }">
       Approved(<span id="approved_data">{{ this.totallCount.allapproveloan }}</span>)
     </button>
         </div>
 
         <div class="mb-3">
-       <button type="button" id="disbursement" @click="()=>{getDatas(1, null, 'disbursement'); this.erpStatus= '1'; this.roleStatus=null; getDisbursementCount() }"
+       <button type="button" id="disbursement" @click="()=>{getDatas(2, null, 'disbursement'); this.erpStatus= '2'; this.roleStatus=null; getDisbursementCount() }"
         :class="{ 'btn btn-block btn-secondary': activeButton !== 'disbursement', 'btn btn-block btn-secondary active': activeButton === 'disbursement' }">
       Ready for Disbursement(<span id="approved_data">{{ this.totallCount.all_disbursement }}</span>)
     </button>
@@ -209,6 +209,7 @@
             :columns="columns"
             :data="this.datas"
             :options="this.options"
+            :page = 2
             class="display table table-bordered no-footer dtr-inline dataTable"
             width="100%"
         />
@@ -226,6 +227,7 @@ import 'datatables.net-responsive';
 import 'datatables.net-select';
 import 'moment';
 import Overlay from './Overlay.vue';
+import moment from 'moment';
 
 DataTable.use(DataTablesCore);
 
@@ -273,6 +275,15 @@ export default {
             data: [],
             dateFrom: null,
             dateTo: null,
+            pagination: {
+                current_page: 1,
+                last_page: 0,
+                per_page: 10,
+                total: 0,
+                from: 0,
+                to: 0,
+                path: `${import.meta.env.VITE_API_URL}/roledata`,
+            },
             options: {
                 responsive: true,
                 processing: true,
@@ -280,6 +291,7 @@ export default {
                 searching: false,
                 bLengthChange: false,
                 select: false,
+                // serverSide: true,
                 createdRow: (row, data, dataIndex) => {
                     $(row).attr('role', 'row');
                 }
@@ -322,8 +334,8 @@ export default {
 
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
-        const dateString = (new Date()).getFullYear() +"-01-01";
-        const dateObject = new Date(dateString);
+        // const dateString = (new Date()).getFullYear().toString() + (new Date()).getMonth().toString() + "-01";
+        const dateObject = new Date(moment().startOf('month').format('YYYY-MM-DD'));
         this.dateFrom = dateObject.toISOString().slice(0, 10);
     },
 
@@ -346,7 +358,8 @@ export default {
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, params)
                 .then(res => {
                     this.role_designation = res.data['counts']["role_designation"];
-                    this.datas = res.data['data']['data'];
+                    this.datas = res.data['data'].data;
+                    this.pagination = res.data['data'];
                     this.totallCount = res.data['counts'];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
@@ -385,7 +398,7 @@ export default {
             //console.table(params);
             $("#overlay").fadeIn(300);
             axios.post(`${import.meta.env.VITE_API_URL}/roledata`, params).then(res => {
-                this.datas = res.data.data;
+                this.datas = res.data;
                 $("#overlay").fadeOut(300);
             })
                 .catch((error)=>{
@@ -613,6 +626,7 @@ export default {
                     console.error('Error searching admissions:', error);
                 });
         },
+        moment: (date)=> moment(date).format('Do MMM YYYY'),
 
     },
 
@@ -625,14 +639,14 @@ export default {
 </script>
 <style lang="scss">
 @import 'datatables.net-bs5';
-.datatable:not(.table){
-    display:block !important;
-}
+    .datatable:not(.table){
+        display:block !important;
+    }
 
-.datatable thead tr{
-    background-color: #f3eded;
-    color: #000;
-}
+    .datatable thead tr{
+        background-color: #f3eded;
+        color: #000;
+    }
 
         .user_info {
             margin-bottom: 50px;

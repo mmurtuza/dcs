@@ -115,7 +115,7 @@ Route::get('/allpo', 'DashboardController@GetProgramOrganizerData');
 //Search End
 
 Route::get('/allcount', 'DashboardController@allCount');
-Route::post('/rollcounts', 'DashboardController@getRollWiseCounts'); 
+Route::post('/rollcounts', 'DashboardController@getRollWiseCounts');
 
 //End sagor
 
