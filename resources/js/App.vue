@@ -213,6 +213,47 @@
             class="display table table-bordered no-footer dtr-inline dataTable"
             width="100%"
         />
+        <div class="dataTables_wrapper dt-bootstrap4 no-footer" v-if="paginationData.total > 1">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    Showing {{ paginationData.from }} to {{ paginationData.to }} of {{ paginationData.total }} entries
+                </div>
+                <div class="col-sm-12 col-md-8">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                    <li
+                        :class="['paginate_button', 'page-item', { active: item.active, disabled: item.url === null }]"
+                        v-for="item in firstSixPaginationLinks"
+                        :key="item.label"
+                    >
+                        <button
+                        class="page-link"
+                        @click.prevent="item.url !== null && getDatas(erpStatus, roleStatus, activeButton, item.label)"
+                        >
+                        {{ item.label }}
+                        </button>
+                    </li>
+
+                    <li class="paginate_button page-item disabled" v-if="hasSeparator">...</li>
+
+                    <li
+                        :class="['paginate_button', 'page-item', { active: item.active, disabled: item.url === null }]"
+                        v-for="item in lastTwoPaginationLinks"
+                        :key="item.label"
+                    >
+                        <button
+                        class="page-link"
+                        @click.prevent="item.url !== null && getDatas(erpStatus, roleStatus, activeButton, item.label)"
+                        >
+                        {{ item.label }}
+                        </button>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <Overlay></Overlay>
 
@@ -275,23 +316,25 @@ export default {
             data: [],
             dateFrom: null,
             dateTo: null,
-            pagination: {
+            paginationData: {
                 current_page: 1,
                 last_page: 0,
                 per_page: 10,
                 total: 0,
                 from: 0,
                 to: 0,
-                path: `${import.meta.env.VITE_API_URL}/roledata`,
             },
+            firstSixPaginationLinks: [],
+            lastTwoPaginationLinks: [],
             options: {
                 responsive: true,
                 processing: true,
                 ordering: false,
                 searching: false,
                 bLengthChange: false,
+                paging: false,
+                info:false,
                 select: false,
-                // serverSide: true,
                 createdRow: (row, data, dataIndex) => {
                     $(row).attr('role', 'row');
                 }
@@ -314,7 +357,7 @@ export default {
                 {
                     data: 'time',
                     title: 'Application Date',
-                    render: (data)=>{ return moment(data).format("DD MM YYYY hh:mm:ss")}
+                    render: (data)=>{ return moment(data).format("DD-MM-YYYY")}
                 },
 
             ],
@@ -334,15 +377,14 @@ export default {
 
         const currentDate = new Date().toISOString().slice(0, 10);
         this.dateTo = currentDate;
-        // const dateString = (new Date()).getFullYear().toString() + (new Date()).getMonth().toString() + "-01";
         const dateObject = new Date(moment().startOf('month').format('YYYY-MM-DD'));
         this.dateFrom = dateObject.toISOString().slice(0, 10);
     },
 
     methods: {
 
-        getDatas(ErpStatus,status, activeButton) {
-            const params = {
+        getDatas(ErpStatus,status, activeButton, params = null) {
+            const data = {
                 ErpStatus: ErpStatus,
                 status: status,
                 division: this.selectedDivision,
@@ -353,23 +395,33 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             };
+            let queryParam = null;
+            if (params !== null) {
+                queryParam = {
+                    page: params
+                }
+            }
 
             $("#overlay").fadeIn(300);
-            axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, params)
+            axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, data, { params: queryParam })
                 .then(res => {
                     this.role_designation = res.data['counts']["role_designation"];
                     this.datas = res.data['data'].data;
-                    this.pagination = res.data['data'];
+                    // this.pagination = res.data['data'];
                     this.totallCount = res.data['counts'];
                     this.length = res.data.length;
                     this.activeButton = activeButton;
                     this.branch = res.data['branch'];
-                    if(['AM', 'RM', 'DM'].includes(this.role_designation))  this.selectedDivision = this.branch.division_id;
-                    if(['AM', 'RM'].includes(this.role_designation)) this.selectedRegion = this.branch.region_id;
-                    if(this.role_designation === 'AM')  (this.selectedArea = this.branch.area_id);
+                    ['AM', 'RM', 'DM'].includes(this.role_designation) ?? (this.selectedDivision = this.branch.division_id);
+                    ['AM', 'RM'].includes(this.role_designation) ?? (this.selectedRegion = this.branch.region_id);
+                    this.role_designation === 'AM' ?? (this.selectedArea = this.branch.area_id);
+                    this.paginationData = { ...res.data['data'] };
+                    this.setupPaginationLinks();
+                    console.log(JSON.stringify(this.paginationData))
                 })
                 .catch((error)=>{
                     console.error('Error fetching data:', error);
+                    $("#overlay").fadeOut(300);
                 })
                 .finally(() => {
                     $("#overlay").fadeOut(300);
@@ -626,12 +678,23 @@ export default {
                     console.error('Error searching admissions:', error);
                 });
         },
-        moment: (date)=> moment(date).format('Do MMM YYYY'),
+        moment: (date) => moment(date).format('Do MMM YYYY'),
+        setupPaginationLinks() {
+            this.firstSixPaginationLinks = this.paginationData.links.slice(0, 6);
+            this.lastTwoPaginationLinks = this.paginationData.links.slice(-2);
+        },
 
+    },
+    computed: {
+        hasSeparator() {
+            return this.paginationData.current_page > 5 && this.paginationData.last_page > 8;
+        },
+
+        // },
     },
 
     components: {
-        DataTable, // Add the DataTable component to the components option
+        DataTable,
         Overlay,
     },
 }

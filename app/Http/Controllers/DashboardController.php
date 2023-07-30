@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use \Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 
 ini_set('memory_limit', '3072M');
 ini_set('max_execution_time', 1800);
@@ -25,10 +26,14 @@ class DashboardController extends Controller
      * @param  Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request): View
+    public function index(Request $request): View | RedirectResponse
     {
         $role_designation = session('role_designation');
         $request->session()->put('status_btn', '1');
+        if(empty(Branch::getBranchForRole()))
+        {
+            return redirect('https://trendx.brac.net/');
+        }
 
         return view('Dashboard')->with('role_designation', $role_designation);
     }
@@ -46,8 +51,10 @@ class DashboardController extends Controller
         $erpstatus = $request->get('ErpStatus') ?? null;
 
         $getbranch = Branch::getBranch($request->input('division') , $request->input('region') , $request->input('area'), $request->input('branch'))->pluck('branch_id')->toArray() ?? [];
-        $branch = Branch::getBranchForRole($role_designation);
-        $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+        $branch = Branch::getBranchForRole();
+        // $polist = Loans::select('assignedpo')->whereIn("branchcode", $getbranch)->distinct("assignedpo")->get()->pluck("assignedpo")->toArray();
+        $polist = Polist::select('cono')->whereIn('branchcode', $getbranch)->get()->pluck('cono')->toArray();
+        // dd(array_diff($polist, $polist2), array_intersect($polist, $polist2));
 
         $data = Loans::fetchLoans($request, $polist);
 
