@@ -220,22 +220,20 @@
                 </div>
                 <div class="col-sm-12 col-md-8">
                     <div class="dataTables_paginate paging_simple_numbers">
-                       <ul class="pagination">
-                    <!-- Show the "First" link -->
-                        <li
-                            :class="['paginate_button', 'page-item', { active: item.active }, { 'disabled': item.url === null }]"
-                            v-for="(item, index) in pagination.links"
-                            :key="item.label"
-                        >
-                            <button
-                            class="page-link"
-                            @click.prevent="getDatas(erpStatus, roleStatus, activeButton, item.label)"
+                        <ul class="pagination">
+                            <li
+                                :class="['paginate_button', 'page-item', { active: item.active }, { 'disabled': item.url === null }]"
+                                v-for="(item, index) in pagination.links"
+                                :key="item.label"
                             >
-                            {{ index === 0 ? '&lang;' : (index === pagination.links.length - 1 ? '&rang;' : item.label) }}
-                            <!-- {{ index === 0 ? '&lang;' : item.label }} -->
-                            </button>
-                        </li>
-                    </ul>
+                                <button
+                                class="page-link"
+                                @click.prevent="getDatas(erpStatus, roleStatus, activeButton, item.label)"
+                                >
+                                {{ index === 0 ? '&lang;' : (index === pagination.links.length - 1 ? '&rang;' : item.label) }}
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
