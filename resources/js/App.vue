@@ -1,5 +1,5 @@
 <template>
-     <div class="container">
+        <div class="container">
             <div class="card card-custom">
                 <div class="card-body">
                     <div class="form_value">
@@ -114,9 +114,9 @@
 </div>
 
 <h4 class="col-12">Loan Disbursement Status(<span style="color:red;">Showing Data from <span id="startDateShow"
-            style="font-style: italic; text-decoration: underline;">{{ moment(this.totallCount.fromdate) }}</span>
+            style="font-style: italic; text-decoration: underline;">{{ moment(totallCount.fromdate) }}</span>
         to <span id="endDateShow"
-            style="font-style: italic; text-decoration: underline;">{{ moment(this.totallCount.today) }}</span></span>)
+            style="font-style: italic; text-decoration: underline;">{{ moment(totallCount.today) }}</span></span>)
 </h4>
 
     <div class="col-md-3" style="margin-top:42px;">
@@ -166,7 +166,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_bm" @click="getRoleWiseData('1')">BM<span id="btn_bm">{{ bmcount }}</span>
+                            <h4 class="roll_class" id="roll_bm" @click="getRoleWiseData('1'); selectedRole = '1'">BM<span id="btn_bm">{{ bmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
 
                         </div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_am" @click="getRoleWiseData('2')">AM<span id="btn_am">{{ amcount }}</span>
+                            <h4 class="roll_class" id="roll_am" @click="getRoleWiseData('2'); selectedRole = '2'">AM<span id="btn_am">{{ amcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_rm" @click="getRoleWiseData('3')">RM<span id="btn_rm">{{ rmcount }}</span>
+                            <h4 class="roll_class" id="roll_rm" @click="getRoleWiseData('3'); selectedRole = '3'">RM<span id="btn_rm">{{ rmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 roll_single_btn">
-                            <h4 class="roll_class" id="roll_dm" @click="getRoleWiseData('4')">DM<span id="btn_dm">{{ dmcount }}</span>
+                            <h4 class="roll_class" id="roll_dm" @click="getRoleWiseData('4'); selectedRole = '4'">DM<span id="btn_dm">{{ dmcount }}</span>
                             </h4>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                             >
                                 <button
                                 class="page-link"
-                                @click.prevent="getDatas(erpStatus, roleStatus, activeButton, item.label)"
+                                @click.prevent="selectedRole ===null ? getDatas(erpStatus, roleStatus, activeButton, item.label) : getRoleWiseData(selectedRole, item.label)"
                                 >
                                 {{ index === 0 ? '&lang;' : (index === pagination.links.length - 1 ? '&rang;' : item.label) }}
                                 </button>
@@ -287,6 +287,7 @@ export default {
             selectedArea: '',
             selectedBranch: '',
             selectedPO: '',
+            selectedRole: null,
             dateFrom: '',
             dateTo: '',
             role_designation: 'AM',
@@ -386,8 +387,10 @@ export default {
             }
 
             $("#overlay").fadeIn(300);
+
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, data, { params: queryParam })
                 .then(res => {
+                    console.log(JSON.stringify(res.data))
                     this.role_designation = res.data['counts']["role_designation"];
                     this.datas = res.data['data'].data;
                     this.pagination = res.data['data'];
@@ -398,9 +401,8 @@ export default {
                     ['AM', 'RM', 'DM'].includes(this.role_designation) ?? (this.selectedDivision = this.branch.division_id);
                     ['AM', 'RM'].includes(this.role_designation) ?? (this.selectedRegion = this.branch.region_id);
                     this.role_designation === 'AM' ?? (this.selectedArea = this.branch.area_id);
-                    // console.log(JSON.stringify(this.pagination))
                 })
-                .catch((error)=>{
+                .catch((error) => {
                     console.error('Error fetching data:', error);
                     $("#overlay").fadeOut(300);
                 })
@@ -414,12 +416,12 @@ export default {
                 this.totallCount = res.data;
             });
         },
-        getRoleWiseData(data) {
-            const params = {
+        getRoleWiseData(role, params = null) {
+            const data = {
                 activeButton: this.activeButton,
-                reciverrole: data,
-                erpStatus: this.erpStatus,
-                roleStatus: this.roleStatus,
+                reciverrole: role,
+                ErpStatus: this.erpStatus,
+                status: this.roleStatus,
                 division: this.selectedDivision,
                 region: this.selectedRegion,
                 area: this.selectedArea,
@@ -428,10 +430,17 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             }
+            let queryParam = null;
+            if (params !== null) {
+                queryParam = {
+                    page: params
+                }
+            }
             //console.table(params);
             $("#overlay").fadeIn(300);
-            axios.post(`${import.meta.env.VITE_API_URL}/roledata`, params).then(res => {
-                this.datas = res.data;
+            axios.post(`${import.meta.env.VITE_API_URL}/roledata`, data, {params : queryParam}).then(res => {
+                this.datas = res.data.data;
+                this.pagination = res.data;
                 $("#overlay").fadeOut(300);
             })
                 .catch((error)=>{
@@ -480,13 +489,10 @@ export default {
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
                 this.dmcount = res.data.dm_pending_loan;
-
-            }
-
-            );
+            });
         },
-         getDisbursementCount() {
-             const params = {
+        getDisbursementCount() {
+            const params = {
                 activeButton: this.activeButton,
                 // reciverrole: data,
                 erpStatus: this.erpStatus,
@@ -508,8 +514,8 @@ export default {
 
             );
         },
-         getDisburseCount() {
-             const params = {
+        getDisburseCount() {
+            const params = {
                 activeButton: this.activeButton,
                 // reciverrole: data,
                 erpStatus: this.erpStatus,
@@ -527,9 +533,7 @@ export default {
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
                 this.dmcount = res.data.dm_pending_loan;
-            }
-
-            );
+            });
         },
          getRejectedCount() {
              const params = {
@@ -550,10 +554,7 @@ export default {
                 this.bmcount = res.data.bm_pending_loan;
                 this.rmcount = res.data.rm_pending_loan;
                 this.dmcount = res.data.dm_pending_loan;
-                // console.table(res.data)
-            }
-
-            );
+            });
         },
         getDivisions() {
             $("#po option:not(:first)").remove();
@@ -648,10 +649,12 @@ export default {
             };
             $("#overlay").fadeIn(300);
             axios.post(`${import.meta.env.VITE_API_URL}/search`, searchParams)
-                .then((response) => {
+                .then((res) => {
                     $("#overlay").fadeOut(300);
-                    this.datas = response.data.searchDataResult.original;
-                    this.totallCount = response.data.counts;
+                    this.datas = res.data.searchResult.data;
+                    this.pagination = res.data.searchResult;
+                    this.totallCount = res.data.counts;
+                    this.activeButton = 'pending'
                     this.getPendingCount();
                 })
                 .catch((error) => {
@@ -664,7 +667,7 @@ export default {
     },
 
     components: {
-        DataTable, // Add the DataTable component to the components option
+        DataTable,
         Overlay,
     },
 }
@@ -744,5 +747,8 @@ export default {
         .card-title {
             text-align: center;
 
+        }
+        .dataTables_wrapper .dataTables_paginate .pagination .page-item {
+            margin-left: 0.15rem !important;
         }
 </style>
