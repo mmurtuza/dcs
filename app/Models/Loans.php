@@ -68,7 +68,7 @@ class Loans extends Model
             ->when($status != null && $erpstatus == null, function ($query) use ($status) {
                 $query->where('loans.status', (string) $status);
             })
-            ->when((empty($request->input('po')) && (!empty($request->input('division')) || $roleData) && !empty($polist)), function ($query) use ($polist) {
+            ->when((empty($request->input('po')) && (!empty($request->input('division')) || $roleData)), function ($query) use ($polist) {
                 return $query->whereIn('loans.assignedpo', $polist);
             })
             ->leftJoin('dcs.product_project_member_category', function ($join) {
