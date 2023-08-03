@@ -125,6 +125,7 @@ class DashboardController extends Controller
             ->when( ($roleData || !empty($request->input('division'))), function ($q) use ($polist) {
                 return $q->whereIn('assignedpo', $polist);
             })
+            ->select('id')
             ->count();
 
         // No of Profile Update
@@ -138,6 +139,7 @@ class DashboardController extends Controller
             ->when( ($roleData || !empty($request->input('division'))), function ($q) use ($polist) {
                 return $q->whereIn('assignedpo', $polist);
             })
+            ->select('id')
             ->count();
 
         // No of Loan Application
@@ -151,6 +153,7 @@ class DashboardController extends Controller
                 return $q->whereIn('assignedpo', $polist);
             })
             //brandcode
+            ->select('id')
             ->count();
 
         // Total Disbursed Amount
@@ -177,6 +180,7 @@ class DashboardController extends Controller
             ->when((empty($request->input("po")) && (!empty($request->input('division')) || $roleData)), function ($query) use ($polist){
                 return $query->whereIn('loans.assignedpo', $polist);
             })
+            ->select('id')
             ->count();
 
         $all_approve_loan = Loans::where('reciverrole', '!=', '0')
@@ -189,6 +193,7 @@ class DashboardController extends Controller
             ->when((empty($request->input("po")) && (!empty($request->input('division')) || $roleData)), function ($query) use ($polist){
                 return $query->whereIn('loans.assignedpo', $polist);
             })
+            ->select('id')
             ->count();
 
         $all_disbursement_loan = Loans::where('reciverrole', '!=', '0')
@@ -293,18 +298,21 @@ class DashboardController extends Controller
             ->where(function ($q) use ($request, $polist) {
                 return self::searchFilter($request, $q, $polist);
             })
+            ->select('id')
             ->count();
 
         $counts['rm_pending_loan'] = Loans::where('reciverrole', '3')
             ->where(function ($q) use ($request, $polist) {
                 return self::searchFilter($request, $q, $polist);
             })
+            ->select('id')
             ->count();
 
         $counts['dm_pending_loan'] = Loans::where('reciverrole', '4')
             ->where(function ($q) use ($request, $polist) {
                 return self::searchFilter($request, $q, $polist);
             })
+            ->select('id')
             ->count();
 
         return $counts;

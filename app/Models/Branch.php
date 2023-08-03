@@ -36,7 +36,6 @@ class Branch extends Model
 
     public static function getBranch($division = null, $region = null, $area = null, $branch = null){
         $role_designation =session('role_designation');
-        $branch = str_pad($branch, 4, "0", STR_PAD_LEFT);
         $asid = session('asid');
         return Branch::select('branch_id')
                 ->where('program_id', session('program_id'))
