@@ -116,7 +116,8 @@ class DashboardController extends Controller
         $pending_admission = Admission::where('projectcode', session('projectcode'))
             ->where('Flag', 1)
             ->where('reciverrole', '!=', '0')
-            ->whereBetween('created_at', [$from_date, $to_date])
+            ->whereDate('created_at', '>=', $from_date)
+            ->whereDate('created_at', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($q) use ($request) {
                 return $q->where('assignedpo', $request->input("po"));
             })
@@ -129,7 +130,8 @@ class DashboardController extends Controller
         // No of Profile Update
         $pending_profileadmission = Admission::where('projectcode', session('projectcode'))
             ->where('Flag', 2)
-            ->whereBetween('created_at', [$from_date, $to_date])
+            ->whereDate('created_at', '>=', $from_date)
+            ->whereDate('created_at', '<=', $to_date)
             ->where('reciverrole', '!=', '0')
             ->when(!empty($request->input("po")), function ($q) use ($request) {
                 return $q->where('assignedpo', $request->input("po"));
@@ -146,7 +148,8 @@ class DashboardController extends Controller
             ->when(!empty($request->input("po")), function ($q) use ($request) {
                 return $q->where('loans.assignedpo', $request->input("po"));
             })
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when( ($roleData || !empty($request->input('division'))), function ($q) use ($polist) {
                 return $q->whereIn('assignedpo', $polist);
             })
@@ -158,7 +161,8 @@ class DashboardController extends Controller
         $disbursment_amnt = Loans::where('projectcode', session('projectcode'))
             ->where('reciverrole', '!=', '0')
             ->where('ErpStatus', 4)
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 $query->where('assignedpo', $request->input("po"));
             })
@@ -171,7 +175,8 @@ class DashboardController extends Controller
         $all_pending_loan = Loans::where('reciverrole', '!=', '0')
             ->where('status', '1')
             ->where('projectcode', session('projectcode'))
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 $query->where('assignedpo', $request->input("po"));
             })
@@ -184,7 +189,8 @@ class DashboardController extends Controller
         $all_approve_loan = Loans::where('reciverrole', '!=', '0')
             ->where('projectcode', session('projectcode'))
             ->where('ErpStatus', 1)
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 $query->where('assignedpo', $request->input("po"));
             })
@@ -197,7 +203,8 @@ class DashboardController extends Controller
         $all_disbursement_loan = Loans::where('reciverrole', '!=', '0')
             ->where('ErpStatus', 2)
             ->where('projectcode', session('projectcode'))
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 $query->where('assignedpo', $request->input("po"));
             })
@@ -210,7 +217,8 @@ class DashboardController extends Controller
         $all_disburse_loan = Loans::where('reciverrole', '!=', '0')
             ->where('ErpStatus', 4)
             ->where('projectcode', session('projectcode'))
-            ->whereBetween('time', [$from_date, $to_date])
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 $query->where('assignedpo', $request->input("po"));
             })
@@ -239,8 +247,9 @@ class DashboardController extends Controller
 
         $total_disbursed_amount = Loans::where('projectcode', session('projectcode'))
             ->where('reciverrole', '!=', '0')
-            ->whereBetween('time', [$from_date, $to_date])
             ->where('ErpStatus', 4)
+            ->whereDate('loans.time', '>=', $from_date)
+            ->whereDate('loans.time', '<=', $to_date)
             ->when(!empty($request->input("po")), function ($query) use ($request) {
                 return $query->where('assignedpo', $request->input("po"));
             })

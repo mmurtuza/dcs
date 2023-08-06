@@ -390,7 +390,6 @@ export default {
 
             axios.post(`${import.meta.env.VITE_API_URL}/fetchdata`, data, { params: queryParam })
                 .then(res => {
-                    console.log(JSON.stringify(res.data))
                     this.role_designation = res.data['counts']["role_designation"];
                     this.datas = res.data['data'].data;
                     this.pagination = res.data['data'];
@@ -436,13 +435,13 @@ export default {
                     page: params
                 }
             }
-            //console.table(params);
             $("#overlay").fadeIn(300);
-            axios.post(`${import.meta.env.VITE_API_URL}/roledata`, data, {params : queryParam}).then(res => {
+            axios.post(`${import.meta.env.VITE_API_URL}/roledata`, data, { params: queryParam })
+                .then(res => {
                 this.datas = res.data.data;
                 this.pagination = res.data;
                 $("#overlay").fadeOut(300);
-            })
+                })
                 .catch((error)=>{
                     $("#overlay").fadeOut(300);
                     console.error('Error fetching regions:', error);
@@ -462,13 +461,13 @@ export default {
                 dateFrom: this.dateFrom,
                 dateTo: this.dateTo
             }
-            axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params).then(res => {
-                this.amcount = res.data.am_pending_loan;
-                this.bmcount = res.data.bm_pending_loan;
-                this.rmcount = res.data.rm_pending_loan;
-                this.dmcount = res.data.dm_pending_loan;
-            }
-            );
+            axios.post(`${import.meta.env.VITE_API_URL}/rollcounts`, params)
+                .then(res => {
+                    this.amcount = res.data.am_pending_loan;
+                    this.bmcount = res.data.bm_pending_loan;
+                    this.rmcount = res.data.rm_pending_loan;
+                    this.dmcount = res.data.dm_pending_loan;
+                });
         },
          getApproveCount() {
              const params = {
@@ -655,12 +654,13 @@ export default {
                     this.pagination = res.data.searchResult;
                     this.totallCount = res.data.counts;
                     this.activeButton = 'pending'
-                    this.getPendingCount();
                 })
                 .catch((error) => {
                     $("#overlay").fadeOut(300);
                     console.error('Error searching admissions:', error);
                 });
+
+            this.getPendingCount();
         },
         moment: (date)=> moment(date).format('Do MMM YYYY'),
 
