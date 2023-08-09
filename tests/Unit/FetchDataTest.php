@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class FetchDataTest extends TestCase
 {
@@ -14,15 +14,17 @@ class FetchDataTest extends TestCase
     public function testFetchData()
 {
     // Make a request to the fetchData endpoint
-    $response = $this->get('/fetch-data');
+    $response = $this->post('/fetchdata');
+    // $response = $this->getStatus()
 
     // Assert that the response is successful
     $response->assertOk();
 
     // Assert the data and counts returned in the response
     $responseData = $response->json();
-    $data = $responseData[0];
-    $counts = $responseData[1];
+    $data = $responseData['data'];
+    $counts = $responseData['counts'];
+        print_r( [$data, $counts]);
 
     $this->assertNotEmpty($data);
     $this->assertNotEmpty($counts);

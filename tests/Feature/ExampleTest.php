@@ -15,15 +15,15 @@ class ExampleTest extends TestCase
    public function testFetchData()
 {
     // Make a request to the fetchData endpoint
-    $response = $this->get('/fetchdata');
+    $response = $this->post('/fetchdata');
 
     // Assert that the response is successful
     $response->assertOk();
 
     // Assert the data and counts returned in the response
     $responseData = $response->json();
-    $data = $responseData[0];
-    $counts = $responseData[1];
+    $data = $responseData['data'];
+    $counts = $responseData['counts'];
 
     $this->assertNotEmpty($data);
     $this->assertNotEmpty($counts);
