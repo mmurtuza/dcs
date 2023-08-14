@@ -1427,8 +1427,6 @@ class LoanController extends Controller
     public function assessmentInsertion($request)
     {
         $db = config('database.db');
-
-        // dd($request->all());
         if (session('role_designation') == 'AM' && $request->action != "Reject") {
             $am_assessment = array(
                 'am_primary_earner' => $request->all_primary_earner1,
@@ -1454,8 +1452,7 @@ class LoanController extends Controller
                 'am_operation_childBirth' => $request->all_operation_childBirth1,
                 'am_foreigntravel' => $request->all_foreigntravel1
             );
-            $a = DB::table($db . '.rca')->where('loan_id', $request->id)->update($am_assessment);
-            dd($a);
+            DB::table($db . '.rca')->where('loan_id', $request->id)->update($am_assessment);
         }
         if (session('role_designation') == 'RM' and $request->action != "Reject") {
             $rm_assessment = array(
@@ -1501,7 +1498,7 @@ class LoanController extends Controller
             ->where($db . '.loans.id', '=', $request->id)
             ->where($db . '.loans.projectcode', session('projectcode'))
             ->first();
-        dd($db1);
+
         $branchcode = $db1->branchcode;
         $loan_id = $db1->loan_id;
         $projectcode = $db1->projectcode;

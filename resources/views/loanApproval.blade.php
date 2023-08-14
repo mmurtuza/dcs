@@ -3,123 +3,123 @@
 @section('title','loan approval')
 @section('style')
 <style>
-.header-section {
-  background-color: #f3eded;
-}
+    .header-section {
+    background-color: #f3eded;
+    }
 
-.img-circle {
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-}
+    .img-circle {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    }
 
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  padding-top: 150px;
-  margin-left: 120px;
-  /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
-}
+    .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 150px;
+    margin-left: 120px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-  display: flex;
-}
+    /* Modal Content */
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    display: flex;
+    }
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  font-size: 28px;
-  float: right;
-  font-weight: bold;
-}
+    /* The Close Button */
+    .close {
+    color: #aaaaaa;
+    font-size: 28px;
+    float: right;
+    font-weight: bold;
+    }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
 
-.member_info {
-  text-align: center;
-}
+    .member_info {
+    text-align: center;
+    }
 
-.text_align {
-  text-align: center;
-}
+    .text_align {
+    text-align: center;
+    }
 
-/* input {
-        text-align: center;
-    } */
+    /* input {
+            text-align: center;
+        } */
 
-.guarantor_img {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-}
+    .guarantor_img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    }
 
-.nid_img {
-  width: 230px;
-  height: 140px;
-}
+    .nid_img {
+    width: 230px;
+    height: 140px;
+    }
 
-.font_red {
-  color: red;
-}
+    .font_red {
+    color: red;
+    }
 
-.member_info table {
-  background: #FB3199;
-  color: #FFFFFF;
-}
+    .member_info table {
+    background: #FB3199;
+    color: #FFFFFF;
+    }
 
-.white {
-  color: white;
-}
+    .white {
+    color: white;
+    }
 
-.bgColor {
-  background: #F3F6F9;
-  color: black;
-}
+    .bgColor {
+    background: #F3F6F9;
+    color: black;
+    }
 
-.nav_bar {
-  background: #FB3199;
-}
+    .nav_bar {
+    background: #FB3199;
+    }
 
-.nav_bar .nav .nav-item .active {
+    .nav_bar .nav .nav-item .active {
 
-  color: red;
-  background-color: DarkOrange;
-}
+    color: red;
+    background-color: DarkOrange;
+    }
 
-.nav_bar .nav .nav-item .nav-link {
-  color: #fff;
-}
+    .nav_bar .nav .nav-item .nav-link {
+    color: #fff;
+    }
 
-.hidden {
-  display: none;
-}
+    .hidden {
+    display: none;
+    }
 </style>
 @endsection
 
@@ -474,12 +474,12 @@
                         {{$data->amount_inword}}
                       </td>
                     </tr>
-                    <!--<tr>
-                                            <td>@lang('loanApproval.label6')</td>
-                                            <td colspan="2">
-                                                {{$data->loan_purpose}}
-                                            </td>
-                                        </tr>-->
+                    {{-- <tr>
+                            <td>@lang('loanApproval.label6')</td>
+                            <td colspan="2">
+                                {{$data->loan_purpose}}
+                            </td>
+                        </tr> --}}
 
                     <tr>
                       <td>@lang('loanApproval.label7')</td>
@@ -954,6 +954,8 @@
                       <td>{{$rca->monthlyincome_main}}</td>
                       <td>{{$rca->bm_monthlyincome_main}}</td>
                       <td>{{$rca->am_monthlyincome_main}}</td>
+                                            <span class="red bold">here i am</span>
+
                       @if($rca->rm_monthlyincome_main!=null)
                       <td><input class="form-control" type="text" id="all_monthlyincome_main"
                           name="rm_monthlyincome_main" value="{{$rca->rm_monthlyincome_main}}"></td>
@@ -962,19 +964,19 @@
                           name="rm_monthlyincome_main" value="{{$rca->am_monthlyincome_main}}"></td>
                       @endif
                     </tr>
-                    {{-- <tr>
+                    <tr>
                       <td>@lang('loanApproval.label17')</td>
                       <td>{{$rca->monthlyincome_spouse_child}}</td>
                       <td>{{$rca->bm_monthlyincome_spouse_child}}</td>
-                      <td>{{$rca->am_monthlyincome_spouse_child}}</td>
+                      {{-- <td>{{$rca->am_monthlyincome_spouse_child}}</td>
                       @if($rca->rm_monthlyincome_spouse_child!=null)
                       <td><input class="form-control" type="text" id="all_monthlyincome_spouse_child"
                           name="rm_monthlyincome_spouse_child" value="{{$rca->rm_monthlyincome_spouse_child}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_monthlyincome_spouse_child"
                           name="rm_monthlyincome_spouse_child" value="{{$rca->am_monthlyincome_spouse_child}}"></td>
-                      @endif
-                    </tr> --}}
+                      @endif --}}
+                    </tr>
                     <tr>
                       <th colspan="8" class="bgColor">@lang('loanApproval.title2')</th>
                     </tr>
@@ -992,12 +994,12 @@
                       <td>@lang('loanApproval.label19')</td>
                       <td>{{$rca->house_rent}}</td>
                       <td>{{$rca->bm_house_rent}}</td>
-                      <td>{{$rca->am_house_rent}}</td>
+                      <td rowspan="5">{{$rca->am_house_rent}}</td>
                       @if($rca->rm_house_rent!=null)
-                      <td><input class="form-control" type="text" id="all_house_rent" name="rm_house_rent"
+                      <td rowspan="5"><input class="form-control" style="height: 18rem;"  type="text" id="all_house_rent" name="rm_house_rent"
                           value="{{$rca->rm_house_rent}}"></td>
                       @else
-                      <td><input class="form-control" type="text" id="all_house_rent" name="rm_house_rent"
+                      <td rowspan="5"><input class="form-control" style="height: 18rem;" type="text" id="all_house_rent" name="rm_house_rent"
                           value="{{$rca->am_house_rent}}"></td>
                       @endif
                     </tr>
@@ -1005,53 +1007,53 @@
                       <td>@lang('loanApproval.label20')</td>
                       <td>{{$rca->food}}</td>
                       <td>{{$rca->bm_food}}</td>
-                      <td>{{$rca->am_food}}</td>
-                      @if($rca->rm_food!=null)
+                      {{-- <td>{{$rca->am_food}}</td> --}}
+                      {{-- @if($rca->rm_food!=null)
                       <td><input class="form-control" type="text" id="all_food" name="rm_food"
                           value="{{$rca->rm_food}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_food" name="rm_food"
                           value="{{$rca->am_food}}"></td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label21')</td>
                       <td>{{$rca->education}}</td>
                       <td>{{$rca->bm_education}}</td>
-                      <td>{{$rca->am_education}}</td>
-                      @if($rca->rm_education!=null)
+                      {{-- <td>{{$rca->am_education}}</td> --}}
+                      {{-- @if($rca->rm_education!=null)
                       <td><input class="form-control" type="text" id="all_education" name="rm_education"
                           value="{{$rca->rm_education}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_education" name="rm_education"
                           value="{{$rca->am_education}}"></td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label22')</td>
                       <td>{{$rca->medical}}</td>
                       <td>{{$rca->bm_medical}}</td>
-                      <td>{{$rca->am_medical}}</td>
-                      @if($rca->rm_medical!=null)
+                      {{-- <td>{{$rca->am_medical}}</td> --}}
+                      {{-- @if($rca->rm_medical!=null)
                       <td><input class="form-control" type="text" id="all_medical" name="rm_medical"
                           value="{{$rca->rm_medical}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_medical" name="rm_medical"
                           value="{{$rca->am_medical}}"></td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label25')</td>
                       <td>{{$rca->other}}</td>
                       <td>{{$rca->bm_other}}</td>
-                      <td>{{$rca->am_other}}</td>
-                      @if($rca->rm_other!=null)
+                      {{-- <td>{{$rca->am_other}}</td> --}}
+                      {{-- @if($rca->rm_other!=null)
                       <td><input class="form-control" type="text" id="all_other" name="rm_other"
                           value="{{$rca->rm_other}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_other" name="rm_other"
                           value="{{$rca->am_other}}"></td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <th colspan="8" class="bgColor">@lang('loanApproval.title4')</th>
@@ -1070,12 +1072,12 @@
                       <td>@lang('loanApproval.label27')</td>
                       <td>{{$rca->debt ?? 0}}</td>
                       <td>{{$rca->bm_debt ?? 0}}</td>
-                      <td>{{$rca->am_debt ?? 0}}</td>
+                      <td rowspan="3">{{$rca->am_debt ?? 0}}</td>
                       @if($rca->rm_debt!=null)
-                      <td><input class="form-control" type="text" id="all_debt" name="rm_debt"
+                      <td rowspan="3"><input class="form-control" style="height: 13rem;" type="text" id="all_debt" name="rm_debt"
                           value="{{$rca->rm_debt}}"></td>
                       @else
-                      <td><input class="form-control" type="text" id="all_debt" name="rm_debt"
+                      <td rowspan="3"><input class="form-control" style="height: 13rem;" type="text" id="all_debt" name="rm_debt"
                           value="{{$rca->am_debt}}"></td>
                       @endif
                     </tr>
@@ -1083,21 +1085,21 @@
                       <td>@lang('loanApproval.label28')</td>
                       <td>{{$rca->monthly_cash}}</td>
                       <td>{{$rca->bm_monthly_cash}}</td>
-                      <td>{{$rca->am_monthly_cash}}</td>
-                      @if($rca->rm_monthly_cash!=null)
+                      {{-- <td>{{$rca->am_monthly_cash}}</td> --}}
+                      {{-- @if($rca->rm_monthly_cash!=null)
                       <td><input class="form-control" type="text" id="all_monthly_cash" name="rm_monthly_cash"
                           value="{{$rca->rm_monthly_cash}}"></td>
                       @else
                       <td><input class="form-control" type="text" id="all_monthly_cash" name="rm_monthly_cash"
                           value="{{$rca->am_monthly_cash}}"></td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label29')</td>
                       <td>{{$rca->instal_proposloan}}</td>
                       <td>{{$rca->bm_instal_proposloan}}</td>
-                      <td>{{$rca->am_instal_proposloan}}</td>
-                      @if($rca->rm_instal_proposloan!=null)
+                      {{-- <td>{{$rca->am_instal_proposloan}}</td> --}}
+                      {{-- @if($rca->rm_instal_proposloan!=null)
                       <td><input class="form-control" type="text" id="all_instal_proposloan" name="rm_instal_proposloan"
                           value="{{$rca->rm_instal_proposloan}}">
                       </td>
@@ -1105,7 +1107,7 @@
                       <td><input class="form-control" type="text" id="all_instal_proposloan" name="rm_instal_proposloan"
                           value="{{$rca->am_instal_proposloan}}">
                       </td>
-                      @endif
+                      @endif --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label30')</td>
@@ -1338,15 +1340,15 @@
                       <td>@lang('loanApproval.label16')</td>
                       <td>{{$rca->monthlyincome_main}}</td>
                       <td>{{$rca->bm_monthlyincome_main}}</td>
-                      <td>{{$rca->am_monthlyincome_main}}</td>
-                      <td>{{$rca->rm_monthlyincome_main}}</td>
+                      <td rowspan="2">{{$rca->am_monthlyincome_main}}</td>
+                      <td rowspan="2">{{$rca->rm_monthlyincome_main}}</td>
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label17')</td>
                       <td>{{$rca->monthlyincome_spouse_child}}</td>
                       <td>{{$rca->bm_monthlyincome_spouse_child}}</td>
-                      <td>{{$rca->am_monthlyincome_spouse_child}}</td>
-                      <td>{{$rca->rm_monthlyincome_spouse_child}}</td>
+                      {{-- <td>{{$rca->am_monthlyincome_spouse_child}}</td>
+                      <td>{{$rca->rm_monthlyincome_spouse_child}}</td> --}}
                     </tr>
                     <tr>
                       <th colspan="8" class="bgColor">@lang('loanApproval.title2')</th>
@@ -1365,36 +1367,36 @@
                       <td>@lang('loanApproval.label19')</td>
                       <td>{{$rca->house_rent}}</td>
                       <td>{{$rca->bm_house_rent}}</td>
-                      <td>{{$rca->am_house_rent}}</td>
-                      <td>{{$rca->rm_house_rent}}</td>
+                      <td rowspan="5">{{$rca->am_house_rent}}</td>
+                      <td rowspan="5">{{$rca->rm_house_rent}}</td>
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label20')</td>
                       <td>{{$rca->food}}</td>
                       <td>{{$rca->bm_food}}</td>
-                      <td>{{$rca->am_food}}</td>
-                      <td>{{$rca->rm_food}}</td>
+                      {{-- <td>{{$rca->am_food}}</td>
+                      <td>{{$rca->rm_food}}</td> --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label21')</td>
                       <td>{{$rca->education}}</td>
                       <td>{{$rca->bm_education}}</td>
-                      <td>{{$rca->am_education}}</td>
-                      <td>{{$rca->rm_education}}</td>
+                      {{-- <td>{{$rca->am_education}}</td>
+                      <td>{{$rca->rm_education}}</td> --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label22')</td>
                       <td>{{$rca->medical}}</td>
                       <td>{{$rca->bm_medical}}</td>
-                      <td>{{$rca->am_medical}}</td>
-                      <td>{{$rca->rm_medical}}</td>
+                      {{-- <td>{{$rca->am_medical}}</td>
+                      <td>{{$rca->rm_medical}}</td> --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label25')</td>
                       <td>{{$rca->other}}</td>
                       <td>{{$rca->bm_other}}</td>
-                      <td>{{$rca->am_other}}</td>
-                      <td>{{$rca->rm_other}}</td>
+                      {{-- <td>{{$rca->am_other}}</td>
+                      <td>{{$rca->rm_other}}</td> --}}
                     </tr>
                     <tr>
                       <th colspan="8" class="bgColor">@lang('loanApproval.title4')</th>
@@ -1413,22 +1415,22 @@
                       <td>@lang('loanApproval.label27')</td>
                       <td>{{$rca->debt ?? 0}}</td>
                       <td>{{$rca->bm_debt ?? 0}}</td>
-                      <td>{{$rca->am_debt ?? 0}}</td>
-                      <td>{{$rca->rm_debt ?? 0}}</td>
+                      <td rowspan="4">{{$rca->am_debt ?? 0}}</td>
+                      <td rowspan="4">{{$rca->rm_debt ?? 0}}</td>
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label28')</td>
                       <td>{{$rca->monthly_cash}}</td>
                       <td>{{$rca->bm_monthly_cash}}</td>
-                      <td>{{$rca->am_monthly_cash}}</td>
-                      <td>{{$rca->rm_monthly_cash}}</td>
+                      {{-- <td>{{$rca->am_monthly_cash}}</td>
+                      <td>{{$rca->rm_monthly_cash}}</td> --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label29')</td>
                       <td>{{$rca->instal_proposloan}}</td>
                       <td>{{$rca->bm_instal_proposloan}}</td>
-                      <td>{{$rca->am_instal_proposloan}}</td>
-                      <td>{{$rca->rm_instal_proposloan}}</td>
+                      {{-- <td>{{$rca->am_instal_proposloan}}</td>
+                      <td>{{$rca->rm_instal_proposloan}}</td> --}}
                     </tr>
                     <tr>
                       <td>@lang('loanApproval.label30')</td>
@@ -2513,7 +2515,7 @@
               required>
           </div>
           <div>
-            //content will load by js
+            <!--content will load by js -->
           </div>
         </div><!-- /.box-body -->
         <div class="form-footer">
@@ -2651,94 +2653,88 @@ $(document).ready(function() {
     $("#loanDetails").removeClass("active");
     $('#acceptiblity').addClass('active');
   }
-  $('#approve').on('click', function() {
-    $("#approve_form").append(`<input type="hidden" value="Approve" name="action">
-        <input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
-        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
-        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
-        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
-        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
-        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
-        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
-        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
-        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
-        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
-        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
-        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
-        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
-        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
-        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
-        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
-        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
-        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
-        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
-        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
-        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
-    `);
-    document.querySelector('#approve_modal').style.display = 'block';
 
-  })
+    const hiddenInputs = [
+                { name: 'all_monthlyincome_main1', value: getValue('#all_monthlyincome_main') },
+                { name: 'all_monthlyincome_spouse_child1', value: getValue('#all_monthlyincome_spouse_child') },
+                { name: 'all_monthlyincome_other1', value: getValue('#all_monthlyincome_other') },
+                { name: 'all_house_rent1', value: getValue('#all_house_rent') },
+                { name: 'all_food1', value: getValue('#all_food') },
+                { name: 'all_education1', value: getValue('#all_education') },
+                { name: 'all_medical1', value: getValue('#all_medical') },
+                { name: 'all_festive1', value: getValue('#all_festive') },
+                { name: 'all_utility1', value: getValue('#all_utility') },
+                { name: 'all_saving1', value: getValue('#all_saving') },
+                { name: 'all_other1', value: getValue('#all_other') },
+                { name: 'all_debt1', value: getValue('#all_debt') },
+                { name: 'all_monthly_cash1', value: getValue('#all_monthly_cash') },
+                { name: 'all_instal_proposloan1', value: getValue('#all_instal_proposloan') },
+                { name: 'all_seasonal_income1', value: getValue('#all_seasonal_income') },
+                { name: 'all_incomeformfixedassets1', value: getValue('#all_incomeformfixedassets') },
+                { name: 'all_imcomeformsavings1', value: getValue('#all_imcomeformsavings') },
+                { name: 'all_houseconstructioncost1', value: getValue('#all_houseconstructioncost') },
+                { name: 'all_expendingonmarriage1', value: getValue('#all_expendingonmarriage') },
+                { name: 'all_operation_childBirth1', value: getValue('#all_operation_childBirth') },
+                { name: 'all_foreigntravel1', value: getValue('#all_foreigntravel') },
+            ];
+
+    function getValue(selector) {
+        const element = document.querySelector(selector);
+        return element ? element.value : '';
+    }
+
+    //approve loan
+    document.getElementById('approve').addEventListener('click', () => {
+        const approveForm = document.getElementById('approve_form');
+
+        approveForm.appendChild(Object.assign(document.createElement('input'), { type: 'hidden', name: 'action', value: 'Approve' }));
+
+        hiddenInputs.forEach(input => {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = input.name;
+            hiddenInput.value = input.value;
+            approveForm.appendChild(hiddenInput);
+        });
+
+        document.querySelector('#approve_modal').style.display = 'block';
+    });
+
   $('#reject').on('click', function() {
     document.querySelector('#reject_modal').style.display = 'block';
     $("#action").append(`<input type="hidden" value="Reject" name="action">`);
 
   })
-  // recommend model
-  $('#recommend').on('click', function() {
-    $("#action").append(`<input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
-        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
-        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
-        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
-        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
-        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
-        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
-        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
-        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
-        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
-        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
-        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
-        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
-        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
-        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
-        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
-        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
-        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
-        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
-        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
-        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
-    `);
-    document.querySelector('#reject_modal').style.display = 'block';
-  });
+    // recommend model
+    document.getElementById('recommend').addEventListener('click', () => {
+        const approveForm = document.getElementById('action');
 
-  //Prepare sendback model
-  $('#sendback').on('click', function() {
-    $("#action").append(`<input type="hidden" value="Approve" name="action">
-        <input type="hidden" value="${$('#all_monthlyincome_main').val() ?? 0}" name="all_monthlyincome_main1">
-        <input type="hidden" value="${$('#all_monthlyincome_spouse_child').val() ?? 0}" name="all_monthlyincome_spouse_child1">
-        <input type="hidden" value="${$('#all_monthlyincome_other').val() ?? 0}" name="all_monthlyincome_other1">
-        <input type="hidden" value="${$('#all_house_rent').val() ?? 0}" name="all_house_rent1">
-        <input type="hidden" value="${$('#all_food').val() ?? 0}" name="all_food1">
-        <input type="hidden" value="${$('#all_education').val() ?? 0}" name="all_education1">
-        <input type="hidden" value="${$('#all_medical').val() ?? 0}" name="all_medical1">
-        <input type="hidden" value="${$('#all_festive').val() ?? 0}" name="all_festive1">
-        <input type="hidden" value="${$('#all_utility').val() ?? 0}" name="all_utility1">
-        <input type="hidden" value="${$('#all_saving').val() ?? 0}" name="all_saving1">
-        <input type="hidden" value="${$('#all_other').val() ?? 0}" name="all_other1">
-        <input type="hidden" value="${$('#all_debt').val() ?? 0}" name="all_debt1">
-        <input type="hidden" value="${$('#all_monthly_cash').val() ?? 0}" name="all_monthly_cash1">
-        <input type="hidden" value="${$('#all_instal_proposloan').val() ?? 0}" name="all_instal_proposloan1">
-        <input type="hidden" value="${$('#all_seasonal_income').val() ?? 0}" name="all_seasonal_income1">
-        <input type="hidden" value="${$('#all_incomeformfixedassets').val() ?? 0}" name="all_incomeformfixedassets1">
-        <input type="hidden" value="${$('#all_imcomeformsavings').val() ?? 0}" name="all_imcomeformsavings1">
-        <input type="hidden" value="${$('#all_houseconstructioncost').val() ?? 0}" name="all_houseconstructioncost1">
-        <input type="hidden" value="${$('#all_expendingonmarriage').val() ?? 0}" name="all_expendingonmarriage1">
-        <input type="hidden" value="${$('#all_operation_childBirth').val() ?? 0}" name="all_operation_childBirth1">
-        <input type="hidden" value="${$('#all_foreigntravel').val() ?? 0}" name="all_foreigntravel1">
-    `);
+        hiddenInputs.forEach(input => {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = input.name;
+            hiddenInput.value = input.value;
+            approveForm.appendChild(hiddenInput);
+        });
 
-    document.querySelector('#reject_modal').style.display = 'block';
+        document.querySelector('#reject_modal').style.display = 'block';
+    });
 
-  })
+    //Prepare sendback model
+    document.getElementById('sendback').addEventListener('click', () => {
+        const approveForm = document.getElementById('action');
+        approveForm.appendChild(Object.assign(document.createElement('input'), { type: 'hidden', name: 'action', value: 'Approve' }));
+
+        hiddenInputs.forEach(input => {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = input.name;
+            hiddenInput.value = input.value;
+            approveForm.appendChild(hiddenInput);
+        });
+
+        document.querySelector('#reject_modal').style.display = 'block';
+    });
 
   $('#approve').on('click', function() {
     document.querySelector('#approve_modal').style.display = 'block';
